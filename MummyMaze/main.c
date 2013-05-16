@@ -4,8 +4,6 @@
 #include "stack.h"
 #include "maze_create.h"
 
-
-
 int main()
 {
 	int **matrix;
@@ -15,6 +13,5 @@ int main()
 	matrix = initMatrix(DIM);
 	printDebugMatrix(matrix, DIM);
 	
-
 	return 0;
 }

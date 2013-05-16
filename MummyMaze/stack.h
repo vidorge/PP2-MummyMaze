@@ -16,6 +16,7 @@ typedef struct listElem lElem;
 */
 int stackEmpty(lElem *head);
 
+
 /**
 *	@desc	Push new element to stack
 *	@param	lElem **head - double pointer to list head
@@ -23,6 +24,7 @@ int stackEmpty(lElem *head);
 *	@author Vidor Gencel
 */
 void push(lElem **head, int element);
+
 
 /**
 *	@desc	Remove and return element from stack
