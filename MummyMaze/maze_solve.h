@@ -2,7 +2,7 @@
 #define _maze_solve_h
 
 
-/* makroi za preveru statsa clanova glavne matrice */
+/* makrooi za preveru statsa clanova glavne matrice */
 
 #define jeZid(char A ) ( A & 0x01)
 #define jeHint (char A )	(A & 0x02)
