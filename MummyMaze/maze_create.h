@@ -30,5 +30,9 @@ void printDebugMatrix(int **matrix, int dimension);
 //int hasUnvisitedNeighbour(int **matrix);
 
 
+//mrzelo me majke mi
+
+void dfs(int **a, int r, int c, int dimension);
+
 
 #endif
