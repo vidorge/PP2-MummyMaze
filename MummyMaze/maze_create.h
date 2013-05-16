@@ -18,7 +18,7 @@ int **initMatrix(int dimension);
 *	@param	int dimension - dimension of matrix
 *	@author Vidor Gencel
 */
-int **printDebugMatrix(int **matrix, int dimension);
+void printDebugMatrix(int **matrix, int dimension);
 
 
 /**
