@@ -22,7 +22,7 @@ int **initMatrix(int dimension)
 }
 
 
-int **printDebugMatrix(int **matrix, int dimension)
+void printDebugMatrix(int **matrix, int dimension)
 {
 	int i, j;
 

@@ -24,6 +24,9 @@
     <ClCompile Include="maze_create.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="maze_gui.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="maze_create.h">

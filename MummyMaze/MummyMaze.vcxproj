@@ -80,6 +80,7 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="maze_create.c" />
+    <ClCompile Include="maze_gui.c" />
     <ClCompile Include="stack.c" />
   </ItemGroup>
   <ItemGroup>

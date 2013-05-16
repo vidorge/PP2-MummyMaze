@@ -2,7 +2,9 @@
 #include <stdlib.h>
 
 #include "stack.h"
+#include "maze_gui.h"
 #include "maze_create.h"
+
 
 int main()
 {
@@ -11,7 +13,7 @@ int main()
 	//i'm a sad sad main :(
 
 	matrix = initMatrix(DIM);
-	printDebugMatrix(matrix, DIM);
+	printFormattedMatrix(matrix, DIM);
 	
 	return 0;
 }
