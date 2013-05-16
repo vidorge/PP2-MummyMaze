@@ -8,11 +8,11 @@ int **initMatrix(int dimension)
 {
 	int **a, i, j;
 
-	a = malloc( dimension * sizeof(int*) );
+	a = (int**) malloc( dimension * sizeof(int*) );
 
 	for (i=0; i<dimension; i++)
 	{
-		a[i] = malloc( dimension * sizeof(int) );
+		a[i] (int*) = malloc( dimension * sizeof(int) );
 		for (j=0; j<dimension; j++)
 			a[i][j] = 0;
 	}
