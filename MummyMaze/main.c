@@ -22,6 +22,8 @@ int main()
 
 	DfsInit(matrix, 23);
 
+	RemoveRandomWalls(matrix, 23, 7);
+
 	printFormattedMatrix(matrix, 23);
 
 	system ("pause");

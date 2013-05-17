@@ -128,6 +128,33 @@ void printDebugMatrix(int **matrix, int dimension)
 
 }
 
+void RemoveRandomWalls(int **a, int dimension, int probability)
+{
+	int i, j;
+
+
+	for(i=1; i< dimension - 1; i++)
+	{
+		for(j=1; j < dimension - 1; j++)
+		{
+			if( !a[i][j] ) continue;
+			else
+			{
+
+				if( (rand() % probability) == 1 )
+					a[i][j] = 0;
+
+			}
+
+
+		}
+
+
+	}
+
+
+}
+
 /*
 int hasUnvisitedNeighbour(int **matrix)
 {
