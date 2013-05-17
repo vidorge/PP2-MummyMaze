@@ -35,4 +35,6 @@ void printDebugMatrix(int **matrix, int dimension);
 void dfs(int **a, int r, int c, int dimension);
 
 
+//int[] ShuffleArray(int randDir[]);
+
 #endif

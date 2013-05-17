@@ -18,7 +18,7 @@ int **initMatrix(int dimension)
 			a[i][j] = 1;
 	}
 
-	srand( time(NULL) );
+	srand( (unsigned)time(NULL) );
 
 	c = rand() % dimension;
 	while( c % 2 == 0 )
@@ -32,7 +32,7 @@ int **initMatrix(int dimension)
 
 
 	dfs(a, r, c, dimension);
-
+	
 	return a;
 
 }
@@ -40,8 +40,9 @@ int **initMatrix(int dimension)
 
 void dfs(int **a, int r, int c, int dimension)
 {
-	int randDir[] = {3, 4, 2, 1}; // Must randomize
+	int randDir[] = {1, 2, 3, 4};
 	int i;
+
 
 	for (i = 0; i < 4; i++) {
  
