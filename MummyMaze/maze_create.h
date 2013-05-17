@@ -40,4 +40,9 @@ void dfs(int **a, int r, int c, int dimension);
 
 void DfsInit(int **a, int dimension);
 
+
+void ShuffleArray(int *randDir);
+
+
+
 #endif

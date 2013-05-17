@@ -13,6 +13,9 @@ int main()
 	
 	//i'm a sad sad main :(
 
+	//OVO CEMO JEDNOM POZVATI I NIKEAD VISE DA LI SAM JASAN???
+	srand( (unsigned) time(NULL) );
+
 	setConsoleSize(WIDTH,HEIGHT);
 
 	matrix = initMatrix(23);
@@ -20,7 +23,7 @@ int main()
 	DfsInit(matrix, 23);
 
 	printFormattedMatrix(matrix, 23);
-	
+
 	system ("pause");
 	return 0;
 }

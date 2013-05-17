@@ -7,13 +7,13 @@
 
 int **initMatrix(int dimension)
 {
-	int **a, i, j, r, c;
+	int **a, i, j;
 
 	a = (int**) malloc( dimension * sizeof(int*) );
 
 	for (i=0; i<dimension; i++)
 	{
-		a[i]  = malloc( dimension * sizeof(int) );
+		a[i] = (int*) malloc( dimension * sizeof(int) );
 		for (j=0; j<dimension; j++)
 			a[i][j] = 1;
 	}
@@ -44,11 +44,34 @@ void DfsInit(int **a, int dimension)
 
 }
 
+void ShuffleArray(int *randDir)
+{
+	int i, j, temp;
+
+	for(i=0; i<4; i++)
+	{
+		j = rand() % 4;
+
+		temp = randDir[i];
+		randDir[i] = randDir[j];
+		randDir[j] = temp;
+	}
+
+	/*
+	printf("\n");
+	for(i=0; i<4; i++)
+		printf("%d", randDir[i]);
+	printf("\n");
+	*/
+
+}
+
 void dfs(int **a, int r, int c, int dimension)
 {
 	int randDir[] = {1, 2, 3, 4};
 	int i;
 
+	ShuffleArray(randDir);
 
 	for (i = 0; i < 4; i++) {
  
