@@ -18,6 +18,16 @@ int **initMatrix(int dimension)
 			a[i][j] = 1;
 	}
 
+	return a;
+
+}
+
+
+void DfsInit(int **a, int dimension)
+{
+
+	int c, r;
+
 	srand( (unsigned)time(NULL) );
 
 	c = rand() % dimension;
@@ -30,13 +40,9 @@ int **initMatrix(int dimension)
 
 	a[r][c] = 0;
 
-
 	dfs(a, r, c, dimension);
-	
-	return a;
 
 }
-
 
 void dfs(int **a, int r, int c, int dimension)
 {

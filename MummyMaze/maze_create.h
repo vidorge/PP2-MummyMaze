@@ -37,4 +37,7 @@ void dfs(int **a, int r, int c, int dimension);
 
 //int[] ShuffleArray(int randDir[]);
 
+
+void DfsInit(int **a, int dimension);
+
 #endif

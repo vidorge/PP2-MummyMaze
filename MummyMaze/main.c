@@ -16,6 +16,9 @@ int main()
 	setConsoleSize(WIDTH,HEIGHT);
 
 	matrix = initMatrix(23);
+
+	DfsInit(matrix, 23);
+
 	printFormattedMatrix(matrix, 23);
 	
 	system ("pause");
