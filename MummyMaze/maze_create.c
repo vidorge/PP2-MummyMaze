@@ -5,16 +5,16 @@
 #include "maze_create.h"
 
 
-int **initMatrix(int dimension)
+int **initMatrix(dimension_t dimension)
 {
 	int **a, i, j;
 
-	a = (int**) malloc( dimension * sizeof(int*) );
+	a = (int**) malloc( dimension.y * sizeof(int*) );
 
-	for (i=0; i<dimension; i++)
+	for (i=0; i<dimension.y; i++)
 	{
-		a[i] = (int*) malloc( dimension * sizeof(int) );
-		for (j=0; j<dimension; j++)
+		a[i] = (int*) malloc( dimension.x * sizeof(int) );
+		for (j=0; j<dimension.x; j++)
 			a[i][j] = 1;
 	}
 
@@ -23,20 +23,20 @@ int **initMatrix(int dimension)
 }
 
 
-void DfsInit(int **a, int dimension)
+void DfsInit(int **a, dimension_t dimension)
 {
 
 	int c, r;
 
 	srand( (unsigned)time(NULL) );
 
-	c = rand() % dimension;
+	c = rand() % dimension.y;
 	while( c % 2 == 0 )
-		c = rand() % dimension;
+		c = rand() % dimension.y;
 
-	r = rand() % dimension;
+	r = rand() % dimension.x;
 	while( r % 2 == 0 )
-		r = rand() % dimension;
+		r = rand() % dimension.x;
 
 	a[r][c] = 0;
 
@@ -57,16 +57,9 @@ void ShuffleArray(int *randDir)
 		randDir[j] = temp;
 	}
 
-	/*
-	printf("\n");
-	for(i=0; i<4; i++)
-		printf("%d", randDir[i]);
-	printf("\n");
-	*/
-
 }
 
-void dfs(int **a, int r, int c, int dimension)
+void dfs(int **a, int r, int c, dimension_t dimension)
 {
 	int randDir[] = {1, 2, 3, 4};
 	int i;
@@ -86,7 +79,7 @@ void dfs(int **a, int r, int c, int dimension)
              break;
 
          case 2: // Right
-             if (c + 2 >= dimension - 1) continue;
+             if (c + 2 >= dimension.x - 1) continue;
              if (a[r][c + 2] != 0) {
                  a[r][c + 2] = 0;
                  a[r][c + 1] = 0;
@@ -95,7 +88,7 @@ void dfs(int **a, int r, int c, int dimension)
              break;
 
          case 3: // Down
-             if (r + 2 >= dimension - 1)  continue;
+             if (r + 2 >= dimension.y - 1)  continue;
              if (a[r + 2][c] != 0) {
                  a[r+2][c] = 0;
                  a[r+1][c] = 0;
@@ -118,24 +111,24 @@ void dfs(int **a, int r, int c, int dimension)
 }
 
 
-void printDebugMatrix(int **matrix, int dimension)
+void printDebugMatrix(int **matrix, dimension_t dimension)
 {
 	int i, j;
 
-	for (i=0; i<dimension; i++, printf("\n") )
-		for (j=0; j<dimension; j++)
+	for (i=0; i<dimension.y; i++, printf("\n") )
+		for (j=0; j<dimension.x; j++)
 			printf("%d", matrix[i][j]);
 
 }
 
-void RemoveRandomWalls(int **a, int dimension, int probability)
+void RemoveRandomWalls(int **a, dimension_t dimension, int probability)
 {
 	int i, j;
 
 
-	for(i=1; i< dimension - 1; i++)
+	for(i=1; i< dimension.y - 1; i++)
 	{
-		for(j=1; j < dimension - 1; j++)
+		for(j=1; j < dimension.x - 1; j++)
 		{
 			if( !a[i][j] ) continue;
 			else

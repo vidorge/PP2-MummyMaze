@@ -2,11 +2,12 @@
 #include <Windows.h>
 
 #include "maze_gui.h"
+#include "maze_create.h"
 
 
 
 
-void printFormattedMatrix(int **matrix, int dimension)
+void printFormattedMatrix(int **matrix, dimension_t dimension)
 {
 	int i, j;
 
@@ -14,8 +15,8 @@ void printFormattedMatrix(int **matrix, int dimension)
 
 	SetConsoleTextAttribute(consoleHandle, 215);
 
-	for (i=0; i<dimension; i++, printf("\n") )
-		for(j=0; j<dimension; j++)
+	for (i=0; i<dimension.y; i++, printf("\n") )
+		for(j=0; j<dimension.x; j++)
 		{
 
 			if(matrix[i][j] == 0)

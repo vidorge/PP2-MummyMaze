@@ -3,13 +3,20 @@
 
 #define DIM 15
 
+typedef struct
+{
+	int x;
+	int y;
+
+} dimension_t;
+
 /**
 *	@desc	Initialize a matrix
 *	@param	int dimension - dimension of matrix
 *	@return	int ** - double pointer to matrix
 *	@author Vidor Gencel
 */
-int **initMatrix(int dimension);
+int **initMatrix(dimension_t dimension);
 
 
 /**
@@ -18,7 +25,7 @@ int **initMatrix(int dimension);
 *	@param	int dimension - dimension of matrix
 *	@author Vidor Gencel
 */
-void printDebugMatrix(int **matrix, int dimension);
+void printDebugMatrix(int **matrix, dimension_t dimension);
 
 
 /**
@@ -32,13 +39,13 @@ void printDebugMatrix(int **matrix, int dimension);
 
 //mrzelo me majke mi
 
-void dfs(int **a, int r, int c, int dimension);
+void dfs(int **a, int r, int c, dimension_t dimension);
 
 
 //int[] ShuffleArray(int randDir[]);
 
 
-void DfsInit(int **a, int dimension);
+void DfsInit(int **a, dimension_t dimension);
 
 
 
@@ -46,7 +53,7 @@ void ShuffleArray(int *randDir);
 
 
 
-void RemoveRandomWalls(int **a, int dimension, int probability);
+void RemoveRandomWalls(int **a, dimension_t dimension, int probability);
 
 
 

@@ -10,6 +10,10 @@
 int main()
 {
 	int **matrix;
+	dimension_t dimension;
+
+	dimension.x = 40;
+	dimension.y = 23;
 	
 	//i'm a sad sad main :(
 
@@ -18,13 +22,13 @@ int main()
 
 	setConsoleSize(WIDTH,HEIGHT);
 
-	matrix = initMatrix(23);
+	matrix = initMatrix(dimension);
 
-	DfsInit(matrix, 23);
+	DfsInit(matrix, dimension);
 
-	RemoveRandomWalls(matrix, 23, 7);
+	RemoveRandomWalls(matrix, dimension, 3);
 
-	printFormattedMatrix(matrix, 23);
+	printFormattedMatrix(matrix, dimension);
 
 	system ("pause");
 	return 0;
