@@ -81,12 +81,14 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="maze_create.c" />
     <ClCompile Include="maze_gui.c" />
+    <ClCompile Include="screen_resolution.c" />
     <ClCompile Include="stack.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="maze_create.h" />
     <ClInclude Include="maze_gui.h" />
     <ClInclude Include="maze_solve.h" />
+    <ClInclude Include="screen_resolution.h" />
     <ClInclude Include="stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
