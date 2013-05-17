@@ -12,8 +12,8 @@ int main()
 	
 	//i'm a sad sad main :(
 
-	matrix = initMatrix(DIM);
-	printFormattedMatrix(matrix, DIM);
+	matrix = initMatrix(23);
+	printFormattedMatrix(matrix, 23);
 	
 	return 0;
 }
