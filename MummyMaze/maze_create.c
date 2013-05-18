@@ -27,13 +27,8 @@ void DfsInit(int **a, dimension_t dimension)
 
 	int c, r;
 
-	c = rand() % dimension.y;
-	while( c % 2 == 0 )
-		c = rand() % dimension.y;
-
-	r = rand() % dimension.x;
-	while( r % 2 == 0 )
-		r = rand() % dimension.x;
+	r = dimension.y / 2; //this must be more random for dense matrix
+	c = dimension.y / 2;
 
 	a[r][c] = 0;
 
