@@ -30,7 +30,7 @@ int manhattanLength (int cordinateX1, int cordinateY1 , int cordinateX2, int cor
 
 elemTree_t* deletePrioQueue(elemPrioQueue_t** Q);
 void insertPrioQueue(elemPrioQueue_t **Q, elemTree_t* T,int Len);
-
+elemTree_t* b&(int ***matrix, int i, int j);
 
 
 #endif

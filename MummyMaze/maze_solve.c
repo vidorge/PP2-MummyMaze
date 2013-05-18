@@ -45,3 +45,13 @@ void insertPrioQueue(elemPrioQueue_t **q, elemTree_t* t, int len){
 
 
 }
+elemTree_t*  branchAndBound(int ***matrix, int i1, int j1,int i2, int j2){
+	elemPrioQueue_t queue=null;
+
+
+	// od  matrix[i][j] knapraviti  koren stabla 
+
+	//ubaciti u red pomocu insertPrioQueue()
+
+	//poceti petlju
+}
