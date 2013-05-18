@@ -28,8 +28,6 @@ void DfsInit(int **a, dimension_t dimension)
 
 	int c, r;
 
-	srand( (unsigned)time(NULL) );
-
 	c = rand() % dimension.y;
 	while( c % 2 == 0 )
 		c = rand() % dimension.y;
