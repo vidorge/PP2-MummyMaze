@@ -27,12 +27,16 @@ int main()
 
 	DfsInit(matrix, dimension);
 
-	RemoveRandomWalls(matrix, dimension, 3);
+	RemoveRandomWalls(matrix, dimension, 4);
+	printFormattedMatrix(matrix, dimension);
+
+	printf("\n\n");
+
 	RemoveAloneWalls(matrix, dimension);
 
 
-	printFormattedMatrix(matrix, dimension);
 
+	printFormattedMatrix(matrix, dimension);
 	MazeDestroy(matrix, dimension);
 
 	system ("pause");

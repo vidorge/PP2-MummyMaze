@@ -172,7 +172,11 @@ void RemoveAloneWalls(int **a, dimension_t dimension)
 			else
 			{
 
-				if( a[i-1][j] == 0 && a[i+1][j] == 0 && a[i][j-1] == 0 && a[i][j+1] == 0 )
+				if(
+					a[i-1][j] == 0 && a[i+1][j] == 0 && a[i][j-1] == 0 && a[i][j+1] == 0 &&
+					a[i-1][j-1] == 0 && a[i+1][j+1] == 0 && a[i-1][j+1] == 0 && a[i+1][j-1] == 0
+					
+					)
 					a[i][j] = 0;
 
 			}
