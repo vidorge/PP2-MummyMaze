@@ -57,6 +57,7 @@ void RemoveRandomWalls(int **a, dimension_t dimension, int probability);
 
 void MazeDestroy(int **a, dimension_t dimension);
 
+void RemoveAloneWalls(int **a, dimension_t dimension);
 
 
 #endif

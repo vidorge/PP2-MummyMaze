@@ -159,3 +159,30 @@ void MazeDestroy(int **a, dimension_t dimension)
 	free(a);
 
 }
+
+void RemoveAloneWalls(int **a, dimension_t dimension)
+{
+	int i, j;
+
+	for(i=1; i< dimension.y - 1; i++)
+	{
+		for(j=1; j < dimension.x - 1; j++)
+		{
+			if( !a[i][j] ) continue;
+			else
+			{
+
+				if( a[i-1][j] == 0 && a[i+1][j] == 0 && a[i][j-1] == 0 && a[i][j+1] == 0 )
+					a[i][j] = 0;
+
+			}
+
+
+		}
+
+
+	}
+
+
+
+}

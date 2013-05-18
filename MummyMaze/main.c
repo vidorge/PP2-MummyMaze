@@ -13,7 +13,7 @@ int main()
 	int **matrix;
 	dimension_t dimension;
 
-	dimension.x = 40;
+	dimension.x = 80;
 	dimension.y = 23;
 	
 	//i'm a sad sad main :(
@@ -28,6 +28,8 @@ int main()
 	DfsInit(matrix, dimension);
 
 	RemoveRandomWalls(matrix, dimension, 3);
+	RemoveAloneWalls(matrix, dimension);
+
 
 	printFormattedMatrix(matrix, dimension);
 
