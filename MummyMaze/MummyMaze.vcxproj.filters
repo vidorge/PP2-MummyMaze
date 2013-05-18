@@ -30,6 +30,9 @@
     <ClCompile Include="screen_resolution.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="maze_solve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="maze_create.h">
