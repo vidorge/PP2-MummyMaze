@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 #include "maze_create.h"
 
@@ -123,7 +122,6 @@ void RemoveRandomWalls(int **a, dimension_t dimension, int probability)
 {
 	int i, j;
 
-
 	for(i=1; i< dimension.y - 1; i++)
 	{
 		for(j=1; j < dimension.x - 1; j++)
@@ -154,3 +152,15 @@ int hasUnvisitedNeighbour(int **matrix)
 
 }
 */
+
+
+void MazeDestroy(int **a, dimension_t dimension)
+{
+	int i;
+
+	for(i=0; i<dimension.y; i++)
+		free(a[i]);
+
+	free(a);
+
+}

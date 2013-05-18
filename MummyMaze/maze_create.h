@@ -55,6 +55,8 @@ void ShuffleArray(int *randDir);
 
 void RemoveRandomWalls(int **a, dimension_t dimension, int probability);
 
+void MazeDestroy(int **a, dimension_t dimension);
+
 
 
 #endif

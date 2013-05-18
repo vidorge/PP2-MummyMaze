@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "stack.h"
 #include "maze_gui.h"
@@ -29,6 +30,8 @@ int main()
 	RemoveRandomWalls(matrix, dimension, 3);
 
 	printFormattedMatrix(matrix, dimension);
+
+	MazeDestroy(matrix, dimension);
 
 	system ("pause");
 	return 0;
