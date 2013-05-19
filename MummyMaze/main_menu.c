@@ -6,10 +6,11 @@
 #include "colors.h"
 #include "start_game.h"
 #include "background.h"
+#include "main_menu.h"
 
 void mainMenu () {
 
-	int selection=0, choice, game=FALSE;
+	int selection=NEWGAME, choice, game=FALSE;
 	int i=0,end=3;
 
 	//***************************************************************************
@@ -27,7 +28,7 @@ void mainMenu () {
 		
 		changeColor(MENUC);
 
-		if (selection==0) {
+		if (selection==NEWGAME) {
 			if (game) {
 				positionCursor(54,18);printf ("----------------");
 				changeColor(MENUA);positionCursor(54,19);printf ("|  Resume Game |");
@@ -49,7 +50,7 @@ void mainMenu () {
 			}
 		}
 
-		if (selection==1) {
+		if (selection==LOADGAME) {
 			changeColor(MENUA);positionCursor(54,21);printf ("|  Load  Game  |");
 			changeColor(MENUC);
 		}
@@ -58,7 +59,7 @@ void mainMenu () {
 			positionCursor(54,22);printf ("----------------");
 		}
 
-		if (selection==2) {
+		if (selection==SAVEGAME) {
 			changeColor(MENUA);positionCursor(54,23);printf ("|  Save  Game  |");
 			changeColor(MENUC);
 		}
@@ -67,7 +68,7 @@ void mainMenu () {
 			positionCursor(54,24);printf ("----------------"); 
 		}
 
-		if (selection==3) { 
+		if (selection==OPTIONS) { 
 			changeColor(MENUA);positionCursor(54,25);printf ("|   Options    |");
 			changeColor(MENUC); 
 		}
@@ -75,7 +76,7 @@ void mainMenu () {
 		positionCursor(54,26);printf ("----------------");
 		}
 
-		if (selection==4) { 
+		if (selection==HIGHSCORES) { 
 			changeColor(MENUA);positionCursor(54,27);printf ("| High  Scores |");
 			changeColor(MENUC); 
 		}
@@ -84,7 +85,7 @@ void mainMenu () {
 			positionCursor(54,28);printf ("----------------"); 
 		}
 
-		if (selection==5) { 
+		if (selection==HELP) { 
 			changeColor(MENUA);positionCursor(54,29);printf ("|     Help     |");
 			changeColor(MENUC);
 		}
@@ -93,7 +94,7 @@ void mainMenu () {
 			positionCursor(54,30);printf ("----------------"); 
 		}
 
-		if (selection==6) { 
+		if (selection==ABOUT) { 
 			changeColor(MENUA);positionCursor(54,31);printf ("|     About    |"); 
 			changeColor(MENUC); 
 		}
@@ -102,7 +103,7 @@ void mainMenu () {
 			positionCursor(54,32);printf ("----------------"); 
 		}
 
-		if (selection==7) {
+		if (selection==EXIT) {
 			changeColor(MENUA);positionCursor(54,33);printf ("|     Exit     |");
 			changeColor(MENUC); 
 		}
@@ -114,18 +115,18 @@ void mainMenu () {
 		choice=controls(_getch());
 		if (choice==EXIT) break;
 		switch (choice){
-			case UP: { if (selection>0) selection--; else selection=7; break; }
-			case DOWN: { if (selection<7) selection++; else selection=0; break; }
+			case UP: { if (selection>NEWGAME) selection--; else selection=EXIT; break; }
+			case DOWN: { if (selection<EXIT) selection++; else selection=NEWGAME; break; }
 			case ENTER: { 
 				switch (selection){
-					case 0: system("CLS");game=TRUE;startGame();backgroundImage(2);break;
-					case 1: break;
-					case 2: break;
-					case 3: break;
-					case 4: break;
-					case 5: break;
-					case 6: break;
-					case 7: exit (0);
+					case NEWGAME: system("CLS");game=TRUE;startGame();backgroundImage(2);break;
+					case LOADGAME: break;
+					case SAVEGAME: break;
+					case OPTIONS: break;
+					case HIGHSCORES: break;
+					case HELP: break;
+					case ABOUT: break;
+					case EXIT: exit (0);
 				}			
 			}
 		}
