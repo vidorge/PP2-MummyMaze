@@ -12,8 +12,6 @@ void startAnimation () {
 
 	int blink=0;
 
-	if (!DEBUGGING) Sleep (500);
-
 	changeColor(ARROW);
 	system ("CLS");
 	changeColor(ARROW);
@@ -44,7 +42,7 @@ void startAnimation () {
 			"                            `.:/oshhhhhhhhyssss-  \n"
 			"                                   .-/+syhhhhhhy` \n"
 			"                                         `-:+oy+ ");
-	if (!DEBUGGING) Sleep(3000);
+	if (!DEBUGGING) Sleep(3200);
 
 	changeColor(ETF);
 	system ("CLS");
