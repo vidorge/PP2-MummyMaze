@@ -5,6 +5,7 @@
 #include "position_cursor.h"
 #include "colors.h"
 #include "start_game.h"
+#include "background.h"
 
 void mainMenu () {
 
@@ -117,7 +118,7 @@ void mainMenu () {
 			case DOWN: { if (selection<7) selection++; else selection=0; break; }
 			case ENTER: { 
 				switch (selection){
-					case 0: system("CLS");game=TRUE;startGame();break;
+					case 0: system("CLS");game=TRUE;startGame();backgroundImage(2);break;
 					case 1: break;
 					case 2: break;
 					case 3: break;

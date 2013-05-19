@@ -4,12 +4,15 @@
 #include "controls.h"
 #include "position_cursor.h"
 #include "colors.h"
+#include "background.h"
 
 
 void startAnimation () {
-	
-	int DEBUGGING=FALSE;
 
+	//***debug**mode****on/off****
+	int DEBUGGING=TRUE;
+	//****************************
+	
 	int blink=0;
 
 	changeColor(ARROW);
@@ -106,60 +109,10 @@ void startAnimation () {
 	printf ("---PRESENT YOU---");
 	if (!DEBUGGING) Sleep(2000);
 
-	system ("CLS");		
+	system ("CLS");
 
-	positionCursor(0,1);
-			printf ("           __    __    __    __    __    __     __    __    __  __      __    __     _____    _____       _____  \n"
-			"          /_/\\  /\\_\\  /\\_\\  /_/\\  /_/\\  /\\_\\   /_/\\  /\\_\\ /\\  /\\  /\\   /_/\\  /\\_\\   /\\___/\\  /\\____\\     /\\_____\\ \n"
-			"          ) ) \\/ ( ( ( ( (  ) ) ) ) ) \\/ ( (   ) ) \\/ ( ( \\ \\ \\/ / /   ) ) \\/ ( (  / / _ \\ \\ \\/_ ( (    ( (_____/ \n"
-			"         /_/ \\  / \\_\\ \\ \\ \\/ / / /_/ \\  / \\_\\ /_/ \\  / \\_\\ \\ \\__/ /   /_/ \\  / \\_\\ \\ \\(_)/ /    \\ \\_\\    \\ \\__\\   \n"
-			"         \\ \\ \\\\// / /  \\ \\  / /  \\ \\ \\\\// / / \\ \\ \\\\// / /  \\__/ /    \\ \\ \\\\// / / / / _ \\ \\    / / /__  / /__/_  \n"
-			"          )_) )( (_(   ( (__) )   )_) )( (_(   )_) )( (_(   / / /      )_) )( (_( ( (_( )_) )  ( (____( ( (_____\\ \n"
-			"          \\_\\/  \\/_/    \\/__\\/    \\_\\/  \\/_/   \\_\\/  \\/_/   \\/_/       \\_\\/  \\/_/  \\/_/ \\_\\/    \\/____/  \\/_____/ \n");
+	backgroundImage(1);
 	
-	positionCursor(0,9);
-	changeColor(MENUC);
-	printf(":/++++///////:::::::/::::::::-------:---:--::::::--------....-----.--:---:------::/-----------------::/::::-----.:---:-:::://\n");
-	
-	changeColor(GROUND);
-	positionCursor(0,11);
-	printf ("                                                                   G.                                                  \n"
-			"                                                                1L G G                                                 \n"
-			"                                                             .G    C   G                                               \n"
-			"                                                           L.     ,;    .G                                             \n"
-			"                                                        ,i        i.      .G                                           \n"
-			"                                                    i. f          C         .G                                         \n"
-			"                                                 t.      ;        G           .G                                       \n"
-			"                                              f.         t        G             .G:,                                   \n"
-			"                                           L             C        G     .itfCGGGG   .1                                 \n"
-			"                                        C               tfGG:     f    G         1.    L                               \n"
-			"                                     L                 G        L :  i             f     C                             \n"
-			"                                 .L                 .;           GGC               L  t.   C                           \n"
-			"                              .L               ;.                G                 L      t  f.                        \n"
-			"                           ,f             ,fL         i          f                 L           1:                      \n"
-			"                        ,t                 i           .        .,                 ;            .,t                    \n"
-			"                     ;1                                1        t                              Cf.,.L                  \n"
-			"                  ii                                  1         C                            .. ;  C  G                \n"
-			"               t:                                    1          G                            .  .       G              \n"
-			"             ;f                                     1i          C                t..,        .  .   .     G.           \n"
-			"                G.                                L   :         ;               . .  C       .  .   :       f:         \n"
-			"                  .C                            L              ,.                     ,      ,  .   ;         it       \n"
-			"                     t:                                        t               .      ;      ,  .   1           :L     \n"
-			"                        G                                      G               .      t      ,  .   t             .G   \n"
-			"                          :1                                   G               .      f      :  .   L               .G \n"
-			"                             L.                                t               ,      GC:    :  .   L             1Gi  \n"
-			"                               .f                              .               :      f  :.:,:  .   f         CG.      \n"
-			"                                  1,                          .                i      i L :.  t .   f    iGi           \n"
-			"                                     C                        f                t      :: :   . L.   1LC.               \n"
-			"                                       :;                     G                f      ,        L    ;                  \n"
-			"                                          f           .       G                L      .        C    :                  \n"
-			"                                            .t       .        ;                C            1C.,t;C.                   \n"
-			"                                               i.     ,       . ,      t       G       .Lf                             \n"
-			"                                                  f.,        ,  f1            ,G       i                               \n"
-			"                                                    ,:  1    L            1L.    i;:G;                                 \n"
-			"                                                       f  ;  C ,     .Ci                                               \n"
-			"                                                          iL.t:  ;C.                                                   \n"
-			"                                                            ;Gi                                                        \n");
 	if (!DEBUGGING) 
 		while (1) {		
 			switch (blink) {
@@ -169,4 +122,6 @@ void startAnimation () {
 
 			if (_getch()!=NULL) positionCursor (50,40);printf ("                       ");break;
 		}
+
+	backgroundImage(2);
 }

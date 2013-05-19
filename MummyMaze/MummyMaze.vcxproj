@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="background.c" />
     <ClCompile Include="colors.c" />
     <ClCompile Include="controls.c" />
     <ClCompile Include="main.c" />
@@ -92,6 +93,7 @@
     <ClCompile Include="start_game.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="background.h" />
     <ClInclude Include="colors.h" />
     <ClInclude Include="controls.h" />
     <ClInclude Include="main_menu.h" />

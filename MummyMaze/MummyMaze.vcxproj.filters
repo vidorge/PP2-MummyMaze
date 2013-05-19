@@ -57,6 +57,9 @@
     <ClCompile Include="start_game.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="background.c">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="maze_create.h">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="start_game.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="background.h">
+      <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
