@@ -103,7 +103,7 @@ void startAnimation () {
 			"                                               | |_____| |_____| |__| | || || |         \n"
 			"                                                \\______)_______)______|_||_||_|         \n");
 	positionCursor(50,27);
-	printf ("---PRESENT YOU---");
+	printf ("---PRESENTS YOU---");
 	if (!DEBUGGING) Sleep(2000);
 
 	system ("CLS");		
