@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <windows.h>
 #include <conio.h>
+
 #include "controls.h"
 #include "position_cursor.h"
 #include "colors.h"
 #include "start_game.h"
 #include "background.h"
 #include "main_menu.h"
+
+#include "help.h"
 
 void mainMenu () {
 
@@ -119,14 +122,14 @@ void mainMenu () {
 			case DOWN: { if (selection<EXIT) selection++; else selection=NEWGAME; break; }
 			case ENTER: { 
 				switch (selection){
-					case NEWGAME: system("CLS");game=TRUE;startGame();backgroundImage(2);break;
-					case LOADGAME: break;
-					case SAVEGAME: break;
-					case OPTIONS: break;
-					case HIGHSCORES: break;
-					case HELP: break;
-					case ABOUT: break;
-					case EXIT: exit (0);
+					case NEWGAME:		system("CLS");game=TRUE;startGame();backgroundImage(2);break;
+					case LOADGAME:		break;
+					case SAVEGAME:		break;
+					case OPTIONS:		break;
+					case HIGHSCORES:	break;
+					case HELP:			system("CLS");help();backgroundImage(2);selection=(NEWGAME);break;
+					case ABOUT:			break;
+					case EXIT:			exit (0);
 				}			
 			}
 		}

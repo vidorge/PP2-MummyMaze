@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
+
 #include "colors.h"
 #include "position_cursor.h"
 

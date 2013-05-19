@@ -1,6 +1,7 @@
 #include <conio.h>
-#include "controls.h"
 #include <stdio.h>
+
+#include "controls.h"
 
 int controls (int keyboardInput) {
 	if (keyboardInput>=224) keyboardInput=_getch();
