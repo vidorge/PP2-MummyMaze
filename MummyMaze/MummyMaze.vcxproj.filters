@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{44841dc8-a60d-4a7d-ab17-8d230739481b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{022855fc-66b0-4bc8-9664-b6bac1bb686e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -24,21 +30,36 @@
     <ClCompile Include="maze_create.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="maze_gui.c">
+    <ClCompile Include="maze_solve.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="maze_gui.c">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="screen_resolution.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="maze_solve.c">
+    <ClCompile Include="start_animation.c">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="controls.c">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="position_cursor.c">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="colors.c">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="main_menu.c">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="start_game.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="maze_create.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="maze_gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stack.h">
@@ -47,7 +68,28 @@
     <ClInclude Include="maze_solve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="maze_gui.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
     <ClInclude Include="screen_resolution.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="start_animation.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="controls.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="position_cursor.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="colors.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="main_menu.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="start_game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

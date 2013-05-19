@@ -1,44 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-#include "stack.h"
-#include "maze_gui.h"
-#include "maze_create.h"
+#include "start_animation.h"
+#include "main_menu.h"
 #include "screen_resolution.h"
 
+void main () {
 
-int main()
-{
-	int **matrix;
-	dimension_t dimension;
-
-	dimension.x = 80;
-	dimension.y = 23;
-	
-	//i'm a sad sad main :(
-
-	//OVO CEMO JEDNOM POZVATI I NIKEAD VISE DA LI SAM JASAN???
-	srand( (unsigned) time(NULL) );
+	//I AM sad sad main now and i'm even shorter then older main
+	//but my nigga main menu is here now!
 
 	setConsoleSize(WIDTH,HEIGHT);
 
-	matrix = initMatrix(dimension);
+	startAnimation ();
 
-	DfsInit(matrix, dimension);
-
-	RemoveRandomWalls(matrix, dimension, 4);
-	printFormattedMatrix(matrix, dimension);
-
-	printf("\n\n");
-
-	RemoveAloneWalls(matrix, dimension);
-
-
-
-	printFormattedMatrix(matrix, dimension);
-	MazeDestroy(matrix, dimension);
-
-	system ("pause");
-	return 0;
+	mainMenu();
 }
