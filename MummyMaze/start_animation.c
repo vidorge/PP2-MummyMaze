@@ -14,8 +14,10 @@ void startAnimation () {
 
 	if (!DEBUGGING) Sleep (500);
 
-	positionCursor(50,20);
 	changeColor(ARROW);
+	system ("CLS");
+	changeColor(ARROW);
+	positionCursor(50,20);
 	
 	printf ("RESIZE WINDOW TO FULL SCREEN                       \n"
 			"                                                   \n"
