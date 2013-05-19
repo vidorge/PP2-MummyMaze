@@ -9,6 +9,7 @@
 #define isDown(A) (A & 0x04)
 #define isLeft(A) (A & 0x08)
 #define sumBits(A) (A&0x01+ A & 0x02+ A & 0x04+A & 0x08 )
+#define DEBUGE_MODE 0
 typedef struct elemTree_t
 {
 	char status;
@@ -16,7 +17,7 @@ typedef struct elemTree_t
 	struct elemTree_t *pred;
 	struct  elemTree_t **arrayElem; 
 	
-} elemTree_t; 
+} elemTree_t;  	
 
 typedef struct elemPrioQueue_t
 {
@@ -33,5 +34,7 @@ elemTree_t* deletePrioQueue(elemPrioQueue_t** Q);
 void insertPrioQueue(elemPrioQueue_t **Q, elemTree_t* T,int Len);
 elemTree_t*  branchAndBound(int **matrix, int i, int j,int, int,dimension_t dimension);
 elemTree_t* createNode(int i, int j,elemTree_t* pre);
-int neighbours(int **matrix,char **visted,int i , int j);
+char neighbours(int **matrix,char **visted,int i , int j);
+void dealocateTree( elemTree_t* root);
+
 #endif

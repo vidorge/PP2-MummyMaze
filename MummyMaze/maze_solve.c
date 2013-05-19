@@ -2,6 +2,7 @@
 #include "maze_create.h"
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 int manhattanLength (int x1, int y1 , int x2, int y2 ){
 	return abs(x2-x1)+abs(y2-y1);
 }
@@ -46,7 +47,7 @@ void insertPrioQueue(elemPrioQueue_t **q, elemTree_t* t, int len){
 
 
 }
-int neighbours(int **matrix,char **visited,int i , int j){
+char neighbours(int **matrix,char **visited,int i , int j){
 
 	char re;
 	re=0;
@@ -73,9 +74,9 @@ elemTree_t* createNode(int i, int j,elemTree_t* pre){
 
 elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension){
 	int i;
-	int nb;
+	char nb;
 	elemPrioQueue_t *queue=null;
-	elemTree_t *koren, *tmp;
+	elemTree_t *root, *tmp;
 								//ne zaboravi dealokaciju
 	
 	char **visited=malloc (sizeof(char*));
@@ -84,9 +85,9 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 		visited[i]=calloc(dimension.y,sizeof(char));
 	visited[i1][j1]=1;
 
-	koren= createNode(i1,j1,null);
+	root= createNode(i1,j1,null);
 
-	insertPrioQueue(&queue,koren,manhattanLength( i1, j1,i2, j2));
+	insertPrioQueue(&queue,root,manhattanLength( i1, j1,i2, j2));
 	tmp = deletePrioQueue(&queue);
 	while(tmp->i!=i2 && tmp->j!=j2){
 		nb=neighbours(matrix,visited,tmp->i,tmp->j);
@@ -98,33 +99,50 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 		if(isUp(nb)) {
 		tmp->arrayElem[i]=createNode(tmp->i+1,tmp->j,tmp);
 		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i+1,tmp->j,i2, j2));
+		visited[tmp->i+1][tmp->j]=1;
 		}
 		if(isRight(nb)) {
 		tmp->arrayElem[i]=createNode(tmp->i,tmp->j+1,tmp);
 		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i,tmp->j+1,i2, j2));
+		visited[tmp->i][tmp->j+1]=1;
 		}
 		if(isDown(nb)) {
 		tmp->arrayElem[i]=createNode(tmp->i-1,tmp->j,tmp);
 		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i-1,tmp->j,i2, j2));
+		visited[tmp->i-1][tmp->j]=1;
 		}
 		if(isLeft(nb)) {
 		tmp->arrayElem[i]=createNode(tmp->i,tmp->j-1,tmp);
 		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i,tmp->j-1,i2, j2));
+		visited[tmp->i][tmp->j-1]=1;
 		}
 		tmp->arrayElem[i]=null;
 		
 		tmp=deletePrioQueue(&queue);
 		
 	}
-
-
-
-
+	while(tmp!=null){
+	tmp->status=1;
+	tmp=tmp->pred;
+	}
 	
-	
+	if(DEBUGE_MODE) 
+		printf("Tree finished");
 
-	//poceti petlju
+	while (deletePrioQueue(&queue));
 
-	return koren;
+	return root;
 
+}
+void dealocateTree_r( elemTree_t* tmp){
+	int i=0;
+	while(tmp->arrayElem!=null)
+	{
+		if(tmp->arrayElem[i]==null) return;
+		dealocateTree_r(tmp->arrayElem[i++]);
+	} 
+	free(tmp);
+
+	if(DEBUGE_MODE) 
+		printf("Tree destroy");
 }
