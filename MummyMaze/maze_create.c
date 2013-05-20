@@ -224,43 +224,38 @@ void RemoveAloneWalls(int **a, dimension_t dimension)
 */
 
 
+int ** GeneratePrimMatrix(dimension_t dimension)
+{
+
+	int **a;
+	int w, h, i, j;
+
+	w = dimension.x / 2;
+	h = dimension.x / 2;
+
+	a = malloc( h * sizeof(int*) );
+	for (i=0; i<h; i++)
+	{
+		a[i] = malloc( w * sizeof(int) );
+
+		for (j=0; j<w; j++)
+			a[i][j] = 0 | UP_WALL | DOWN_WALL | LEFT_WALL | RIGHT_WALL;
+
+	}
+		
+	return a;
+
+}
+
+/*
 void PrimInit(int **a, dimension_t dimension)
 {
 
-	int c, r;
-	lElem *head;
+	int w, h, i, j;
 
-	head = NULL;
-
-	r = dimension.y / 2; //this must be more random for dense matrix
-	c = dimension.y / 2;
-
-	a[r][c] = PATH;
-
-	if ( a[r-1][c] == WALL ) { push(&head, r-1); push(&head, c); }
-	if ( a[r+1][c] == WALL ) { push(&head, r+1); push(&head, c); }
-	if ( a[r][c-1] == WALL ) { push(&head, r); push(&head, c-1); }
-	if ( a[r][c+1] == WALL ) { push(&head, r); push(&head, c+1); }
-
-	while ( !stackEmpty(head) )
-	{
-
-		c = pop(&head);
-		r = pop(&head);
-
-		a[r][c] = PATH;
-
-		if ( a[r-1][c] == WALL ) { push(&head, r-1); push(&head, c); }
-		if ( a[r+1][c] == WALL ) { push(&head, r+1); push(&head, c); }
-		if ( a[r][c-1] == WALL ) { push(&head, r); push(&head, c-1); }
-		if ( a[r][c+1] == WALL ) { push(&head, r); push(&head, c+1); }
-
-		
-		printDebugMatrix(a, dimension);
-		printf("\n");
-
-	}
-
+	w = dimension.x / 2;
+	h = dimension.x / 2;
 	
 
 }
+*/

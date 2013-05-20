@@ -14,8 +14,8 @@ int startGame()
 	dimension_t dimension;
 	elemTree_t* root;
 
-	dimension.x = 80;
-	dimension.y = 23;
+	dimension.x = 7; //80
+	dimension.y = 7; //23
 	
 	//OVO CEMO JEDNOM POZVATI I NIKEAD VISE DA LI SAM JASAN??? I <3 DORVI
 	srand( (unsigned) time(NULL) );

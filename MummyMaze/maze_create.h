@@ -3,8 +3,15 @@
 
 #define DIM 15
 
+#define UP_WALL		1 //0001
+#define DOWN_WALL	2 //0010
+#define LEFT_WALL	4 //0100
+#define RIGHT_WALL	8 //1000
+
 #define WALL 1
 #define PATH 0
+
+
 
 typedef struct
 {
@@ -72,6 +79,8 @@ void MazeDestroy(int **a, dimension_t dimension);
 void RemoveAloneWalls(int **a, dimension_t dimension);
 
 void PrimInit(int **a, dimension_t dimension);
+
+int ** GeneratePrimMatrix(dimension_t dimension);
 
 
 
