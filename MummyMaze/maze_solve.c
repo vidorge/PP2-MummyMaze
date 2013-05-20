@@ -77,16 +77,19 @@ elemTree_t* createNode(int i, int j,elemTree_t* pre){
 }
 
 elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension){
-	int i;
+	int i,j;
 	char nb;
+	char **visited;
 	elemPrioQueue_t *queue=null;
 	elemTree_t *root, *tmp;
 								
 	
-	char **visited=malloc (sizeof(char*));
+	visited=(char**)malloc( dimension.y * sizeof(char*));
 	
-	for (i=0;i<dimension.y; i++)
-		visited[i]=calloc(dimension.x,sizeof(char));
+	for (i=0;i<dimension.y; i++){
+		visited[i]=malloc(dimension.x*sizeof(char));
+		for (j=0;j<dimension.x; j++) visited[i][j]=0;	
+	}
 	visited[i1][j1]=1;
 
 	root= createNode(i1,j1,null);
@@ -135,6 +138,11 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 
 	while (deletePrioQueue(&queue));
 
+	for(i=0; i<dimension.y; i++)
+		 free(visited[i]);
+
+	free(visited);
+
 	return root;
 
 }
@@ -165,7 +173,7 @@ void go(int **matrix,elemTree_t* root,dimension_t dimension ){// moze i rekurziv
 		tmp2=tmp1->arrayElem[--i];
 		moveTo(matrix,tmp1->i,tmp1->j,tmp2->i,tmp2->j);
 		positionCursor(0,0);
-		printFormattedMatrix(matrix, dimension, 0, 0);
+		printFormattedMatrix(matrix, dimension,1,1);
 		Sleep(100);
 		tmp1=tmp2;
 

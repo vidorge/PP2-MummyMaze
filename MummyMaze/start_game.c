@@ -28,7 +28,7 @@ int startGame()
 	
 	spawnPlayer(matrix,dimension,&i1,&j1);
 	spawnEnemy(matrix,dimension,&i2,&j2);
-	printf("blaa");
+	
 	root=branchAndBound(matrix,i1,j1,i2,j2,dimension);
 	go(matrix,root,dimension);
 	
