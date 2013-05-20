@@ -6,6 +6,8 @@
 
 void backgroundImage (int whichTime) {
 
+	int i;
+
 	if (whichTime==1) {
 		changeColor(14);
 		system ("CLS");
@@ -143,5 +145,10 @@ void backgroundImage (int whichTime) {
 		changeColor(MENUC);
 		printf(":/++++///////:::::::/::::::::-------:---:--::::::--------....-----.--:---:------::/-----------------::/::::-----.:---:-:::://\n");
 		changeColor(MENUC);
+
+		for (i=19;i<47;i++) {
+			positionCursor(5,i);
+			printf ("                                                                                                                   ");
+		}
 	}
 }

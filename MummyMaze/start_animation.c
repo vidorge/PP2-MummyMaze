@@ -10,7 +10,7 @@
 void startAnimation () {
 
 	//***debug**mode****on/off****
-	int DEBUGGING=FALSE;
+	int DEBUGGING=TRUE;
 	//****************************
 	
 	int blink=0;
