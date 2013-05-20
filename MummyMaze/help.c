@@ -6,10 +6,20 @@
 #include "position_cursor.h"
 #include "colors.h"
 #include "background.h"
+#include "maze_gui.h"
+#include "maze_create.h"
 
 void help () {
 	
 	int input;
+
+	int **matrix;
+	dimension_t dimension;
+
+	dimension.x = 11;
+	dimension.y = 11;
+	matrix = initMatrix(dimension);
+	DfsInit(matrix, dimension);
 
 	backgroundImage (0);	
 	
@@ -86,11 +96,15 @@ void help () {
 	positionCursor(10,43);
 	printf ("                                ||");
 
+	positionCursor(46,23);
 	printf ("For movement use the Arrow keys ,");
+	positionCursor(46,24);
 	printf ("and for pause press Backspace ");
+	positionCursor(46,25);
 	printf ("or Escape key.");
 
-
+	printFormattedMatrix(matrix,dimension,0,0);
+	
 	while (1) {
 		input=_getch();
 		if ((input==PAUSE)||(input==EXIT)) break;	

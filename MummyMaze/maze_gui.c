@@ -4,17 +4,13 @@
 #include "maze_gui.h"
 #include "maze_create.h"
 #include "colors.h"
+#include "position_cursor.h"
 
 
 
 
-void printFormattedMatrix(int **matrix, dimension_t dimension)
-{
+void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int row) {
 	int i, j;
-
-	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE); 
-
-	SetConsoleTextAttribute(consoleHandle, 215);
 
 	for (i=0; i<dimension.y; i++, printf("\n") )
 		for(j=0; j<dimension.x; j++)
@@ -41,11 +37,5 @@ void printFormattedMatrix(int **matrix, dimension_t dimension)
 				changeColor(119);
 				printf("%d", matrix[i][j]);
 			}
-
 		}
-
-
-
-
-
 }

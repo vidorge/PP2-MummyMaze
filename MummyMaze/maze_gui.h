@@ -3,9 +3,6 @@
 
 #include "maze_create.h"
 
-void printFormattedMatrix(int **matrix, dimension_t dimension);
-
-
-
+void printFormattedMatrix(int **matrix, dimension_t dimension, int column, int row);
 
 #endif
