@@ -121,7 +121,11 @@ void startAnimation () {
 				case 1:{positionCursor (50,40);printf ("                       ");Sleep(500);blink=0;break;}		
 			}
 
-			if (_getch()!=NULL) positionCursor (50,40);printf ("                       ");break;
+			if(_kbhit()) {
+				positionCursor (50,40);
+				printf ("                       ");
+				break;
+			}
 		}
 
 	backgroundImage(2);

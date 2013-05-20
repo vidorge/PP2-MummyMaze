@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <windows.h>
 #include <conio.h>
 
@@ -8,7 +8,18 @@
 #include "background.h"
 
 void help () {
-	printf ("HELP");
+	printf ("          _______           \n"
+			"         ||      ||          \n"
+			"         ||  up  ||          \n"
+			"         ||      ||          \n"
+			"         ||______||          \n"
+			"         |/______\\|          \n"
+			" _______  _______  _______\n"
+			"||      |||      |||      ||\n"
+			"||      |||      |||      ||\n"
+			"||left  ||| down ||| right||\n"
+			"||______|||______|||______||\n"
+			"|/______\\|/______\\|/______\\|");
 
 
 
