@@ -96,11 +96,11 @@ void help () {
 	positionCursor(10,43);
 	printf ("                                ||");
 
-	positionCursor(46,23);
+	positionCursor(45,23);
 	printf ("For movement use the Arrow keys ,");
-	positionCursor(46,24);
+	positionCursor(45,24);
 	printf ("and for pause press Backspace ");
-	positionCursor(46,25);
+	positionCursor(45,25);
 	printf ("or Escape key.");
 
 	printFormattedMatrix(matrix,dimension,80,23);

@@ -109,9 +109,21 @@ void fillHelpMatrix(int **matrix, dimension_t dimension)
 {
 	int i, j;
 
-	for (i=1; i<dimension.y-1; i++)
-		for (j=1; j<dimension.x-1; j++)
+	for (i=2; i<dimension.y-2; i++)
+		for (j=2; j<dimension.x-2; j++)
 			matrix[i][j] = 0;
+
+	for  (i=12;i<dimension.y-2;i++)	{ matrix[i][7]=1;	matrix[i][8]=1;	 }
+	for  (i=2;i<8;i++)				{ matrix[i][13]=1;	matrix[i][14]=1; }
+	for  (i=7;i<13;i++)				{ matrix[6][i]=1;	matrix[7][i]=1;	 }
+	for  (i=15;i<dimension.x-2;i++)	{ matrix[12][i]=1;	matrix[13][i]=1; }
+	for  (i=2;i<9;i++)				{ matrix[i][20]=1;	matrix[i][21]=1; }
+	for  (i=5;i<9;i++)				{ matrix[i][27]=1;	matrix[i][28]=1; }
+	for  (i=22;i<27;i++)			{ matrix[7][i]=1;	matrix[8][i]=1; }
+	for  (i=5;i<9;i++)				{ matrix[i][27]=1;	matrix[i][28]=1; }
+
+
+
 
 }
 
