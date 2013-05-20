@@ -105,6 +105,16 @@ void dfs(int **a, int r, int c, dimension_t dimension)
 
 }
 
+void fillHelpMatrix(int **matrix, dimension_t dimension)
+{
+	int i, j;
+
+	for (i=1; i<dimension.y-1; i++)
+		for (j=1; j<dimension.x-1; j++)
+			matrix[i][j] = 0;
+
+}
+
 
 void printDebugMatrix(int **matrix, dimension_t dimension)
 {

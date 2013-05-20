@@ -19,7 +19,7 @@ void help () {
 	dimension.x = 35;
 	dimension.y = 20;
 	matrix = initMatrix(dimension);
-	DfsInit(matrix, dimension);
+	fillHelpMatrix(matrix,dimension);
 
 	backgroundImage (0);	
 	
@@ -105,6 +105,8 @@ void help () {
 
 	printFormattedMatrix(matrix,dimension,80,23);
 	
+	positionCursor(80,23);
+
 	while (1) {
 		input=_getch();
 		if ((input==PAUSE)||(input==EXIT)) break;	

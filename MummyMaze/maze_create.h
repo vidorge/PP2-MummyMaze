@@ -39,6 +39,15 @@ void printDebugMatrix(int **matrix, dimension_t dimension);
 */
 //int hasUnvisitedNeighbour(int **matrix);
 
+/**
+*	@desc	Fills matrix used in help
+*	@param	int **matrix - double pointer to matrix
+*	@param	int dimension - dimension of matrix	
+*	@author Stefan Ilijevski
+*	PS		Sorry, Dorvi for messing with your code
+*/
+
+void fillHelpMatrix(int **matrix, dimension_t dimension);
 
 //mrzelo me majke mi
 
