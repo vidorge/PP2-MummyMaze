@@ -109,4 +109,6 @@ void help () {
 		input=_getch();
 		if ((input==PAUSE)||(input==EXIT)) break;	
 	}
+	
+	MazeDestroy(matrix, dimension);
 }
