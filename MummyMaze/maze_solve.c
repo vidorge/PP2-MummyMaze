@@ -196,8 +196,8 @@ void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j){
 
 	do
 	{
-	*i=(rand()/(double)RAND_MAX)*(dimension.y-1-1)+1;
-	*j=(rand()/(double)RAND_MAX)*(dimension.x-1-1)+1;
+	*i= (int) ((rand()/(double)RAND_MAX)*(dimension.y-1-1)+1);
+	*j= (int) ((rand()/(double)RAND_MAX)*(dimension.x-1-1)+1);
 	} while(matrix[(*i)][(*j)]!=0);
 	matrix[(*i)][(*j)]=4;
 }
