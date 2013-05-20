@@ -104,10 +104,24 @@ void help () {
 	positionCursor(45,23);
 	printf ("For movement use the Arrow keys");
 	positionCursor(45,24);
-	printf ("and for pause press Backspace ");
+	printf ("and for pause/menu press");
 	positionCursor(45,25);
-	printf ("or Escape key.");
+	printf ("Backspace or Escape key.");
 
+	positionCursor(45,30);
+	printf ("Goal is to get around");
+	positionCursor(45,31);
+	printf ("the Labirinth collect the");
+	positionCursor(45,32);
+	printf ("Jewel and get out before");
+	positionCursor(45,33);
+	printf ("mummy catches you!");
+
+	positionCursor(45,38);
+	printf ("Try to get the Jewel on");
+	positionCursor(45,39);
+	printf ("how to test run!");
+	
 	for (i=22;i<44;i++) {
 		positionCursor(77,i);
 		printf ("||");
