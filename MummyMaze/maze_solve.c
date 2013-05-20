@@ -167,7 +167,7 @@ void go(int **matrix,elemTree_t* root,dimension_t dimension ){// moze i rekurziv
 		moveTo(matrix,tmp1->i,tmp1->j,tmp2->i,tmp2->j);
 		positionCursor(0,0);
 		printFormattedMatrix(matrix, dimension);
-		Sleep(500);
+		Sleep(100);
 		tmp1=tmp2;
 
 	}

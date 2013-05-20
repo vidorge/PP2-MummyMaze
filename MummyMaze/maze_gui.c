@@ -3,6 +3,7 @@
 
 #include "maze_gui.h"
 #include "maze_create.h"
+#include "colors.h"
 
 
 
@@ -21,11 +22,25 @@ void printFormattedMatrix(int **matrix, dimension_t dimension)
 
 			if(matrix[i][j] == 0)
 			{
-				SetConsoleTextAttribute(consoleHandle, 255);
+				changeColor(102);
 				printf("%d", matrix[i][j]);
-				SetConsoleTextAttribute(consoleHandle, 215);
+				changeColor(119);
 
-			} else printf("%d", matrix[i][j]);
+			} else if (matrix[i][j] == 3) {
+				changeColor(110);
+				printf ("@",matrix[i][j]);
+				changeColor(119);
+			}
+
+			else if (matrix[i][j] == 4) {
+				changeColor(108);
+				printf ("\4",matrix[i][j]);
+				changeColor(119);
+			}
+			else {	
+				changeColor(119);
+				printf("%d", matrix[i][j]);
+			}
 
 		}
 
