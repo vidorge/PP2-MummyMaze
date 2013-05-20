@@ -2,7 +2,6 @@
 #include <windows.h>
 #include <conio.h>
 
-#include "controls.h"
 #include "position_cursor.h"
 #include "colors.h"
 #include "background.h"
@@ -11,7 +10,7 @@
 void startAnimation () {
 
 	//***debug**mode****on/off****
-	int DEBUGGING=TRUE;
+	int DEBUGGING=FALSE;
 	//****************************
 	
 	int blink=0;
