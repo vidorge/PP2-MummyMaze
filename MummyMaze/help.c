@@ -11,7 +11,7 @@
 
 void help () {
 	
-	int input;
+	int i, input;
 
 	int **matrix;
 	dimension_t dimension;
@@ -46,8 +46,12 @@ void help () {
 	//*******    CONTAINER   ************
 	//***********************************
 
-	positionCursor(35,20);
+	positionCursor(39,20);
 	printf ("CONTROLS");
+	positionCursor(95,20);
+	printf ("How to!");
+	
+	//*******  CURSORS  **********
 	positionCursor(10,22);
 	printf ("          _______               ||");
 	positionCursor(10,23);
@@ -83,7 +87,7 @@ void help () {
 	positionCursor(10,37);
 	printf ("||                   ||         ||");
 	positionCursor(10,38);
-	printf ("|| \33---              ||         ||");
+	printf ("|| \33---    PAUSE     ||         ||");
 	positionCursor(10,39);
 	printf ("||                   ||         ||");
 	positionCursor(10,40);
@@ -96,16 +100,23 @@ void help () {
 	positionCursor(10,43);
 	printf ("                                ||");
 
+	//*******  Description  **********
 	positionCursor(45,23);
-	printf ("For movement use the Arrow keys ,");
+	printf ("For movement use the Arrow keys");
 	positionCursor(45,24);
 	printf ("and for pause press Backspace ");
 	positionCursor(45,25);
 	printf ("or Escape key.");
 
+	for (i=22;i<44;i++) {
+		positionCursor(77,i);
+		printf ("||");
+	}
+
+	//*******  Matrix  **********
 	printFormattedMatrix(matrix,dimension,80,23);
 	
-	positionCursor(80,23);
+
 
 	while (1) {
 		input=_getch();

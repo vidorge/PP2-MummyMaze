@@ -122,9 +122,6 @@ void fillHelpMatrix(int **matrix, dimension_t dimension)
 	for  (i=22;i<27;i++)			{ matrix[7][i]=1;	matrix[8][i]=1; }
 	for  (i=5;i<9;i++)				{ matrix[i][27]=1;	matrix[i][28]=1; }
 
-
-
-
 }
 
 
