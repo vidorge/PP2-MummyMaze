@@ -8,8 +8,8 @@
 #define isRight(A) (A & 0x02)
 #define isDown(A) (A & 0x04)
 #define isLeft(A) (A & 0x08)
-#define sumBits(A) (A&0x01+ A & 0x02+ A & 0x04+A & 0x08 )
-#define DEBUGE_MODE 0
+#define sumBits(A) ((A&0x01)?1:0 + (A & 0x02)?1:0 + (A & 0x04)?1:0 +(A & 0x08)?1:0  )
+#define DEBUGE_MODE 1
 typedef struct elemTree_t
 {
 	char status;
@@ -35,6 +35,9 @@ void insertPrioQueue(elemPrioQueue_t **Q, elemTree_t* T,int Len);
 elemTree_t*  branchAndBound(int **matrix, int i, int j,int, int,dimension_t dimension);
 elemTree_t* createNode(int i, int j,elemTree_t* pre);
 char neighbours(int **matrix,char **visted,int i , int j);
-void dealocateTree( elemTree_t* root);
-
+void dealocateTree	( elemTree_t* root);
+void moveTo(int **matrix,int i1,int j1, int i2, int j2 );
+void go(int **matrix,elemTree_t* root,dimension_t dimension);
+void spawnPlayer(int **matrix, dimension_t dimension,int *i,int *j);
+void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j);
 #endif
