@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <windows.h>
 #include "maze_gui.h"
+#include "position_cursor.h"
+
 int manhattanLength (int x1, int y1 , int x2, int y2 ){
 	return abs(x2-x1)+abs(y2-y1);
 }
@@ -159,11 +161,11 @@ void go(int **matrix,elemTree_t* root,dimension_t dimension ){// moze i rekurziv
 	
 
 	while(tmp1->arrayElem!=null){
-		system ("CLS");
 		i=0;
 		while(tmp1->arrayElem[i++]->status!=1);
 		tmp2=tmp1->arrayElem[--i];
 		moveTo(matrix,tmp1->i,tmp1->j,tmp2->i,tmp2->j);
+		positionCursor(0,0);
 		printFormattedMatrix(matrix, dimension);
 		Sleep(500);
 		tmp1=tmp2;

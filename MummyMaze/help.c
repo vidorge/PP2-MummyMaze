@@ -12,6 +12,10 @@ void help () {
 	int input;
 
 	backgroundImage (0);	
+	
+	//***************************
+	//****   HEADING   **********
+	//***************************
 
 	positionCursor(50,11);
 	printf ("  _    _ ______ _      _____  ");
@@ -27,6 +31,10 @@ void help () {
 	printf (" |_|  |_|______|______|_|     ");
 	positionCursor(50,17);
 	printf ("                              ");
+
+	//***********************************
+	//*******    CONTAINER   ************
+	//***********************************
 
 	positionCursor(35,20);
 	printf ("CONTROLS");
@@ -77,6 +85,11 @@ void help () {
 	printf ("                                ||");
 	positionCursor(10,43);
 	printf ("                                ||");
+
+	printf ("For movement use the Arrow keys ,");
+	printf ("and for pause press Backspace ");
+	printf ("or Escape key.");
+
 
 	while (1) {
 		input=_getch();
