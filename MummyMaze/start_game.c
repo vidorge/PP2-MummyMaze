@@ -33,8 +33,9 @@ int startGame()
 	go(matrix,root,dimension);
 	
 
-	//dealocateTree(root);
-	
+	dealocateTree_r(root);
+	if(DEBUGE_MODE)
+		printf("Tree Destroy");
 	MazeDestroy(matrix, dimension);
 
 	//DEBUGING

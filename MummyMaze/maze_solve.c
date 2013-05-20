@@ -147,8 +147,7 @@ void dealocateTree_r( elemTree_t* tmp){
 	} 
 	free(tmp);
 
-	if(DEBUGE_MODE) 
-		printf("Tree destroy");
+
 }
 void moveTo(int **matrix,int i1,int j1, int i2, int j2 ){
 	matrix[i2][j2]=matrix[i1][j1];
