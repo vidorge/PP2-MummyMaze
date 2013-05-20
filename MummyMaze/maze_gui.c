@@ -12,12 +12,11 @@
 void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int row) {
 	int i, j;
 
-	for (i=0; i<dimension.y; i++, printf("\n") )
-		for(j=0; j<dimension.x; j++)
-		{
+	for (i=0; i<dimension.y; i++) {
+		positionCursor(column,row++);
+		for(j=0; j<dimension.x; j++) {
 
-			if(matrix[i][j] == 0)
-			{
+			if(matrix[i][j] == 0) {
 				changeColor(102);
 				printf("%d", matrix[i][j]);
 				changeColor(119);
@@ -37,5 +36,7 @@ void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int r
 				changeColor(119);
 				printf("%d", matrix[i][j]);
 			}
+
 		}
+	}
 }

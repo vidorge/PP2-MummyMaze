@@ -16,8 +16,8 @@ void help () {
 	int **matrix;
 	dimension_t dimension;
 
-	dimension.x = 11;
-	dimension.y = 11;
+	dimension.x = 35;
+	dimension.y = 20;
 	matrix = initMatrix(dimension);
 	DfsInit(matrix, dimension);
 
@@ -103,7 +103,7 @@ void help () {
 	positionCursor(46,25);
 	printf ("or Escape key.");
 
-	printFormattedMatrix(matrix,dimension,0,0);
+	printFormattedMatrix(matrix,dimension,80,23);
 	
 	while (1) {
 		input=_getch();
