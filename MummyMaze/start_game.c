@@ -23,27 +23,17 @@ int startGame()
 	matrix = initMatrix(dimension);
 
 	DfsInit(matrix, dimension);
-
 	RemoveRandomWalls(matrix, dimension, 4);
-//	printFormattedMatrix(matrix, dimension);				IZVINI VIKI <3
-
-	printf("\n\n");
-
 	RemoveAloneWalls(matrix, dimension);
-
+	
 	spawnPlayer(matrix,dimension,&i1,&j1);
 	spawnEnemy(matrix,dimension,&i2,&j2);
 	printf("blaa");
 	root=branchAndBound(matrix,i1,j1,i2,j2,dimension);
-	
 	go(matrix,root,dimension);
+	
 
 	//dealocateTree(root);
-
-//	printFormattedMatrix(matrix, dimension);			IZVINI VIKI <3
-	
-	
-	
 	
 	MazeDestroy(matrix, dimension);
 

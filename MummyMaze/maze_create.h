@@ -3,6 +3,9 @@
 
 #define DIM 15
 
+#define WALL 1
+#define PATH 0
+
 typedef struct
 {
 	int x;
@@ -58,6 +61,9 @@ void RemoveRandomWalls(int **a, dimension_t dimension, int probability);
 void MazeDestroy(int **a, dimension_t dimension);
 
 void RemoveAloneWalls(int **a, dimension_t dimension);
+
+void PrimInit(int **a, dimension_t dimension);
+
 
 
 #endif

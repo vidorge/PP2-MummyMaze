@@ -1,7 +1,10 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
+#include <Windows.h>
 
 #include "maze_create.h"
+#include "stack.h"
+#include "maze_gui.h"
 
 
 int **initMatrix(dimension_t dimension)
@@ -179,14 +182,66 @@ void RemoveAloneWalls(int **a, dimension_t dimension)
 					)
 					a[i][j] = 0;
 
+
+
 			}
-
-
 		}
-
-
 	}
 
 
+
+}
+
+
+/* OVDE POCINJE PRIM */
+
+/*
+1. Početi sa mrežom zidova,
+2. Nasumično izabrati ćeliju, označiti je kao deo lavirnta i dodati sve njene zidove u listu zidova,
+3. Dok ima zidova u listi:
+	1) Slučajno izabrati zid iz liste. Ako ćelija sa suprotne strane nije u listi, onda:
+		1. Napraviti od zida prolaz, i označiti ćeliju sa suprotne strane kao deo lavirinta,
+		2. Dodati susedne zidove ćelije u listu zidova. 
+*/
+
+
+void PrimInit(int **a, dimension_t dimension)
+{
+
+	int c, r;
+	lElem *head;
+
+	head = NULL;
+
+	r = dimension.y / 2; //this must be more random for dense matrix
+	c = dimension.y / 2;
+
+	a[r][c] = PATH;
+
+	if ( a[r-1][c] == WALL ) { push(&head, r-1); push(&head, c); }
+	if ( a[r+1][c] == WALL ) { push(&head, r+1); push(&head, c); }
+	if ( a[r][c-1] == WALL ) { push(&head, r); push(&head, c-1); }
+	if ( a[r][c+1] == WALL ) { push(&head, r); push(&head, c+1); }
+
+	while ( !stackEmpty(head) )
+	{
+
+		c = pop(&head);
+		r = pop(&head);
+
+		a[r][c] = PATH;
+
+		if ( a[r-1][c] == WALL ) { push(&head, r-1); push(&head, c); }
+		if ( a[r+1][c] == WALL ) { push(&head, r+1); push(&head, c); }
+		if ( a[r][c-1] == WALL ) { push(&head, r); push(&head, c-1); }
+		if ( a[r][c+1] == WALL ) { push(&head, r); push(&head, c+1); }
+
+		
+		printDebugMatrix(a, dimension);
+		printf("\n");
+
+	}
+
+	
 
 }
