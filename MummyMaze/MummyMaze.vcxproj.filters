@@ -63,6 +63,9 @@
     <ClCompile Include="help.c">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="about.c">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="maze_create.h">
@@ -102,6 +105,9 @@
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="help.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="about.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>

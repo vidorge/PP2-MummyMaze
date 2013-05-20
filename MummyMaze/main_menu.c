@@ -10,6 +10,7 @@
 #include "main_menu.h"
 
 #include "help.h"
+#include "about.h"
 
 void mainMenu () {
 
@@ -115,10 +116,10 @@ void mainMenu () {
 		else { 
 			positionCursor(54,33);printf ("|     Exit     |");
 			positionCursor(54,34);printf ("----------------");
-		}
-
+		}		
+		
 		choice=controls(_getch());
-		if (choice==EXIT) break;
+		if (choice==EXIT) exit (0);
 		switch (choice){
 			case UP: { if (selection>NEWGAME) selection--; else selection=EXIT; break; }
 			case DOWN: { if (selection<EXIT) selection++; else selection=NEWGAME; break; }
@@ -130,8 +131,8 @@ void mainMenu () {
 					case OPTIONS:		break;
 					case HIGHSCORES:	break;
 					case HELP:			system("CLS");help();backgroundImage(2);selection=(NEWGAME);break;
-					case ABOUT:			break;
-					case EXIT:			exit (0);
+					case ABOUT:			system("CLS");about();backgroundImage(2);selection=(NEWGAME);_getch();break;
+					case EXIT:			exit (1);
 				}			
 			}
 		}
