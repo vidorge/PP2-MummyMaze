@@ -131,7 +131,7 @@ void mainMenu () {
 					case OPTIONS:		break;
 					case HIGHSCORES:	break;
 					case HELP:			system("CLS");help();backgroundImage(2);selection=(NEWGAME);break;
-					case ABOUT:			system("CLS");about();backgroundImage(2);selection=(NEWGAME);_getch();break;
+					case ABOUT:			system("CLS");about();backgroundImage(2);selection=(NEWGAME);break;
 					case EXIT:			exit (1);
 				}			
 			}
