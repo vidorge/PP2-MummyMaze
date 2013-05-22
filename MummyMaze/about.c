@@ -6,10 +6,11 @@
 #include "position_cursor.h"
 #include "colors.h"
 #include "background.h"
+#include "about.h"
 
 void about () {
 
-	int input;
+	int i, input;
 
 	int status=TRUE, change=0;
 
@@ -34,112 +35,14 @@ void about () {
 	positionCursor(43,17);
 	printf ("                                        ");
 
-	while (status) {		
-		switch (change) {
-			case 0:		positionCursor (47,20); printf ("         A long time ago");
-						positionCursor (47,21); printf ("    in a galaxy far, far away");
-						positionCursor (47,22); printf ("It is a period of civil war. Rebel ");
-						positionCursor (47,23); printf ("spaceships, striking from a hidden");
-						positionCursor (47,24); printf ("base, have won their first victory ");
-						positionCursor (47,25); printf ("against the evil Galactic Empire. ");
-
-						if(_kbhit()) { 
-							status=FALSE;
-							continue;
-						}
-						Sleep (1000);
-						change=1;
-						break;
-
-			case 1:		positionCursor (47,20); printf ("    in a galaxy far, far away");
-						positionCursor (47,21); printf ("It is a period of civil war. Rebel ");
-						positionCursor (47,22); printf ("spaceships, striking from a hidden");
-						positionCursor (47,23); printf ("base, have won their first victory ");
-						positionCursor (47,24); printf ("against the evil Galactic Empire. ");
-						positionCursor (47,25); printf ("                                   ");
-
-						if(_kbhit()) { 
-							status=FALSE;
-							continue;
-						}
-						Sleep (1000);
-						change=2;	
-						break;
-
-			case 2:		positionCursor (47,20); printf ("It is a period of civil war. Rebel ");
-						positionCursor (47,21); printf ("spaceships, striking from a hidden");
-						positionCursor (47,22); printf ("base, have won their first victory ");
-						positionCursor (47,23); printf ("against the evil Galactic Empire. ");
-						positionCursor (47,24); printf ("                                   ");
-
-						if(_kbhit()) { 
-							status=FALSE;
-							continue;
-						}
-						Sleep (1000);
-						change=3;	
-						break;
-
-			case 3:		positionCursor (47,20); printf ("spaceships, striking from a hidden");
-						positionCursor (47,21); printf ("base, have won their first victory ");
-						positionCursor (47,22); printf ("against the evil Galactic Empire. ");
-						positionCursor (47,23); printf ("                                   ");
-						
-						if(_kbhit()) { 
-							status=FALSE;
-							continue;
-						}
-						Sleep (1000);
-						change=4;	
-						break;
-
-			case 4:		positionCursor (47,20); printf ("base, have won their first victory ");
-						positionCursor (47,21); printf ("against the evil Galactic Empire. ");
-						positionCursor (47,22); printf ("                                   ");
-
-						if(_kbhit()) { 
-							status=FALSE;
-							continue;
-						}
-						Sleep (1000);
-						change=5;	
-						break;
-
-			case 5:		positionCursor (47,20); printf ("against the evil Galactic Empire. ");
-						positionCursor (47,21); printf ("                                   ");
-						
-						if(_kbhit()) { 
-							status=FALSE;
-							continue;
-						}
-						Sleep (1000);
-						change=6;	
-						break;
-
-			case 6:		positionCursor (47,20); printf ("                                   ");
-
-						if(_kbhit()) { 
-							status=FALSE;
-							continue;
-						}
-						Sleep (1000);
-						change=7;	
-						break;
-
-			default:	positionCursor (47,20); printf ("                                   ");
-						positionCursor (47,21); printf ("                                   ");
-						positionCursor (47,22); printf ("                                   ");
-						positionCursor (47,23); printf ("                                   ");
-						positionCursor (47,24); printf ("                                   ");
-						positionCursor (47,25); printf ("                                   ");
-
-						if(_kbhit()) { 
-							status=FALSE;
-							continue;
-						}
-
-						break;
-
-		}		
-	}
+	for (i=49;i>18 && status;positionCursor (CENTER,19),printf ("                                  "),Sleep(250),i--) {
+			if(_kbhit()) { 
+						status=FALSE;
+						continue;
+			}
+			if (((i-2)>18)&&((i-2)<47))  { positionCursor (CENTER,i-2);printf ("         A long time ago"); }
+			if (((i-1)>18)&&((i-1)<47)) {positionCursor (CENTER,i-1);printf ("    in a galaxy far, far away"); }
+			if (((i)>18)&&((i)<47)) {positionCursor (CENTER,i);printf (("It is a period of civil war. Rebel")); }
+			if (((i+1)>18)&&((i+1)<47)) {positionCursor (CENTER,i+1);printf ("                                  "); }
+	}		
 }
