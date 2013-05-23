@@ -27,6 +27,11 @@ typedef struct elemPrioQueue_t
 
 
 } elemPrioQueue_t;
+typedef struct position_t
+{
+	int x;
+	int y;
+} position_t;
 int manhattanLength (int cordinateX1, int cordinateY1 , int cordinateX2, int cordinateY2 );
 
 

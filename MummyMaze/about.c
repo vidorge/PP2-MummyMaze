@@ -35,7 +35,7 @@ void about () {
 	positionCursor(43,17);
 	printf ("                                        ");
 
-	for (i=94;i>18 && status;positionCursor (CENTER,19),printf ("                                     "),Sleep(1000),i--) {
+	for (i=93;i>19 && status;Sleep(700),i--) {
 			if(_kbhit()) { 
 						status=FALSE;
 						continue;
@@ -58,7 +58,7 @@ void about () {
 			if (((i-30)>18)&&((i-30)<47))	{ positionCursor (CENTER,i-30);	printf ("    This game was created as actual   "); }
 			if (((i-29)>18)&&((i-29)<47))	{ positionCursor (CENTER,i-29);	printf ("      project by three awsome guys,   "); }
 			if (((i-28)>18)&&((i-28)<47))	{ positionCursor (CENTER,i-28);	printf (" students of Electrotechnical Faculty "); }
-			if (((i-27)>18)&&((i-27)<47))	{ positionCursor (CENTER,i-27);	printf ("   in Belgrade and their names are    "); }
+			if (((i-27)>18)&&((i-27)<47))	{ positionCursor (CENTER,i-27);	printf ("   in Belgrade and their names are:   "); }
 			if (((i-26)>18)&&((i-26)<47))	{ positionCursor (CENTER,i-26);	printf ("      jedi warrior Vidor Gencel ,     "); }
 			if (((i-25)>18)&&((i-25)<47))	{ positionCursor (CENTER,i-25);	printf ("     the master mind of this whole    "); }
 			if (((i-24)>18)&&((i-24)<47))	{ positionCursor (CENTER,i-24);	printf ("      operation .. thanks to him      "); }
@@ -66,7 +66,7 @@ void about () {
 			if (((i-22)>18)&&((i-22)<47))	{ positionCursor (CENTER,i-22);	printf ("    fun working on this project ..    "); }
 			if (((i-21)>18)&&((i-21)<47))	{ positionCursor (CENTER,i-21);	printf ("so in my name and in name of my fellow"); }
 			if (((i-20)>18)&&((i-20)<47))	{ positionCursor (CENTER,i-20);	printf ("     jedi student Ivan Dimitrov       "); }
-			if (((i-19)>18)&&((i-19)<47))	{ positionCursor (CENTER,i-19);	printf ("             THANK VIDOR!!!           "); }
+			if (((i-19)>18)&&((i-19)<47))	{ positionCursor (CENTER,i-19);	printf ("            THANKS VIDOR!!!           "); }
 			if (((i-18)>18)&&((i-18)<47))	{ positionCursor (CENTER,i-18);	printf ("         next as you read Ivan        "); }
 			if (((i-17)>18)&&((i-17)<47))	{ positionCursor (CENTER,i-17);	printf ("   was very important  in making of   "); }
 			if (((i-16)>18)&&((i-16)<47))	{ positionCursor (CENTER,i-16);	printf ("    this game and in giving mummys    "); }

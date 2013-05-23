@@ -8,18 +8,27 @@
 #include "background.h"
 #include "maze_gui.h"
 #include "maze_create.h"
+#include "maze_solve.h"
 
 void help () {
 	
-	int i, input;
+	int i, input, gotTheJewel=0;
 
 	int **matrix;
 	dimension_t dimension;
+	position_t	playerPosition, jewelPosition;
 
 	dimension.x = 35;
 	dimension.y = 20;
 	matrix = initMatrix(dimension);
 	fillHelpMatrix(matrix,dimension);
+	
+	playerPosition.x=playerPosition.y=3;
+	jewelPosition.x=6;
+	jewelPosition.y=22;
+
+	matrix[playerPosition.x][playerPosition.y]=PLAYER;
+	matrix[jewelPosition.x][jewelPosition.y]=JEWEL;
 
 	backgroundImage (0);	
 	
@@ -128,14 +137,46 @@ void help () {
 	}
 
 	//*******  Matrix  **********
-	printFormattedMatrix(matrix,dimension,80,23);
-	
-
 
 	while (1) {
-		input=_getch();
-		if ((input==PAUSE)||(input==EXIT)) break;	
+		printFormattedMatrix(matrix,dimension,80,23);
+		
+		
+		if ((playerPosition.x==jewelPosition.x)&&(playerPosition.y==jewelPosition.y)) gotTheJewel=1;
+		
+		if (gotTheJewel) {
+			positionCursor(92,33);
+			changeColor(14);
+			printf("YOU DID IT!");
+		}
+
+		input=controls(_getch());
+		if ((input==PAUSE)||(input==EXIT)) break;
+		switch (input) {
+			case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=1) {
+							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y);
+							playerPosition.x-=1;
+							break;
+						}else break;
+			case DOWN:	if (matrix[playerPosition.x+1][playerPosition.y]!=1) {
+							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y);
+							playerPosition.x+=1;
+							break;
+						}else break;
+			case LEFT:	if (matrix[playerPosition.x][playerPosition.y-1]!=1) {
+							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1);
+							playerPosition.y-=1;
+							break;
+						}else break;
+			case RIGHT:	if (matrix[playerPosition.x][playerPosition.y+1]!=1) {
+							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1);
+							playerPosition.y+=1;
+							break;
+						}else break;
+		}
+		
 	}
+	
 	
 	MazeDestroy(matrix, dimension);
 }
