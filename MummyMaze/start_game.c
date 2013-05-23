@@ -32,8 +32,8 @@ int startGame()
 	spawnPlayer(matrix,dimension,&i1,&j1);
 	spawnEnemy(matrix,dimension,&i2,&j2);
 	
-	root=branchAndBound(matrix,i1,j1,i2,j2,dimension);
-	go(matrix,root,dimension,2);
+	root=branchAndBound(matrix,i2,j2,i1,j1,dimension);
+	go(matrix,root,dimension,100);
 	
 
 	dealocateTree_r(root);

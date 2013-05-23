@@ -170,7 +170,7 @@ void go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ){// moze 
 	elemTree_t* tmp2,*tmp1=root;
 	
 
-	while(steps!=0){
+	while(steps!=0 && tmp1->arrayElem!=null ){
 		i=0;
 		while(tmp1->arrayElem[i++]->status!=1);
 		tmp2=tmp1->arrayElem[--i];
