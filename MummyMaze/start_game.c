@@ -1,17 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <conio.h>
 
 #include "stack.h"
 #include "maze_gui.h"
 #include "maze_create.h"
 #include "maze_solve.h"
 #include "background.h"
+#include "controls.h"
 
 
 int startGame()
 {
-	int **matrix,i1,j1,i2,j2;
+	int **matrix, movement;
+
+	position_t	playerPosition, mummyPosition;
 	dimension_t dimension;
 	elemTree_t* root;
 
@@ -29,20 +33,51 @@ int startGame()
 	RemoveRandomWalls(matrix, dimension, 4);
 	RemoveAloneWalls(matrix, dimension);
 	
-	spawnPlayer(matrix,dimension,&i1,&j1);
-	spawnEnemy(matrix,dimension,&i2,&j2);
-	
-	root=branchAndBound(matrix,i2,j2,i1,j1,dimension);
-	go(matrix,root,dimension,100);
-	
+	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
+	spawnEnemy(matrix,dimension,&mummyPosition.x,&mummyPosition.y);
 
-	dealocateTree_r(root);
+
+	while (1) {
+
+		printFormattedMatrix(matrix,dimension,6,20);
+
+		movement=controls(_getch());
+		if ((movement==PAUSE)||(movement==EXIT)) break;
+		switch (movement) {
+			case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=1) {
+							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y);
+							playerPosition.x-=1;
+							break;
+						}else break;
+			case DOWN:	if (matrix[playerPosition.x+1][playerPosition.y]!=1) {
+							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y);
+							playerPosition.x+=1;
+							break;
+						}else break;
+			case LEFT:	if (matrix[playerPosition.x][playerPosition.y-1]!=1) {
+							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1);
+							playerPosition.y-=1;
+							break;
+						}else break;
+			case RIGHT:	if (matrix[playerPosition.x][playerPosition.y+1]!=1) {
+							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1);
+							playerPosition.y+=1;
+							break;
+						}else break;
+		}
+
+		root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);
+		go(matrix,root,dimension,2);
+		
+
+		dealocateTree_r(root);
+		if ((playerPosition.x==mummyPosition.x)&&(playerPosition.y==mummyPosition.y)) break;
+	}
+	
+	
 	if(DEBUGE_MODE)
 		printf("Tree Destroy");
 	MazeDestroy(matrix, dimension);
-
-	//DEBUGING
-	system ("pause"); 
 
 	return 0;
 }
