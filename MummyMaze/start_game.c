@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <conio.h>
+#include <windows.h>
 
 #include "stack.h"
 #include "maze_gui.h"
@@ -13,7 +14,7 @@
 
 int startGame()
 {
-	int **matrix, movement;
+	int **matrix, movement, newMovement;
 
 	position_t	playerPosition, mummyPosition;
 	dimension_t dimension;
@@ -38,6 +39,7 @@ int startGame()
 
 
 	while (1) {
+		newMovement=FALSE;
 
 		printFormattedMatrix(matrix,dimension,6,20);
 
@@ -47,34 +49,42 @@ int startGame()
 			case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y);
 							playerPosition.x-=1;
+							newMovement=TRUE;
 							break;
 						}else break;
 			case DOWN:	if (matrix[playerPosition.x+1][playerPosition.y]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y);
 							playerPosition.x+=1;
+							newMovement=TRUE;
 							break;
 						}else break;
 			case LEFT:	if (matrix[playerPosition.x][playerPosition.y-1]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1);
 							playerPosition.y-=1;
+							newMovement=TRUE;
 							break;
 						}else break;
 			case RIGHT:	if (matrix[playerPosition.x][playerPosition.y+1]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1);
 							playerPosition.y+=1;
+							newMovement=TRUE;
 							break;
 						}else break;
 		}
-
-		root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);
-		mummyPosition=go(matrix,root,dimension,2);
+		
+		if (newMovement) {
+			root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);
+			mummyPosition=go(matrix,root,dimension,1);
 		
 
-		dealocateTree_r(root);
+			dealocateTree_r(root);
+		}
+
 		if ((playerPosition.x==mummyPosition.x)&&(playerPosition.y==mummyPosition.y)) break;
 	}
 	
-	
+	Sleep (1000);
+
 	if(DEBUGE_MODE)
 		printf("Tree Destroy");
 	MazeDestroy(matrix, dimension);
