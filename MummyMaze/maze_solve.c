@@ -173,7 +173,7 @@ void go(int **matrix,elemTree_t* root,dimension_t dimension ){// moze i rekurziv
 		tmp2=tmp1->arrayElem[--i];
 		moveTo(matrix,tmp1->i,tmp1->j,tmp2->i,tmp2->j);
 		positionCursor(0,0);
-		printFormattedMatrix(matrix, dimension,1,1);
+		printFormattedMatrix(matrix, dimension,6,20);
 		Sleep(100);
 		tmp1=tmp2;
 

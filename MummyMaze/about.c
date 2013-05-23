@@ -14,7 +14,7 @@ void about () {
 
 	int status=TRUE, change=0;
 
-	backgroundImage (0);
+	backgroundImage (TEXT);
 
 	//***************************
 	//****   HEADING   **********

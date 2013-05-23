@@ -30,7 +30,7 @@ void help () {
 	matrix[playerPosition.x][playerPosition.y]=PLAYER;
 	matrix[jewelPosition.x][jewelPosition.y]=JEWEL;
 
-	backgroundImage (0);	
+	backgroundImage (TEXT);	
 	
 	//***************************
 	//****   HEADING   **********

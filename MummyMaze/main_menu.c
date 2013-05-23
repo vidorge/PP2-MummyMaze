@@ -125,13 +125,13 @@ void mainMenu () {
 			case DOWN: { if (selection<EXIT) selection++; else selection=NEWGAME; break; }
 			case ENTER: { 
 				switch (selection){
-					case NEWGAME:		system("CLS");game=TRUE;startGame();backgroundImage(2);break;
+					case NEWGAME:		system("CLS");game=TRUE;startGame();backgroundImage(MENU);break;
 					case LOADGAME:		break;
 					case SAVEGAME:		break;
 					case OPTIONS:		break;
 					case HIGHSCORES:	break;
-					case HELP:			system("CLS");help();backgroundImage(2);selection=(NEWGAME);break;
-					case ABOUT:			system("CLS");about();backgroundImage(2);selection=(NEWGAME);break;
+					case HELP:			system("CLS");help();backgroundImage(MENU);selection=(NEWGAME);break;
+					case ABOUT:			system("CLS");about();backgroundImage(MENU);selection=(NEWGAME);break;
 					case EXIT:			exit (1);
 				}			
 			}

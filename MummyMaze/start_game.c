@@ -6,6 +6,7 @@
 #include "maze_gui.h"
 #include "maze_create.h"
 #include "maze_solve.h"
+#include "background.h"
 
 
 int startGame()
@@ -13,6 +14,8 @@ int startGame()
 	int **matrix,i1,j1,i2,j2;
 	dimension_t dimension;
 	elemTree_t* root;
+
+	backgroundImage (0);
 
 	dimension.x = 80; //80
 	dimension.y = 23; //23

@@ -111,7 +111,7 @@ void startAnimation () {
 
 	system ("CLS");
 
-	backgroundImage(1);
+	backgroundImage(WELCOME);
 	
 	if (!DEBUGGING) 
 		while (1) {		
@@ -127,5 +127,5 @@ void startAnimation () {
 			}
 		}
 
-	backgroundImage(2);
+	backgroundImage(MENU);
 }
