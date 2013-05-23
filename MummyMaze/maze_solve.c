@@ -99,7 +99,7 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 	tmp = deletePrioQueue(&queue);
 	while(tmp->i != i2 || tmp->j != j2){
 		n=tmp->traveled;
-		
+
 		nb=neighbours(matrix,visited,tmp->i,tmp->j);
 		tmp->arrayElem= malloc(sizeof(elemTree_t*));
 		for(i=0;i<sumBits(nb)+1;i++) 
@@ -165,12 +165,12 @@ void moveTo(int **matrix,int i1,int j1, int i2, int j2 ){
 	matrix[i1][j1]=0;
 	
 }
-void go(int **matrix,elemTree_t* root,dimension_t dimension ){// moze i rekurzivno
+void go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ){// moze i rekurzivno
 	int i;
 	elemTree_t* tmp2,*tmp1=root;
 	
 
-	while(tmp1->arrayElem!=null){
+	while(steps!=0){
 		i=0;
 		while(tmp1->arrayElem[i++]->status!=1);
 		tmp2=tmp1->arrayElem[--i];
@@ -180,6 +180,7 @@ void go(int **matrix,elemTree_t* root,dimension_t dimension ){// moze i rekurziv
 		Sleep(100);
 		tmp1=tmp2;
 
+		steps--;
 	}
 
 
