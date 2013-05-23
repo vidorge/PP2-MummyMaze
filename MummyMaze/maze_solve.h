@@ -43,7 +43,7 @@ elemTree_t* createNode(int i, int j,elemTree_t* pre,int traveled);
 char neighbours(int **matrix,char **visted,int i , int j);
 void dealocateTree_r	( elemTree_t* root);
 void moveTo(int **matrix,int i1,int j1, int i2, int j2 );
-void go(int **matrix,elemTree_t* root,dimension_t dimension, int steps);
+position_t go(int **matrix,elemTree_t* root,dimension_t dimension, int steps);
 void spawnPlayer(int **matrix, dimension_t dimension,int *i,int *j);
 void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j);
 #endif

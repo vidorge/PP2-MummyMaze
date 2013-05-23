@@ -165,8 +165,9 @@ void moveTo(int **matrix,int i1,int j1, int i2, int j2 ){
 	matrix[i1][j1]=0;
 	
 }
-void go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ){// moze i rekurzivno
+position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ){// moze i rekurzivno
 	int i;
+	position_t re;
 	elemTree_t* tmp2,*tmp1=root;
 	
 
@@ -175,10 +176,15 @@ void go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ){// moze 
 		while(tmp1->arrayElem[i++]->status!=1);
 		tmp2=tmp1->arrayElem[--i];
 		moveTo(matrix,tmp1->i,tmp1->j,tmp2->i,tmp2->j);
+
 		tmp1=tmp2;
 
 		steps--;
 	}
+	re.x=tmp1->i;
+	re.y=tmp1->j;
+
+	return re; 
 
 
 }

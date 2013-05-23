@@ -67,7 +67,7 @@ int startGame()
 		}
 
 		root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);
-		go(matrix,root,dimension,2);
+		mummyPosition=go(matrix,root,dimension,2);
 		
 
 		dealocateTree_r(root);
