@@ -13,7 +13,8 @@
 typedef struct elemTree_t
 {
 	char status;
-	int i,j;
+	int i,j,traveled;
+
 	struct elemTree_t *pred;
 	struct  elemTree_t **arrayElem; 
 	
@@ -38,7 +39,7 @@ int manhattanLength (int cordinateX1, int cordinateY1 , int cordinateX2, int cor
 elemTree_t* deletePrioQueue(elemPrioQueue_t** Q);
 void insertPrioQueue(elemPrioQueue_t **Q, elemTree_t* T,int Len);
 elemTree_t*  branchAndBound(int **matrix, int i, int j,int, int,dimension_t dimension);
-elemTree_t* createNode(int i, int j,elemTree_t* pre);
+elemTree_t* createNode(int i, int j,elemTree_t* pre,int traveled);
 char neighbours(int **matrix,char **visted,int i , int j);
 void dealocateTree_r	( elemTree_t* root);
 void moveTo(int **matrix,int i1,int j1, int i2, int j2 );

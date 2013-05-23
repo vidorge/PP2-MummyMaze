@@ -62,7 +62,7 @@ char neighbours(int **matrix,char **visited,int i , int j){
 	 return re;
 	 
 }
-elemTree_t* createNode(int i, int j,elemTree_t* pre){
+elemTree_t* createNode(int i, int j,elemTree_t* pre,int traveled){
 	elemTree_t* re;
 
 	re=malloc (sizeof(elemTree_t));
@@ -70,6 +70,7 @@ elemTree_t* createNode(int i, int j,elemTree_t* pre){
 	re->pred=pre;
 	re->i=i;
 	re->j=j;
+	re->traveled=traveled;
 	re->arrayElem =null;
 
 	return re;
@@ -77,13 +78,13 @@ elemTree_t* createNode(int i, int j,elemTree_t* pre){
 }
 
 elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension){
-	int i,j;
+	int i,j,n;
 	char nb;
 	char **visited;
 	elemPrioQueue_t *queue=null;
 	elemTree_t *root, *tmp;
 								
-	
+	n=0;
 	visited=(char**)malloc( dimension.y * sizeof(char*));
 	
 	for (i=0;i<dimension.y; i++){
@@ -92,11 +93,13 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 	}
 	visited[i1][j1]=1;
 
-	root= createNode(i1,j1,null);
+	root= createNode(i1,j1,null,n);
 
-	insertPrioQueue(&queue,root,manhattanLength( i1, j1,i2, j2));
+	insertPrioQueue(&queue,root,manhattanLength( i1, j1,i2, j2)+n);
 	tmp = deletePrioQueue(&queue);
 	while(tmp->i != i2 || tmp->j != j2){
+		n=tmp->traveled;
+		
 		nb=neighbours(matrix,visited,tmp->i,tmp->j);
 		tmp->arrayElem= malloc(sizeof(elemTree_t*));
 		for(i=0;i<sumBits(nb)+1;i++) 
@@ -104,23 +107,23 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 		i=0;
 		
 		if(isUp(nb)) {
-		tmp->arrayElem[i]=createNode(tmp->i-1,tmp->j,tmp);
-		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i-1,tmp->j,i2, j2));
+		tmp->arrayElem[i]=createNode(tmp->i-1,tmp->j,tmp,n+1);
+		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i-1,tmp->j,i2, j2)+n+1);
 		visited[tmp->i-1][tmp->j]=1;
 		}
 		if(isRight(nb)) {
-		tmp->arrayElem[i]=createNode(tmp->i,tmp->j+1,tmp);
-		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i,tmp->j+1,i2, j2));
+		tmp->arrayElem[i]=createNode(tmp->i,tmp->j+1,tmp,n+1);
+		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i,tmp->j+1,i2, j2)+n+1);
 		visited[tmp->i][tmp->j+1]=1;
 		}
 		if(isDown(nb)) {
-		tmp->arrayElem[i]=createNode(tmp->i+1,tmp->j,tmp);
-		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i+1,tmp->j,i2, j2));
+		tmp->arrayElem[i]=createNode(tmp->i+1,tmp->j,tmp,n+1);
+		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i+1,tmp->j,i2, j2)+n+1);
 		visited[tmp->i+1][tmp->j]=1;
 		}
 		if(isLeft(nb)) {
-		tmp->arrayElem[i]=createNode(tmp->i,tmp->j-1,tmp);
-		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i,tmp->j-1,i2, j2));
+		tmp->arrayElem[i]=createNode(tmp->i,tmp->j-1,tmp,n+1);
+		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i,tmp->j-1,i2, j2)+n+1);
 		visited[tmp->i][tmp->j-1]=1;
 		}
 		tmp->arrayElem[i]=null;
