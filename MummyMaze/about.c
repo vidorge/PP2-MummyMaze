@@ -35,11 +35,14 @@ void about () {
 	positionCursor(43,17);
 	printf ("                                        ");
 
-	for (i=93;i>19 && status;Sleep(700),i--) {
+	for (i=93;i>19 && status;i--) {
+			Sleep(700);
+
 			if(_kbhit()) { 
 						status=FALSE;
 						continue;
 			}
+
 			if (((i-45)>18)&&((i-45)<47))	{ positionCursor (CENTER,i-45);	printf ("            A long time ago		   "); }
 			if (((i-44)>18)&&((i-44)<47))	{ positionCursor (CENTER,i-44);	printf ("      in a galaxy far, far away	   "); }
 			if (((i-43)>18)&&((i-43)<47))	{ positionCursor (CENTER,i-43);	printf ("  It is a period of civil war. Rebel  "); }

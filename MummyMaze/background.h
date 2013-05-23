@@ -3,10 +3,12 @@
 
 #define TOP		19
 #define BOTTOM	47
+#define TOPGAME	12
 
 #define WELCOME 1
 #define MENU	2
 #define TEXT	3
+#define GAME	4
 
 void backgroundImage(int whichTime);
 

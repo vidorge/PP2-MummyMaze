@@ -15,7 +15,7 @@ int startGame()
 	dimension_t dimension;
 	elemTree_t* root;
 
-	backgroundImage (0);
+	backgroundImage (GAME);
 
 	dimension.x = 80; //80
 	dimension.y = 23; //23
