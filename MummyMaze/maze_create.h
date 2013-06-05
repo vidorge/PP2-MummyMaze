@@ -7,6 +7,7 @@
 #define DOWN_WALL	2 //0010
 #define LEFT_WALL	4 //0100
 #define RIGHT_WALL	8 //1000
+#define IN_MAZE		16
 
 #define WALL 1
 #define PATH 0
@@ -19,6 +20,13 @@ typedef struct
 	int y;
 
 } dimension_t;
+
+typedef struct CoordList
+{
+	int i, j;
+	struct CoordList *next;
+
+}	coordList_t;
 
 /**
 *	@desc	Initialize a matrix
@@ -83,5 +91,6 @@ void PrimInit(int **a, dimension_t dimension);
 int ** GeneratePrimMatrix(dimension_t dimension);
 
 
+void Prim(int **a, dimension_t dimension);
 
 #endif

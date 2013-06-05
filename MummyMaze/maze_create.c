@@ -161,26 +161,6 @@ void RemoveRandomWalls(int **a, dimension_t dimension, int probability)
 
 }
 
-/*
-int hasUnvisitedNeighbour(int **matrix)
-{
-
-
-
-}
-*/
-
-
-void MazeDestroy(int **a, dimension_t dimension)
-{
-	int i;
-
-	for(i=0; i<dimension.y; i++)
-		free(a[i]);
-
-	free(a);
-
-}
 
 void RemoveAloneWalls(int **a, dimension_t dimension)
 {
@@ -212,6 +192,18 @@ void RemoveAloneWalls(int **a, dimension_t dimension)
 }
 
 
+void MazeDestroy(int **a, dimension_t dimension)
+{
+	int i;
+
+	for(i=0; i<dimension.y; i++)
+		free(a[i]);
+
+	free(a);
+
+}
+
+
 /* OVDE POCINJE PRIM */
 
 /*
@@ -233,10 +225,10 @@ int ** GeneratePrimMatrix(dimension_t dimension)
 	w = dimension.x / 2;
 	h = dimension.x / 2;
 
-	a = malloc( h * sizeof(int*) );
+	a = (int**) malloc( h * sizeof(int*) );
 	for (i=0; i<h; i++)
 	{
-		a[i] = malloc( w * sizeof(int) );
+		a[i] = (int*) malloc( w * sizeof(int) );
 
 		for (j=0; j<w; j++)
 			a[i][j] = 0 | UP_WALL | DOWN_WALL | LEFT_WALL | RIGHT_WALL;
@@ -247,15 +239,187 @@ int ** GeneratePrimMatrix(dimension_t dimension)
 
 }
 
-/*
-void PrimInit(int **a, dimension_t dimension)
+
+void Prim(int **a, dimension_t dimension)
 {
 
-	int w, h, i, j;
+	int w, h, x, y, i, j;
+	int **primMatrix, count = 0;
+	int randDir[] = {1, 2, 3, 4};
+
+	coordList_t *rear, *element;
+
+	rear = NULL; element = NULL;
+
+	primMatrix = GeneratePrimMatrix(dimension);
 
 	w = dimension.x / 2;
-	h = dimension.x / 2;
+	h = dimension.y / 2;
+
+	x = w / 2;
+	y = h / 2;
+
+	primMatrix[y][x] |= IN_MAZE;
+
+	//insert
+	element = (coordList_t*) malloc( sizeof( coordList_t ) );
+
+	element->i = y; element->j = x;
 	
+	if ( rear == NULL )
+		element->next = element;
+	else {
+		element->next = rear->next;
+		rear->next = element;
+	}
+	rear = element;
+	//insert
+
+
+	while ( rear != NULL )
+	{
+		//delete
+
+		count = rand() % 260;
+		i = 0;
+		while ( i < count )
+		{
+			rear = rear->next;
+			i++;
+		}
+		
+		element = rear->next;
+		rear->next = element->next;
+		x = element->j;
+		y = element->i;
+		if ( rear == element ) rear = NULL;
+		free(element);
+		//delete
+
+		primMatrix[y][x] |= IN_MAZE;
+
+	
+		// ako ima komsije koji su deo lavirinta odaberi jedan od komsija i probij put
+
+
+		if ( y - 1 >= 0 && (primMatrix[y-1][x] & IN_MAZE) ) // up
+			primMatrix[y-1][x] &= ~DOWN_WALL, primMatrix[y][x] &= ~UP_WALL;
+		else if ( y + 1 < h && (primMatrix[y+1][x] & IN_MAZE) ) //down
+			primMatrix[y+1][x] &= ~UP_WALL, primMatrix[y][x] &= ~DOWN_WALL;
+		else if ( x - 1 >= 0 && (primMatrix[y][x-1] & IN_MAZE) ) //left
+			primMatrix[y][x-1] &= ~RIGHT_WALL, primMatrix[y][x] &= ~LEFT_WALL;
+		else if ( x + 1 < w && (primMatrix[y][x+1] & IN_MAZE) ) //right
+			primMatrix[y][x+1] &= ~LEFT_WALL, primMatrix[y][x] &= ~RIGHT_WALL;
+
+
+
+		// dodaj sve komsije koje nisu deo lafirinta u redic
+		if ( y - 1 >= 0 && !(primMatrix[y-1][x] & IN_MAZE) ) // up
+		{
+			element = (coordList_t*) malloc( sizeof( coordList_t ) );
+
+			element->i = y-1; element->j = x;
+	
+			if ( rear == NULL )
+				element->next = element;
+			else {
+				element->next = rear->next;
+				rear->next = element;
+			}
+			rear = element;
+
+		}
+		if ( y + 1 < h && !(primMatrix[y+1][x] & IN_MAZE) ) //down
+		{
+			element = (coordList_t*) malloc( sizeof( coordList_t ) );
+
+			element->i = y+1; element->j = x;
+	
+			if ( rear == NULL )
+				element->next = element;
+			else {
+				element->next = rear->next;
+				rear->next = element;
+			}
+			rear = element;
+			
+		}
+		if ( x - 1 >= 0 && !(primMatrix[y][x-1] & IN_MAZE) ) //left
+		{
+			element = (coordList_t*) malloc( sizeof( coordList_t ) );
+
+			element->i = y; element->j = x-1;
+	
+			if ( rear == NULL )
+				element->next = element;
+			else {
+				element->next = rear->next;
+				rear->next = element;
+			}
+			rear = element;
+			
+		}
+		if ( x + 1 < w && !(primMatrix[y][x+1] & IN_MAZE) ) //right
+		{
+			element = (coordList_t*) malloc( sizeof( coordList_t ) );
+
+			element->i = y; element->j = x+1;
+	
+			if ( rear == NULL )
+				element->next = element;
+			else {
+				element->next = rear->next;
+				rear->next = element;
+			}
+			rear = element;
+			
+		}
+
+		//while( getchar() != '\n' );
+
+	}
+
+	
+	/*
+	for ( i = 0, printf("\n"); i < h; i++, printf("\n") )
+		for ( j = 0; j < w; j++ )
+			printf("%3d", primMatrix[i][j]);
+	*/
+
+	// promeni primovu u nasu sugavu reprezentaciju
+	for ( i = 0; i < dimension.y; i++ )
+		for ( j = 0; j < dimension.x; j++ )
+			if ( i == 0 || i == dimension.y-1 || j == 0 || j == dimension.x-1 ) a[i][j] = 1;
+			else a[i][j] = 0;
+		
+	for ( i = 0; i < h; i++ )
+		for ( j = 0; j < w; j++ )
+		{
+
+			if ( primMatrix[i][j] & UP_WALL )
+			{
+				a[i*2][j*2] = 1;
+				a[i*2][j*2 + 1] = 1;
+				a[i*2][j*2 + 2] = 1;
+			}
+			if ( primMatrix[i][j] & LEFT_WALL )
+			{
+				a[i*2][j*2] = 1;
+				a[i*2 + 1][j*2] = 1;
+				a[i*2 + 2][j*2] = 1;
+
+			}
+
+		}
+		
+
+	/*
+	for ( i = 0, printf("\n"); i < dimension.y; i++, printf("\n") )
+		for ( j = 0; j < dimension.x; j++ )
+			printf("%3d", a[i][j]);
+	*/
 
 }
-*/
+
+
+
