@@ -30,15 +30,13 @@ int startGame()
 
 	matrix = initMatrix(dimension);
 
-	Prim(matrix, dimension);
+	//Prim(matrix, dimension);
 
-	/*
+	
 	DfsInit(matrix, dimension);
 	RemoveRandomWalls(matrix, dimension, 4);
 	RemoveAloneWalls(matrix, dimension);
-	*/
-
-
+	
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 	spawnEnemy(matrix,dimension,&mummyPosition.x,&mummyPosition.y);
 
