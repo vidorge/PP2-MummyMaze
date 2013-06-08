@@ -75,14 +75,14 @@ int startGame()
 		}
 		
 		if (newMovement) {
-			root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);
+			root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);// ovo koment ako upalite dummyMummy
 
-			mummyPosition=go(matrix,root,dimension,1);
+			mummyPosition=go(matrix,root,dimension,1);// ovo koment ako upalite dummyMummy
 			
 			// za glupu mumiju------ mummyPosition=dummyMummy(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,2);
 		
 
-			dealocateTree_r(root);
+			dealocateTree_r(root);// ovo koment ako upalite dummyMummy
 		}
 
 		if ((playerPosition.x==mummyPosition.x)&&(playerPosition.y==mummyPosition.y)) break;
