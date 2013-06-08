@@ -10,6 +10,7 @@
 #define isLeft(A) (A & 0x08)
 #define sumBits(A) ((A&0x01)?1:0 + (A & 0x02)?1:0 + (A & 0x04)?1:0 +(A & 0x08)?1:0  )
 #define DEBUGE_MODE 0
+#define MAX_INT 32000
 typedef struct elemTree_t
 {
 	char status;
@@ -46,4 +47,6 @@ void moveTo(int **matrix,int i1,int j1, int i2, int j2 );
 position_t go(int **matrix,elemTree_t* root,dimension_t dimension, int steps);
 void spawnPlayer(int **matrix, dimension_t dimension,int *i,int *j);
 void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j);
+position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps);
+
 #endif

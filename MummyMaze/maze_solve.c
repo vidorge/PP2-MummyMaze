@@ -208,3 +208,73 @@ void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j){
 	} while(matrix[(*i)][(*j)]!=0);
 	matrix[(*i)][(*j)]=MUMMY;
 }
+position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps)
+{	
+	int k , m;
+	int min,i;
+	position_t re;
+	k=0;
+	m=0;
+
+	
+
+	re.x=i1;
+	re.y=j1;
+	for(i=0;i<steps;i++)
+	{
+		min=MAX_INT;
+		k=0;
+		m=0;
+		if(matrix[re.x][re.y+1]==0) 
+		{
+			if(min>manhattanLength(re.x,re.y+1,i2,j2))
+			{
+				min=manhattanLength(re.x,re.y+1,i2,j2);
+				k=re.x;
+				m=re.y+1;
+			}
+
+		}
+		if(matrix[re.x][re.y-1]==0) 
+		{
+			if(min>manhattanLength(re.x,re.y-1,i2,j2))
+			{
+				min=manhattanLength(re.x,re.y-1,i2,j2);
+				k=re.x;
+				m=re.y-1;
+			}
+
+		}
+		if(matrix[re.x+1][re.y]==0) 
+		{
+			if(min>manhattanLength(re.x+1,re.y,i2,j2))
+			{
+				min=manhattanLength(re.x+1,re.y,i2,j2);
+				k=re.x+1;
+				m=re.y;
+			}
+
+		}
+		if(matrix[re.x-1][re.y]==0) 
+		{
+			if(min>manhattanLength(re.x-1,re.y,i2,j2))
+			{
+				min=manhattanLength(re.x-1,re.y,i2,j2);
+				k=re.x-1;
+				m=re.y;
+			}
+
+		}
+		if(k==0 || min>manhattanLength(re.x,re.y,i2,j2)  ) return re;
+		else 
+		{
+		moveTo(matrix,re.x,re.y,k,m);
+		re.x=k;
+		re.y=m;
+		
+
+		}
+	}
+	return re;
+
+}
