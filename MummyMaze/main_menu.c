@@ -10,6 +10,7 @@
 #include "main_menu.h"
 #include "out_animation.h"
 
+#include "options.h"
 #include "help.h"
 #include "about.h"
 
@@ -129,7 +130,7 @@ void mainMenu () {
 					case NEWGAME:		system("CLS");game=TRUE;startGame();backgroundImage(MENU);break;
 					case LOADGAME:		break;
 					case SAVEGAME:		break;
-					case OPTIONS:		break;
+					case OPTIONS:		system ("CLS");options();backgroundImage(MENU);selection=(NEWGAME);break;
 					case HIGHSCORES:	break;
 					case HELP:			system("CLS");help();backgroundImage(MENU);selection=(NEWGAME);break;
 					case ABOUT:			system("CLS");about();backgroundImage(MENU);selection=(NEWGAME);break;

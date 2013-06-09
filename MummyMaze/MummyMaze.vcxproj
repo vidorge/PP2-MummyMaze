@@ -88,6 +88,7 @@
     <ClCompile Include="maze_create.c" />
     <ClCompile Include="maze_gui.c" />
     <ClCompile Include="maze_solve.c" />
+    <ClCompile Include="options.c" />
     <ClCompile Include="out_animation.c" />
     <ClCompile Include="position_cursor.c" />
     <ClCompile Include="screen_resolution.c" />
@@ -105,6 +106,7 @@
     <ClInclude Include="maze_create.h" />
     <ClInclude Include="maze_gui.h" />
     <ClInclude Include="maze_solve.h" />
+    <ClInclude Include="options.h" />
     <ClInclude Include="out_animation.h" />
     <ClInclude Include="position_cursor.h" />
     <ClInclude Include="screen_resolution.h" />
