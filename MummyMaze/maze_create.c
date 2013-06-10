@@ -35,7 +35,10 @@ void DfsInit(int **a, dimension_t dimension)
 
 	a[r][c] = 0;
 
-	dfs(a, r, c, dimension);
+	Dfs(a, r, c, dimension);
+
+	RemoveRandomWalls(a, dimension, 4);
+	RemoveAloneWalls(a, dimension);
 
 }
 
@@ -54,7 +57,7 @@ void ShuffleArray(int *randDir)
 
 }
 
-void dfs(int **a, int r, int c, dimension_t dimension)
+void Dfs(int **a, int r, int c, dimension_t dimension)
 {
 	int randDir[] = {1, 2, 3, 4};
 	int i;
@@ -69,7 +72,7 @@ void dfs(int **a, int r, int c, dimension_t dimension)
              if (a[r - 2][c] != 0) {
                  a[r-2][c] = 0;
                  a[r-1][c] = 0;
-                 dfs(a, r - 2, c, dimension);
+                 Dfs(a, r - 2, c, dimension);
              }
              break;
 
@@ -78,7 +81,7 @@ void dfs(int **a, int r, int c, dimension_t dimension)
              if (a[r][c + 2] != 0) {
                  a[r][c + 2] = 0;
                  a[r][c + 1] = 0;
-                 dfs(a, r, c + 2, dimension);
+                 Dfs(a, r, c + 2, dimension);
              }
              break;
 
@@ -87,7 +90,7 @@ void dfs(int **a, int r, int c, dimension_t dimension)
              if (a[r + 2][c] != 0) {
                  a[r+2][c] = 0;
                  a[r+1][c] = 0;
-                 dfs(a, r + 2, c, dimension);
+                 Dfs(a, r + 2, c, dimension);
              }
              break;
 
@@ -96,7 +99,7 @@ void dfs(int **a, int r, int c, dimension_t dimension)
              if (a[r][c - 2] != 0) {
                  a[r][c - 2] = 0;
                  a[r][c - 1] = 0;
-                 dfs(a, r, c - 2, dimension);
+                 Dfs(a, r, c - 2, dimension);
              }
              break;
 
@@ -181,8 +184,6 @@ void RemoveAloneWalls(int **a, dimension_t dimension)
 					)
 					a[i][j] = 0;
 
-
-
 			}
 		}
 	}
@@ -240,13 +241,52 @@ int ** GeneratePrimMatrix(dimension_t dimension)
 }
 
 
+void InsertElement(coordList_t **rear, int x, int y)
+{
+
+		coordList_t *element;
+
+		element = (coordList_t*) malloc( sizeof( coordList_t ) );
+
+		element->i = y;
+		element->j = x;
+	
+		if ( *rear == NULL )
+			element->next = element;
+		else {
+			element->next = (*rear)->next;
+			(*rear)->next = element;
+		}
+
+		*rear = element;
+
+}
+
+int FindInList(coordList_t *rear, int x, int y)
+{
+
+	int found = 0;
+	coordList_t *current;
+
+	current = rear; found = 0;
+
+	if ( rear )
+		do {
+			if ( current->i == y  && current->j == x )  return 1;
+			current = current->next;
+		} while ( current->next != rear );
+
+	return 0;
+
+}
+
 void Prim(int **a, dimension_t dimension)
 {
 
 	int w, h, x, y, i, j;
 	int **primMatrix, count = 0;
 	int randDir[] = {1, 2, 3, 4};
-	int done = 0, randNum = 0, decision[4], choice;
+	int done = 0, randNum = 0;
 
 	coordList_t *rear, *element;
 
@@ -257,31 +297,19 @@ void Prim(int **a, dimension_t dimension)
 	w = dimension.x / 2;
 	h = dimension.y / 2;
 
-	x = w / 2;
-	y = h / 2;
+	x = w / 2; y = h / 2;
 
 	primMatrix[y][x] |= IN_MAZE;
 
-	//insert
-	element = (coordList_t*) malloc( sizeof( coordList_t ) );
 
-	element->i = y; element->j = x;
-	
-	if ( rear == NULL )
-		element->next = element;
-	else {
-		element->next = rear->next;
-		rear->next = element;
-	}
-	rear = element;
-	//insert
+	InsertElement(&rear, x, y);
+	//printf("\n Dodato  %d %d", x, y);
 
 
 	while ( rear != NULL )
 	{
 		//delete
-
-		count = rand() % 260;
+		count = rand() % 42; // if you ask why, you sir, aren't a geek!
 		i = 0;
 		while ( i < count )
 		{
@@ -295,146 +323,131 @@ void Prim(int **a, dimension_t dimension)
 		y = element->i;
 		if ( rear == element ) rear = NULL;
 		free(element);
+
+		//printf("\n Obrisano  %d %d", x, y);
+
+
 		//delete
 
 		primMatrix[y][x] |= IN_MAZE;
 
 		// ako ima komsije koji su deo lavirinta odaberi jedan od komsija i probij put
 
-		decision[0] = ( y - 1 >= 0 && (primMatrix[y-1][x] & IN_MAZE) ) ? 1 : 0; //up
-		decision[1] = ( y + 1 < h && (primMatrix[y+1][x] & IN_MAZE) ) ? 1 : 0; //down
-		decision[2] = ( x - 1 >= 0 && (primMatrix[y][x-1] & IN_MAZE) ) ? 1 : 0; //left
-		decision[3] = ( x + 1 < w && (primMatrix[y][x+1] & IN_MAZE) ) ? 1 : 0; //right
+		ShuffleArray(randDir);
 
-		if ( decision[0] || decision[1] || decision[2] || decision[3] )
+		for ( i = 0, done = 0; i < 4; i++ )
 		{
 
-			while ( 1 )
+			switch ( randDir[i] )
 			{
-				choice = rand() % 4;
-				if ( decision[choice] ) break;
-			}
-
-			switch ( choice )
-			{
-
-			case 0:
-				primMatrix[y-1][x] &= ~DOWN_WALL;
-				primMatrix[y][x] &= ~UP_WALL;
-				break;
 
 			case 1:
-				primMatrix[y+1][x] &= ~UP_WALL;
-				primMatrix[y][x] &= ~DOWN_WALL;
+				if ( y - 1 >= 0 && (primMatrix[y-1][x] & IN_MAZE) )
+				{// up
+					primMatrix[y-1][x] &= ~DOWN_WALL;
+					primMatrix[y][x] &= ~UP_WALL;
+					done = 1;
+					//printf("\n Probijen zid na gore  %d %d", x, y-1);
+				}
 				break;
 
 			case 2:
-				primMatrix[y][x-1] &= ~RIGHT_WALL;
-				primMatrix[y][x] &= ~LEFT_WALL;
+				if ( y + 1 < h && (primMatrix[y+1][x] & IN_MAZE) )
+				{//down
+					primMatrix[y+1][x] &= ~UP_WALL;
+					primMatrix[y][x] &= ~DOWN_WALL;
+					done = 1;
+					//printf("\n Probijen zid na dole  %d %d", x, y+1);
+				}
 				break;
 
 			case 3:
-				primMatrix[y][x+1] &= ~LEFT_WALL;
-				primMatrix[y][x] &= ~RIGHT_WALL;
+				if ( x - 1 >= 0 && (primMatrix[y][x-1] & IN_MAZE) )
+				{//left
+					primMatrix[y][x-1] &= ~RIGHT_WALL;
+					primMatrix[y][x] &= ~LEFT_WALL;
+					done = 1;
+					//printf("\n Probijen zid na levo  %d %d", x-1, y);
+				}
+				break;
+
+			case 4:
+				if ( x + 1 < w && (primMatrix[y][x+1] & IN_MAZE) )
+				{//right
+					primMatrix[y][x+1] &= ~LEFT_WALL;
+					primMatrix[y][x] &= ~RIGHT_WALL;
+					done = 1;
+					//printf("\n Probijen zid na desno  %d %d", x+1, y);
+				}
 				break;
 
 			default: printf("ZABOLO"), exit(64);
+
 			}
 
-		}
-		/*
-		if ( y - 1 >= 0 && (primMatrix[y-1][x] & IN_MAZE) )
-		{   // up
-			primMatrix[y-1][x] &= ~DOWN_WALL;
-			primMatrix[y][x] &= ~UP_WALL;
-			done = 1;
-		}
-		else if ( y + 1 < h && (primMatrix[y+1][x] & IN_MAZE) )
-		{	//down
-			primMatrix[y+1][x] &= ~UP_WALL;
-			primMatrix[y][x] &= ~DOWN_WALL;
-			done = 1;
-		}
-		else if ( x - 1 >= 0 && (primMatrix[y][x-1] & IN_MAZE) )
-		{//left
-			primMatrix[y][x-1] &= ~RIGHT_WALL;
-			primMatrix[y][x] &= ~LEFT_WALL;
-			done = 1;
+			if ( done == 1 ) break;
+
 		}
 
-		else if ( x + 1 < w && (primMatrix[y][x+1] & IN_MAZE) )
-		{//right
-			primMatrix[y][x+1] &= ~LEFT_WALL;
-			primMatrix[y][x] &= ~RIGHT_WALL;
-			done = 1;
-		}
-		*/
+
 
 		// dodaj sve komsije koje nisu deo lafirinta u redic
-		if ( y - 1 >= 0 && !(primMatrix[y-1][x] & IN_MAZE) ) // up
-		{
-			element = (coordList_t*) malloc( sizeof( coordList_t ) );
+		if ( y - 1 >= 0 && !(primMatrix[y-1][x] & IN_MAZE) ) 
+		{// up
 
-			element->i = y-1; element->j = x;
-	
-			if ( rear == NULL )
-				element->next = element;
-			else {
-				element->next = rear->next;
-				rear->next = element;
+
+			if ( !FindInList(rear, x, y-1) )
+			{
+				InsertElement(&rear, x, y-1);
+				//printf("\n Dodat komsija  %d %d", x, y-1);
 			}
-			rear = element;
+
 
 		}
-		if ( y + 1 < h && !(primMatrix[y+1][x] & IN_MAZE) ) //down
-		{
-			element = (coordList_t*) malloc( sizeof( coordList_t ) );
+		if ( y + 1 < h && !(primMatrix[y+1][x] & IN_MAZE) ) 
+		{//down
 
-			element->i = y+1; element->j = x;
-	
-			if ( rear == NULL )
-				element->next = element;
-			else {
-				element->next = rear->next;
-				rear->next = element;
+			if ( !FindInList(rear, x, y+1) )
+			{
+				InsertElement(&rear, x, y+1);
+				//printf("\n Dodat komsija  %d %d", x, y+1);
 			}
-			rear = element;
+
+		}
+		if ( x - 1 >= 0 && !(primMatrix[y][x-1] & IN_MAZE) ) 
+		{//left
+
+			if ( !FindInList(rear, x-1, y) )
+			{
+				InsertElement(&rear, x-1, y);
+				//printf("\n Dodat komsija  %d %d", x-1, y);
+			}
+
+		}
 			
-		}
-		if ( x - 1 >= 0 && !(primMatrix[y][x-1] & IN_MAZE) ) //left
-		{
-			element = (coordList_t*) malloc( sizeof( coordList_t ) );
-
-			element->i = y; element->j = x-1;
-	
-			if ( rear == NULL )
-				element->next = element;
-			else {
-				element->next = rear->next;
-				rear->next = element;
-			}
-			rear = element;
 			
-		}
-		if ( x + 1 < w && !(primMatrix[y][x+1] & IN_MAZE) ) //right
-		{
-			element = (coordList_t*) malloc( sizeof( coordList_t ) );
+		if ( x + 1 < w && !(primMatrix[y][x+1] & IN_MAZE) )
+		{//right
 
-			element->i = y; element->j = x+1;
-	
-			if ( rear == NULL )
-				element->next = element;
-			else {
-				element->next = rear->next;
-				rear->next = element;
+			if ( !FindInList(rear, x+1, y) )
+			{
+				InsertElement(&rear, x+1, y);
+				//printf("\n Dodat komsija  %d %d", x+1, y);
 			}
-			rear = element;
-			
-		}
 
-		//while( getchar() != '\n' );
+		}
 
 	}
+
+
+	/*
+	printf("\n");
+	for ( i = 0; i < h; i++, printf("\n") )
+		for ( j = 0; j < w; j++ )
+			printf("%4d", primMatrix[i][j] - 16);
+	*/
+
+
 
 	// promeni primovu u nasu sugavu reprezentaciju
 	for ( i = 0; i < dimension.y; i++ )
@@ -462,15 +475,4 @@ void Prim(int **a, dimension_t dimension)
 
 		}
 		
-
-	/*
-	for ( i = 0, printf("\n"); i < dimension.y; i++, printf("\n") )
-		for ( j = 0; j < dimension.x; j++ )
-			printf("%3d", a[i][j]);
-			*/
-	
-
 }
-
-
-

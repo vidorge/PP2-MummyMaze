@@ -66,7 +66,7 @@ void fillHelpMatrix(int **matrix, dimension_t dimension);
 
 //mrzelo me majke mi
 
-void dfs(int **a, int r, int c, dimension_t dimension);
+void Dfs(int **a, int r, int c, dimension_t dimension);
 
 
 //int[] ShuffleArray(int randDir[]);

@@ -22,7 +22,7 @@ int startGame()
 
 	backgroundImage (GAME);
 
-	dimension.x = 81; //80
+	dimension.x = 81; //81
 	dimension.y = 23; //23
 	
 	//OVO CEMO JEDNOM POZVATI I NIKEAD VISE DA LI SAM JASAN??? I <3 DORVI
@@ -34,9 +34,7 @@ int startGame()
 
 	
 	DfsInit(matrix, dimension);
-	RemoveRandomWalls(matrix, dimension, 4);
-	RemoveAloneWalls(matrix, dimension);
-	
+
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 	spawnEnemy(matrix,dimension,&mummyPosition.x,&mummyPosition.y);
 
