@@ -246,6 +246,7 @@ void Prim(int **a, dimension_t dimension)
 	int w, h, x, y, i, j;
 	int **primMatrix, count = 0;
 	int randDir[] = {1, 2, 3, 4};
+	int done = 0, randNum = 0, decision[4], choice;
 
 	coordList_t *rear, *element;
 
@@ -298,20 +299,76 @@ void Prim(int **a, dimension_t dimension)
 
 		primMatrix[y][x] |= IN_MAZE;
 
-	
 		// ako ima komsije koji su deo lavirinta odaberi jedan od komsija i probij put
 
+		decision[0] = ( y - 1 >= 0 && (primMatrix[y-1][x] & IN_MAZE) ) ? 1 : 0; //up
+		decision[1] = ( y + 1 < h && (primMatrix[y+1][x] & IN_MAZE) ) ? 1 : 0; //down
+		decision[2] = ( x - 1 >= 0 && (primMatrix[y][x-1] & IN_MAZE) ) ? 1 : 0; //left
+		decision[3] = ( x + 1 < w && (primMatrix[y][x+1] & IN_MAZE) ) ? 1 : 0; //right
 
-		if ( y - 1 >= 0 && (primMatrix[y-1][x] & IN_MAZE) ) // up
-			primMatrix[y-1][x] &= ~DOWN_WALL, primMatrix[y][x] &= ~UP_WALL;
-		else if ( y + 1 < h && (primMatrix[y+1][x] & IN_MAZE) ) //down
-			primMatrix[y+1][x] &= ~UP_WALL, primMatrix[y][x] &= ~DOWN_WALL;
-		else if ( x - 1 >= 0 && (primMatrix[y][x-1] & IN_MAZE) ) //left
-			primMatrix[y][x-1] &= ~RIGHT_WALL, primMatrix[y][x] &= ~LEFT_WALL;
-		else if ( x + 1 < w && (primMatrix[y][x+1] & IN_MAZE) ) //right
-			primMatrix[y][x+1] &= ~LEFT_WALL, primMatrix[y][x] &= ~RIGHT_WALL;
+		if ( decision[0] || decision[1] || decision[2] || decision[3] )
+		{
 
+			while ( 1 )
+			{
+				choice = rand() % 4;
+				if ( decision[choice] ) break;
+			}
 
+			switch ( choice )
+			{
+
+			case 0:
+				primMatrix[y-1][x] &= ~DOWN_WALL;
+				primMatrix[y][x] &= ~UP_WALL;
+				break;
+
+			case 1:
+				primMatrix[y+1][x] &= ~UP_WALL;
+				primMatrix[y][x] &= ~DOWN_WALL;
+				break;
+
+			case 2:
+				primMatrix[y][x-1] &= ~RIGHT_WALL;
+				primMatrix[y][x] &= ~LEFT_WALL;
+				break;
+
+			case 3:
+				primMatrix[y][x+1] &= ~LEFT_WALL;
+				primMatrix[y][x] &= ~RIGHT_WALL;
+				break;
+
+			default: printf("ZABOLO"), exit(64);
+			}
+
+		}
+		/*
+		if ( y - 1 >= 0 && (primMatrix[y-1][x] & IN_MAZE) )
+		{   // up
+			primMatrix[y-1][x] &= ~DOWN_WALL;
+			primMatrix[y][x] &= ~UP_WALL;
+			done = 1;
+		}
+		else if ( y + 1 < h && (primMatrix[y+1][x] & IN_MAZE) )
+		{	//down
+			primMatrix[y+1][x] &= ~UP_WALL;
+			primMatrix[y][x] &= ~DOWN_WALL;
+			done = 1;
+		}
+		else if ( x - 1 >= 0 && (primMatrix[y][x-1] & IN_MAZE) )
+		{//left
+			primMatrix[y][x-1] &= ~RIGHT_WALL;
+			primMatrix[y][x] &= ~LEFT_WALL;
+			done = 1;
+		}
+
+		else if ( x + 1 < w && (primMatrix[y][x+1] & IN_MAZE) )
+		{//right
+			primMatrix[y][x+1] &= ~LEFT_WALL;
+			primMatrix[y][x] &= ~RIGHT_WALL;
+			done = 1;
+		}
+		*/
 
 		// dodaj sve komsije koje nisu deo lafirinta u redic
 		if ( y - 1 >= 0 && !(primMatrix[y-1][x] & IN_MAZE) ) // up
@@ -379,13 +436,6 @@ void Prim(int **a, dimension_t dimension)
 
 	}
 
-	
-	/*
-	for ( i = 0, printf("\n"); i < h; i++, printf("\n") )
-		for ( j = 0; j < w; j++ )
-			printf("%3d", primMatrix[i][j]);
-	*/
-
 	// promeni primovu u nasu sugavu reprezentaciju
 	for ( i = 0; i < dimension.y; i++ )
 		for ( j = 0; j < dimension.x; j++ )
@@ -417,7 +467,8 @@ void Prim(int **a, dimension_t dimension)
 	for ( i = 0, printf("\n"); i < dimension.y; i++, printf("\n") )
 		for ( j = 0; j < dimension.x; j++ )
 			printf("%3d", a[i][j]);
-	*/
+			*/
+	
 
 }
 
