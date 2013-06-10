@@ -101,7 +101,7 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 		n=tmp->traveled;
 
 		nb=neighbours(matrix,visited,tmp->i,tmp->j);
-		tmp->arrayElem= malloc(1+sumBits(nb)*sizeof(elemTree_t*));
+		tmp->arrayElem= malloc((1+sumBits(nb))*sizeof(elemTree_t*));
 		for(i=0;i<sumBits(nb)+1;i++) 
 			tmp->arrayElem[i]=malloc(sizeof(elemTree_t));
 		i=0;
