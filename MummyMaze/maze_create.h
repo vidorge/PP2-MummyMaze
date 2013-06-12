@@ -86,7 +86,6 @@ void MazeDestroy(int **a, dimension_t dimension);
 
 void RemoveAloneWalls(int **a, dimension_t dimension);
 
-void PrimInit(int **a, dimension_t dimension);
 
 int ** GeneratePrimMatrix(dimension_t dimension);
 

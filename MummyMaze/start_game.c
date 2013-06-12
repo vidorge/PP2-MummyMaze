@@ -30,10 +30,10 @@ int startGame()
 
 	matrix = initMatrix(dimension);
 
-	//Prim(matrix, dimension);
+	Prim(matrix, dimension);
 
 	
-	DfsInit(matrix, dimension);
+	//DfsInit(matrix, dimension);
 
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 	spawnEnemy(matrix,dimension,&mummyPosition.x,&mummyPosition.y);
