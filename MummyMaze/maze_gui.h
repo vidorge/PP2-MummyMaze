@@ -7,6 +7,8 @@
 
 #include "maze_create.h"
 
+void printHelpMatrix(int **matrix, dimension_t dimension, int column ,int row);
+
 void printFormattedMatrix(int **matrix, dimension_t dimension, int column, int row);
 
 #endif

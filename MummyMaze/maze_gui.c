@@ -7,7 +7,7 @@
 #include "position_cursor.h"
 
 
-void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int row) {
+void printHelpMatrix(int **matrix, dimension_t dimension, int column ,int row) {
 	int i, j;
 
 	for (i=0; i<dimension.y; i++) {
@@ -44,7 +44,7 @@ void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int r
 	}
 }
 
-/*void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int row) {
+void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int row) {
 	int i,j;
 	int temp=row;
 
@@ -74,7 +74,7 @@ void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int r
 				positionCursor(column,temp++);
 				printf (" @",matrix[j][i],matrix[j][i]);
 				positionCursor(column,temp++);
-				printf ("||",matrix[j][i],matrix[j][i]);
+				printf ("(|",matrix[j][i],matrix[j][i]);
 				changeColor(119);
 			}
 			else if (matrix[j][i]==JEWEL) {
@@ -96,4 +96,4 @@ void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int r
 		}
 		column+=2;
 	}
-}*/
+}

@@ -22,8 +22,8 @@ int startGame()
 
 	backgroundImage (GAME);
 
-	dimension.x = 40; //81
-	dimension.y = 15; //23
+	dimension.x = 43; //81
+	dimension.y = 21; //23
 	
 	//OVO CEMO JEDNOM POZVATI I NIKEAD VISE DA LI SAM JASAN??? I <3 DORVI
 	srand( (unsigned) time(NULL) );
