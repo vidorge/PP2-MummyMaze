@@ -3,7 +3,6 @@
 
 #define TOP		19
 #define BOTTOM	47
-#define TOPGAME	12
 
 #define WELCOME 1
 #define MENU	2

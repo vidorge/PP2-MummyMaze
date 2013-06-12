@@ -3,20 +3,21 @@
 
 #include "position_cursor.h"
 #include "colors.h"
+#include "screen_resolution.h"
 
 void outAnimation () {
 	int i,j;
 	
-	for (i=0;i<50;i++) {
+	for (i=0;i<HEIGHT;i++) {
 		positionCursor(0,i);
 		changeColor(255);
 		printf ("                                                                                                                             ");
 	
 	}
 	
-	for (i=0,j=49;i<28;Sleep(3), i++,j--) {
+	for (i=0,j=HEIGHT-1;i<HEIGHT+3;Sleep(3), i++,j--) {
 
-		if (i<25) {
+		if (i<HEIGHT/2) {
 			positionCursor(0,j);
 			changeColor(119);
 			printf ("                                                                                                                             ");
@@ -26,7 +27,7 @@ void outAnimation () {
 			printf ("                                                                                                                             ");
 		}		
 		
-		if ((i>1)&&(i<24)) {
+		if ((i>1)&&(i<((HEIGHT/2)-1))) {
 			positionCursor(0,j+2);
 			changeColor(136);
 			printf ("                                                                                                                             ");

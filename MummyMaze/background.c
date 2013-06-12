@@ -4,6 +4,7 @@
 #include "colors.h"
 #include "position_cursor.h"
 #include "background.h"
+#include "screen_resolution.h"
 
 void header () {
 	positionCursor(0,1);
@@ -22,7 +23,7 @@ void header () {
 
 void backgroundImage (int whichTime) {
 
-	int i;
+	int i, j;
 
 	switch (whichTime) {
 		case WELCOME: {
@@ -150,12 +151,11 @@ void backgroundImage (int whichTime) {
 			system ("CLS");
 			changeColor(GROUND);
 
-			header();
 			changeColor(MENUC);
 
-			for (i=TOPGAME;i<BOTTOM;i++) {
-				positionCursor(5,i);
-				printf ("                                                                                                                   ");
+			for (i=0;i<HEIGHT;i++)	{
+				for (j=0;j<WIDTH;j++)
+					printf ("\261");
 			}
 			break;   
 		}
