@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <Windows.h>
 
 #include "maze_gui.h"
@@ -25,11 +25,6 @@ void printHelpMatrix(int **matrix, dimension_t dimension, int column ,int row) {
 				changeColor(119);
 			}
 
-			else if (matrix[i][j]==MUMMY) {
-				changeColor(110);
-				printf ("@",matrix[i][j]);
-				changeColor(119);
-			}
 			else if (matrix[i][j]==JEWEL) {
 				changeColor(108);
 				printf ("\4",matrix[i][j]);
@@ -63,9 +58,9 @@ void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int r
 			} else if (matrix[j][i]==PLAYER) {
 				changeColor(111);
 				positionCursor(column,temp++);
-				printf ("\225\225",matrix[j][i],matrix[j][i]);
+				printf ("\225 ",matrix[j][i],matrix[j][i]);
 				positionCursor(column,temp++);
-				printf ("\225\225",matrix[j][i],matrix[j][i]);
+				printf ("|)",matrix[j][i],matrix[j][i]);
 				changeColor(119);
 			}
 
