@@ -11,40 +11,78 @@ int manhattanLength (int x1, int y1 , int x2, int y2 ){
 	return abs(x2-x1)+abs(y2-y1);
 }
 
-elemTree_t* deletePrioQueue(elemPrioQueue_t **q){
-	elemPrioQueue_t* temp;
-	elemTree_t* temp2;
-	if (*q==null) 
-		return null; else {
-		temp=*q;
-		*q=temp->succ;
-		temp2= temp->info;
-		free(temp);
-		return temp2;
+elemPrioQueue_t* deletePrioQueue1(elemPrioQueue_t *q){
+	elemPrioQueue_t *a;
+	
+	if (q==null) 
+		return null;
+	else 
+	{
+		
+		a=q->succ;
+		
+		
+		return a;
+	}
+}
+void deletePrioQueue2(elemPrioQueue_t *q){
+	elemPrioQueue_t *temp;
+	
+	if (q==null) 
+		return null;
+	else 
+	{
+		
+		while(q)
+		{
+			temp=q;
+			q=q->succ;
+			free(temp);
+			
+		}
 	}
 }
 void insertPrioQueue(elemPrioQueue_t **q, elemTree_t* t, int len){
-	elemPrioQueue_t * new1;
-	int tmp1;
-	elemTree_t *tmp2;
+	elemPrioQueue_t * new1, *pred;
+	
+	elemPrioQueue_t* tmp;
+	
 	new1= (elemPrioQueue_t*) malloc(sizeof(elemPrioQueue_t)); 
+	if(new1==null) exit(2);
 	new1->menLen=len;
 	new1->info=t;
-	new1->succ=*q;
-	*q=new1;
+	/*new1->succ=*q;
+	*q=new1;*/
 
-	while (new1!= null && new1->succ!=null && new1->menLen > new1->succ->menLen){
-		tmp1=new1->succ->menLen;
-		tmp2=new1->succ->info;
+	if((*q)==null)
+	{
+		(*q)=new1;
+		new1->succ=null;
 
-		new1->succ->menLen=new1->menLen;
-		new1->succ->info=new1->info;
+	}
+	else
+	{
 
-		new1->menLen=tmp1;
-		new1->info=tmp2;
-		
-		new1=new1->succ;
+		pred=null;
+		tmp=(*q);
 
+		while (tmp!=null && new1->menLen >= tmp->menLen)
+		{
+			pred=tmp;
+			tmp=tmp->succ;
+
+		}
+		if(pred==null)
+		{
+			new1->succ=tmp;
+			(*q)=new1;
+		}
+		else
+		{
+			new1->succ=tmp;
+			pred->succ=new1;
+			
+		}
 	}
 
 
@@ -71,23 +109,24 @@ elemTree_t* createNode(int i, int j,elemTree_t* pre,int traveled){
 	re->i=i;
 	re->j=j;
 	re->traveled=traveled;
-	re->arrayElem =null;
+	re->arrayElem=null;
 
 	return re;
 
 }
 
-elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension){
-	int i,j,n;
+elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension,FILE* izlaz){
+	int i,j,n,br=0;
 	char nb;
 	char **visited;
-	elemPrioQueue_t *queue=null;
+	elemPrioQueue_t *queue=null,*first;
 	elemTree_t *root, *tmp;
 								
 	n=0;
 	visited=(char**)malloc( dimension.y * sizeof(char*));
 	
-	for (i=0;i<dimension.y; i++){
+	for (i=0;i<dimension.y; i++)
+	{
 		visited[i]=malloc(dimension.x*sizeof(char));
 		for (j=0;j<dimension.x; j++) visited[i][j]=0;	
 	}
@@ -96,17 +135,24 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 	root= createNode(i1,j1,null,n);
 
 	insertPrioQueue(&queue,root,manhattanLength( i1, j1,i2, j2)+n);
-	tmp = deletePrioQueue(&queue);
-	while(tmp->i != i2 || tmp->j != j2){
+	first=queue;
+	tmp=queue->info;
+	queue=deletePrioQueue1(queue);
+	while(tmp->i != i2 || tmp->j != j2)
+	{
 		n=tmp->traveled;
 
 		nb=neighbours(matrix,visited,tmp->i,tmp->j);
-		tmp->arrayElem= malloc((1+sumBits(nb))*sizeof(elemTree_t*));
-		for(i=0;i<sumBits(nb)+1;i++) 
+		
+		tmp->arrayElem=(elemTree_t**) malloc((1+sumBits(nb))*sizeof(elemTree_t*));
+		for(i=0;i<sumBits(nb);i++)
+		 {
+			br++;
 			tmp->arrayElem[i]=malloc(sizeof(elemTree_t));
+		}
 		i=0;
 		
-		if(isUp(nb)) {
+		if(isUp(nb)) { 
 		tmp->arrayElem[i]=createNode(tmp->i-1,tmp->j,tmp,n+1);
 		insertPrioQueue(&queue,tmp->arrayElem[i++],manhattanLength(tmp->i-1,tmp->j,i2, j2)+n+1);
 		visited[tmp->i-1][tmp->j]=1;
@@ -128,8 +174,8 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 		}
 		tmp->arrayElem[i]=null;
 		
-		tmp=deletePrioQueue(&queue);
-		
+		tmp=queue->info;
+		queue=deletePrioQueue1(queue);
 	}
 	while(tmp!=null){
 	tmp->status=1;
@@ -139,25 +185,32 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 	if(DEBUGE_MODE) 
 		printf("Tree finished");
 
-	while (deletePrioQueue(&queue));
+	deletePrioQueue2(first);
 
 	for(i=0; i<dimension.y; i++)
 		 free(visited[i]);
-
+		
 	free(visited);
 
 	return root;
 
 }
-void dealocateTree_r( elemTree_t* tmp){
+void dealocateTree_r( elemTree_t* tmp)
+{
 	int i=0;
-	while(tmp->arrayElem!=null)
+	if(tmp->arrayElem!=null) 
 	{
-		if(tmp->arrayElem[i]==null) return;
-		dealocateTree_r(tmp->arrayElem[i++]);
-	} 
+	
+		while(tmp->arrayElem[i]!=null)
+		{
+			dealocateTree_r(tmp->arrayElem[i++]);
+		} 
+	
+	
+	}
+	
 	free(tmp);
-
+	tmp=null;
 
 }
 void moveTo(int **matrix,int i1,int j1, int i2, int j2 ){

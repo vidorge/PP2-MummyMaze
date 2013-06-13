@@ -1,6 +1,7 @@
 #ifndef _maze_solve_h
 #define _maze_solve_h
 #include "maze_create.h"
+#include <stdio.h>
 
 /* makrooi za proveru statsa clanova glavne matrice */
 #define null 0
@@ -37,16 +38,16 @@ typedef struct position_t
 int manhattanLength (int cordinateX1, int cordinateY1 , int cordinateX2, int cordinateY2 );
 
 
-elemTree_t* deletePrioQueue(elemPrioQueue_t** Q);
+elemPrioQueue_t* deletePrioQueue(elemPrioQueue_t* Q);
 void insertPrioQueue(elemPrioQueue_t **Q, elemTree_t* T,int Len);
 elemTree_t*  branchAndBound(int **matrix, int i, int j,int, int,dimension_t dimension);
 elemTree_t* createNode(int i, int j,elemTree_t* pre,int traveled);
 char neighbours(int **matrix,char **visted,int i , int j);
 void dealocateTree_r	( elemTree_t* root);
 void moveTo(int **matrix,int i1,int j1, int i2, int j2 );
-position_t go(int **matrix,elemTree_t* root,dimension_t dimension, int steps, int *wave);
+position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int *wave);
 void spawnPlayer(int **matrix, dimension_t dimension,int *i,int *j);
 void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j);
 position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps);
-
+void deletePrioQueue2(elemPrioQueue_t *q);
 #endif
