@@ -12,7 +12,7 @@
 
 void printFormattedMatrix(int **matrix, dimension_t dimension);
 
-void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint);
+void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint, int *wave);
 
 void printHelpMatrix(int **matrix, dimension_t dimension);
 

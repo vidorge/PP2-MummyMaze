@@ -39,9 +39,9 @@ void printFormattedMatrix(int **matrix, dimension_t dimension) {
 			else if (matrix[j][i]==MUMMY) {
 				changeColor(110);
 				positionCursor(column,temp++);
-				printf (" \001 ",matrix[j][i],matrix[j][i],matrix[j][i]);
+				printf ("\\@/",matrix[j][i],matrix[j][i],matrix[j][i]);
 				positionCursor(column,temp++);
-				printf ("\\|/",matrix[j][i],matrix[j][i],matrix[j][i]);
+				printf (" | ",matrix[j][i],matrix[j][i],matrix[j][i]);
 				positionCursor(column,temp++);
 				printf ("/ \\",matrix[j][i],matrix[j][i],matrix[j][i]);
 				changeColor(119);
@@ -71,7 +71,7 @@ void printFormattedMatrix(int **matrix, dimension_t dimension) {
 	}
 }
 
-void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint) {
+void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint, int *wave) {
 	int i, row;
 	
 	changeColor(102);
@@ -87,12 +87,29 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("/|\\");
 		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row);printf("/ \\");
 	}
+	else if (*wave==0) {
+		changeColor(110);
+		row=afterRow*3;
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("_\@_");
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" | ");
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row);printf("/ \\");
+		*wave=1;
+	}
+	else if (*wave==1){
+		changeColor(110);
+		row=afterRow*3;
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" \@ ");
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("/|\\");
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row);printf("/ \\");
+		*wave=2;
+	}
 	else {
 		changeColor(110);
 		row=afterRow*3;
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" \001 ");
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("\\|/");
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("\\@/");
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" | ");
 		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row);printf("/ \\");
+		*wave=0;
 	}
 
 

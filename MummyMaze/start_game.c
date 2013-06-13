@@ -14,7 +14,7 @@
 
 int startGame()
 {
-	int **matrix, movement, newMovement;
+	int **matrix, movement, newMovement, wave=0;
 
 	position_t	playerPosition, mummyPosition;
 	dimension_t dimension;
@@ -48,28 +48,28 @@ int startGame()
 		switch (movement) {
 			case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y);
-							printMovement(playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y,PLAYER);
+							printMovement(playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y,PLAYER,0);
 							playerPosition.x-=1;
 							newMovement=TRUE;
 							break;
 						}else break;
 			case DOWN:	if (matrix[playerPosition.x+1][playerPosition.y]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y);
-							printMovement(playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y,PLAYER);
+							printMovement(playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y,PLAYER,0);
 							playerPosition.x+=1;
 							newMovement=TRUE;
 							break;
 						}else break;
 			case LEFT:	if (matrix[playerPosition.x][playerPosition.y-1]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1);
-							printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1,PLAYER);
+							printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1,PLAYER,0);
 							playerPosition.y-=1;
 							newMovement=TRUE;
 							break;
 						}else break;
 			case RIGHT:	if (matrix[playerPosition.x][playerPosition.y+1]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1);
-							printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1,PLAYER);
+							printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1,PLAYER,0);
 							playerPosition.y+=1;
 							newMovement=TRUE;
 							break;
@@ -79,7 +79,7 @@ int startGame()
 		if (newMovement) {
 			root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);// ovo koment ako upalite dummyMummy
 
-			mummyPosition=go(matrix,root,dimension,1);// ovo koment ako upalite dummyMummy
+			mummyPosition=go(matrix,root,dimension, 1, &wave);// ovo koment ako upalite dummyMummy
 			
 			// za glupu mumiju------ mummyPosition=dummyMummy(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,2);
 		
