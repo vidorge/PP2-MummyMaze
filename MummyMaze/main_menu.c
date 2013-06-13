@@ -13,6 +13,7 @@
 #include "options.h"
 #include "help.h"
 #include "about.h"
+#include "screen_resolution.h"
 
 void mainMenu () {
 
@@ -25,7 +26,7 @@ void mainMenu () {
 	//******************             FOOTER                **********************
 	//***************************************************************************
 	changeColor(GROUND);
-	positionCursor(0,49);changeColor(MENUC);printf ("     Mummy Maze v1.0 APLHA                                                      Git Commit Team      All Rights Reserved     ");
+	positionCursor(0,HEIGHT-1);changeColor(MENUC);printf ("     Mummy Maze v1.0 APLHA                                                      Git Commit Team      All Rights Reserved     ");
 
 
 	//***************************

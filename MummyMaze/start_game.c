@@ -76,16 +76,37 @@ int startGame()
 						}else break;
 		}
 		
+		while (1) {		
+			printMovement(mummyPosition.x,mummyPosition.y,mummyPosition.x,mummyPosition.y, MUMMY, & wave);
+			Sleep (100);
+			if(_kbhit()) {
+				if (newMovement) {
+					root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);// ovo koment ako upalite dummyMummy
+
+					mummyPosition=go(matrix,root,dimension, 1, &wave);// ovo koment ako upalite dummyMummy
+			
+					// za glupu mumiju------ mummyPosition=dummyMummy(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,2);
+		
+
+					dealocateTree_r(root);// ovo koment ako upalite dummyMummy
+				}
+				break;
+			}
+		}
+
+		/*
 		if (newMovement) {
+
 			root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);// ovo koment ako upalite dummyMummy
 
 			mummyPosition=go(matrix,root,dimension, 1, &wave);// ovo koment ako upalite dummyMummy
-			
+
 			// za glupu mumiju------ mummyPosition=dummyMummy(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,2);
-		
+
 
 			dealocateTree_r(root);// ovo koment ako upalite dummyMummy
 		}
+		*/
 
 		if ((playerPosition.x==mummyPosition.x)&&(playerPosition.y==mummyPosition.y)) break;
 	}
