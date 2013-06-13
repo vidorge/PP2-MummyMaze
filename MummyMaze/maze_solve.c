@@ -176,7 +176,7 @@ position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ){//
 		while(tmp1->arrayElem[i++]->status!=1);
 		tmp2=tmp1->arrayElem[--i];
 		moveTo(matrix,tmp1->i,tmp1->j,tmp2->i,tmp2->j);
-
+		printMovement(tmp1->i,tmp1->j,tmp2->i,tmp2->j, MUMMY);
 		tmp1=tmp2;
 
 		steps--;

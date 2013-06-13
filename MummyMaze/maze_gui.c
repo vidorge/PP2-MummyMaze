@@ -7,44 +7,12 @@
 #include "position_cursor.h"
 
 
-void printHelpMatrix(int **matrix, dimension_t dimension, int column ,int row) {
-	int i, j;
-
-	for (i=0; i<dimension.y; i++) {
-		positionCursor(column,row++);
-		for(j=0; j<dimension.x; j++) {
-
-			if(matrix[i][j]==0) {
-				changeColor(102);
-				printf("%d", matrix[i][j]);
-				changeColor(119);
-
-			} else if (matrix[i][j]==PLAYER) {
-				changeColor(111);
-				printf ("\225",matrix[i][j]);
-				changeColor(119);
-			}
-
-			else if (matrix[i][j]==JEWEL) {
-				changeColor(108);
-				printf ("\4",matrix[i][j]);
-				changeColor(119);
-			}
-			else {	
-				changeColor(119);
-				printf("%d", matrix[i][j]);
-			}
-
-		}
-	}
-}
-
-void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int row) {
+void printFormattedMatrix(int **matrix, dimension_t dimension) {
 	int i,j;
-	int temp=row;
+	int temp, column=MAZECOLUMN;
 
 	for (i=0;i<dimension.x;i++) {
-		temp=row;
+		temp=MAZEROW;
 		for (j=0;j<dimension.y;j++) {
 
 			if(matrix[j][i]==0) {
@@ -100,5 +68,66 @@ void printFormattedMatrix(int **matrix, dimension_t dimension, int column ,int r
 
 		}
 		column+=3;
+	}
+}
+
+void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint) {
+	int i, row;
+	
+	changeColor(102);
+	row=beforeRow*3;
+	positionCursor(MAZECOLUMN+(beforeColumn*3),MAZEROW+row++);printf("111");
+	positionCursor(MAZECOLUMN+(beforeColumn*3),MAZEROW+row++);printf("111");
+	positionCursor(MAZECOLUMN+(beforeColumn*3),MAZEROW+row);printf("111");
+
+	if (whatToPrint==PLAYER) {
+		changeColor(111);
+		row=afterRow*3;
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" \225 ");
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("/|\\");
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row);printf("/ \\");
+	}
+	else {
+		changeColor(110);
+		row=afterRow*3;
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" \001 ");
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("\\|/");
+		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row);printf("/ \\");
+	}
+
+
+
+}
+
+void printHelpMatrix(int **matrix, dimension_t dimension) {
+	int i, j;
+	int column=80, row=23;
+
+	for (i=0; i<dimension.y; i++) {
+		positionCursor(column,row++);
+		for(j=0; j<dimension.x; j++) {
+
+			if(matrix[i][j]==0) {
+				changeColor(102);
+				printf("%d", matrix[i][j]);
+				changeColor(119);
+
+			} else if (matrix[i][j]==PLAYER) {
+				changeColor(111);
+				printf ("\225",matrix[i][j]);
+				changeColor(119);
+			}
+
+			else if (matrix[i][j]==JEWEL) {
+				changeColor(108);
+				printf ("\4",matrix[i][j]);
+				changeColor(119);
+			}
+			else {	
+				changeColor(119);
+				printf("%d", matrix[i][j]);
+			}
+
+		}
 	}
 }

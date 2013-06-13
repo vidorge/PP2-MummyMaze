@@ -38,34 +38,38 @@ int startGame()
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 	spawnEnemy(matrix,dimension,&mummyPosition.x,&mummyPosition.y);
 
+	printFormattedMatrix(matrix,dimension);
+
 	while (1) {
 		newMovement=FALSE;
-
-		printFormattedMatrix(matrix,dimension,1,1);
 
 		movement=controls(_getch());
 		if ((movement==PAUSE)||(movement==EXIT)) break;
 		switch (movement) {
 			case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y);
+							printMovement(playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y,PLAYER);
 							playerPosition.x-=1;
 							newMovement=TRUE;
 							break;
 						}else break;
 			case DOWN:	if (matrix[playerPosition.x+1][playerPosition.y]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y);
+							printMovement(playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y,PLAYER);
 							playerPosition.x+=1;
 							newMovement=TRUE;
 							break;
 						}else break;
 			case LEFT:	if (matrix[playerPosition.x][playerPosition.y-1]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1);
+							printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1,PLAYER);
 							playerPosition.y-=1;
 							newMovement=TRUE;
 							break;
 						}else break;
 			case RIGHT:	if (matrix[playerPosition.x][playerPosition.y+1]!=1) {
 							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1);
+							printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1,PLAYER);
 							playerPosition.y+=1;
 							newMovement=TRUE;
 							break;

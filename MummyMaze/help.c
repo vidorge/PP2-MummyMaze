@@ -139,7 +139,7 @@ void help () {
 	//*******  Matrix  **********
 
 	while (1) {
-		printHelpMatrix(matrix,dimension,80,23);
+		printHelpMatrix(matrix,dimension);
 		
 		
 		if ((playerPosition.x==jewelPosition.x)&&(playerPosition.y==jewelPosition.y)) gotTheJewel=1;
