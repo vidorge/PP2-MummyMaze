@@ -19,6 +19,7 @@ int startGame()
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
 	elemTree_t* root;
+	int flag;
 
 	mummyPosition= malloc(m*sizeof(position_t);
 	backgroundImage (GAME);
@@ -40,7 +41,7 @@ int startGame()
 
 	for (i=0; i<m; i++)
 	{
-		spawnEnemy(matrix,dimension,&mummyPosition.x,&mummyPosition.y);
+		spawnEnemy(matrix,dimension,&mummyPosition[i].x,&mummyPosition[i].y);
 	}
 	printFormattedMatrix(matrix,dimension);
 
@@ -100,19 +101,25 @@ int startGame()
 
 		
 		if (newMovement) {
+			for(i=0;i<m;i++)
+			{	
+				root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);// ovo koment ako upalite dummyMummy
+	
+				mummyPosition[i]=go(matrix,root,dimension,1,&wave);// ovo koment ako upalite dummyMummy
 
-			/*root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);// ovo koment ako upalite dummyMummy
-
-			mummyPosition=go(matrix,root,dimension,1,&wave);// ovo koment ako upalite dummyMummy
-
-			// za glupu mumiju------ */mummyPosition=dummyMummy(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,2,&wave);
+				// za glupu mumiju------ mummyPosition=dummyMummy(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,2,&wave);
 
 
-			//dealocateTree_r(root);// ovo koment ako upalite dummyMummy
+				dealocateTree_r(root);// ovo koment ako upalite dummyMummy
+			}
 		}
 		
+			flag=0;
+			for(i=0;i<m;i++) 
+				if ((playerPosition.x==mummyPosition[i].x)&&(playerPosition.y==mummyPosition[i].y)) flag=1;
 
-		if ((playerPosition.x==mummyPosition.x)&&(playerPosition.y==mummyPosition.y)) break;
+			if (flag) break;
+
 	}
 	
 	Sleep (1000);
