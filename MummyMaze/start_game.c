@@ -16,10 +16,11 @@ int startGame()
 {
 	int **matrix, movement, newMovement, wave=0;
 
-	position_t	playerPosition, mummyPosition;
+	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
 	elemTree_t* root;
 
+	mummyPosition= malloc(m*sizeof(position_t);
 	backgroundImage (GAME);
 
 	dimension.x = 41; //81
@@ -36,8 +37,11 @@ int startGame()
 	//DfsInit(matrix, dimension);
 
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
-	spawnEnemy(matrix,dimension,&mummyPosition.x,&mummyPosition.y);
 
+	for (i=0; i<m; i++)
+	{
+		spawnEnemy(matrix,dimension,&mummyPosition.x,&mummyPosition.y);
+	}
 	printFormattedMatrix(matrix,dimension);
 
 	while (1) {
