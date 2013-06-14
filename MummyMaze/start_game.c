@@ -76,7 +76,7 @@ int startGame()
 						}else break;
 		}
 		
-		while (1) {		
+		/*while (1) {		
 			printMovement(mummyPosition.x,mummyPosition.y,mummyPosition.x,mummyPosition.y, MUMMY, & wave);
 			Sleep (100);
 			if(_kbhit()) {
@@ -92,9 +92,9 @@ int startGame()
 				}
 				break;
 			}
-		}
+		}*/
 
-		/*
+		
 		if (newMovement) {
 
 			root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);// ovo koment ako upalite dummyMummy
@@ -106,7 +106,7 @@ int startGame()
 
 			dealocateTree_r(root);// ovo koment ako upalite dummyMummy
 		}
-		*/
+		
 
 		if ((playerPosition.x==mummyPosition.x)&&(playerPosition.y==mummyPosition.y)) break;
 	}
