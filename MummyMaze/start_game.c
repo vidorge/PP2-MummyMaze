@@ -48,7 +48,7 @@ int startGame(settings_t settings)
 	printFormattedMatrix(matrix,dimension);
 
 	while (1) {
-		vreme(begin);
+		timef(begin);
 		newMovement=FALSE;
 
 		movement=controls(_getch());

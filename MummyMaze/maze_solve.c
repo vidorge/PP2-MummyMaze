@@ -332,7 +332,7 @@ position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int 
 	return re;
 
 }
-float time (clock_t begin)
+float timef (clock_t begin)
 {
 	clock_t end= clock();
 
