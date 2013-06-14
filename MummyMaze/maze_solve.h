@@ -48,6 +48,6 @@ void moveTo(int **matrix,int i1,int j1, int i2, int j2 );
 position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int *wave);
 void spawnPlayer(int **matrix, dimension_t dimension,int *i,int *j);
 void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j);
-position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps);
+position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int *wave);
 void deletePrioQueue2(elemPrioQueue_t *q);
 #endif

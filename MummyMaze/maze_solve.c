@@ -261,7 +261,7 @@ void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j){
 	} while(matrix[(*i)][(*j)]!=0);
 	matrix[(*i)][(*j)]=MUMMY;
 }
-position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps)
+position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int *wave)
 {	
 	int k , m;
 	int min,i;
@@ -322,6 +322,7 @@ position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps)
 		else 
 		{
 		moveTo(matrix,re.x,re.y,k,m);
+		printMovement(re.x,re.y,k,m, MUMMY,wave);
 		re.x=k;
 		re.y=m;
 		
