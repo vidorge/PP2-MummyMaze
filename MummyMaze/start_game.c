@@ -21,6 +21,7 @@ int startGame(settings_t settings)
 	dimension_t dimension;
 	elemTree_t* root;
 	int flag;
+	clock_t begin=clock();
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 	backgroundImage (GAME);
@@ -47,6 +48,7 @@ int startGame(settings_t settings)
 	printFormattedMatrix(matrix,dimension);
 
 	while (1) {
+		vreme(begin);
 		newMovement=FALSE;
 
 		movement=controls(_getch());

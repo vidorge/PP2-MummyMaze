@@ -2,7 +2,7 @@
 #define _maze_solve_h
 #include "maze_create.h"
 #include <stdio.h>
-
+#include <time.h>
 /* makrooi za proveru statsa clanova glavne matrice */
 #define null 0
 #define isUp(A) (A & 0x01)
@@ -50,4 +50,6 @@ void spawnPlayer(int **matrix, dimension_t dimension,int *i,int *j);
 void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j);
 position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int *wave);
 void deletePrioQueue2(elemPrioQueue_t *q);
+float time(clock_t begin);
+
 #endif
