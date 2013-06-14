@@ -338,5 +338,5 @@ float time (clock_t begin)
 
 
 
-	return (float)end-begin/CLOCKS_PER_SEC;
+	return (float)(end-begin)/CLOCKS_PER_SEC;
 }
