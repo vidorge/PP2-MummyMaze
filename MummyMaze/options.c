@@ -149,24 +149,24 @@ void options (settings_t *settings) {
 							case 31:
 								while (1) {
 									if (settings->botNumber==1) {
-										changeColor(MENUA);positionCursor(THIRD+1,TOP+3);printf ("    1    ");
+										changeColor(MENUA);positionCursor(THIRD+1,TOPOPTIONS+3);printf ("    1    ");
 									}
 									else {
-										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,TOP+3);printf ("    1    ");
+										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,TOPOPTIONS+3);printf ("    1    ");
 									}
 
 									if (settings->botNumber==2) {
-										changeColor(MENUA);positionCursor(THIRD+1,TOP+4);printf ("    2    ");
+										changeColor(MENUA);positionCursor(THIRD+1,TOPOPTIONS+4);printf ("    2    ");
 									}
 									else {
-										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,TOP+4);printf ("    2    ");
+										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,TOPOPTIONS+4);printf ("    2    ");
 									}
 
 									if (settings->botNumber==3) {
-										changeColor(MENUA);positionCursor(THIRD+1,TOP+5);printf ("    3    ");
+										changeColor(MENUA);positionCursor(THIRD+1,TOPOPTIONS+5);printf ("    3    ");
 									}
 									else {
-										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,TOP+5);printf ("    3    ");
+										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,TOPOPTIONS+5);printf ("    3    ");
 									}
 
 									choice=controls(_getch());

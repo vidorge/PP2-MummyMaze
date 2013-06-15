@@ -59,37 +59,40 @@ int startGame(settings_t settings)
 
 		newMovement=FALSE;
 
-		movement=controls(_getch());
-		if ((movement==PAUSE)||(movement==EXIT)) break;
-		switch (movement) {
-			case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=1) {
-							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y);
-							printMovement(playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y,PLAYER,0);
-							playerPosition.x-=1;
-							newMovement=TRUE;
-							break;
-						}else break;
-			case DOWN:	if (matrix[playerPosition.x+1][playerPosition.y]!=1) {
-							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y);
-							printMovement(playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y,PLAYER,0);
-							playerPosition.x+=1;
-							newMovement=TRUE;
-							break;
-						}else break;
-			case LEFT:	if (matrix[playerPosition.x][playerPosition.y-1]!=1) {
-							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1);
-							printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1,PLAYER,0);
-							playerPosition.y-=1;
-							newMovement=TRUE;
-							break;
-						}else break;
-			case RIGHT:	if (matrix[playerPosition.x][playerPosition.y+1]!=1) {
-							moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1);
-							printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1,PLAYER,0);
-							playerPosition.y+=1;
-							newMovement=TRUE;
-							break;
-						}else break;
+		if (_kbhit()) {
+			movement=controls(_getch());
+			if ((movement==PAUSE)||(movement==EXIT)) break;	
+		
+			switch (movement) {
+				case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=1) {
+								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y);
+								printMovement(playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y,PLAYER,0);
+								playerPosition.x-=1;
+								newMovement=TRUE;
+								break;
+							}else break;
+				case DOWN:	if (matrix[playerPosition.x+1][playerPosition.y]!=1) {
+								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y);
+								printMovement(playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y,PLAYER,0);
+								playerPosition.x+=1;
+								newMovement=TRUE;
+								break;
+							}else break;
+				case LEFT:	if (matrix[playerPosition.x][playerPosition.y-1]!=1) {
+								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1);
+								printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1,PLAYER,0);
+								playerPosition.y-=1;
+								newMovement=TRUE;
+								break;
+							}else break;
+				case RIGHT:	if (matrix[playerPosition.x][playerPosition.y+1]!=1) {
+								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1);
+								printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1,PLAYER,0);
+								playerPosition.y+=1;
+								newMovement=TRUE;
+								break;
+							}else break;
+			}
 		}
 		
 		/*while (1) {		
@@ -111,7 +114,10 @@ int startGame(settings_t settings)
 		}*/
 
 		
-		if (newMovement) {
+		//if (newMovement) {
+		if (!_kbhit()) 
+			Sleep(150);
+
 			for(i=0;i<settings.botNumber;i++)
 			{	
 				if (settings.botDifficuly==EASY)
@@ -125,7 +131,7 @@ int startGame(settings_t settings)
 				}
 
 			}
-		}
+	//	}
 		
 			flag=0;
 			for(i=0;i<settings.botNumber;i++) 

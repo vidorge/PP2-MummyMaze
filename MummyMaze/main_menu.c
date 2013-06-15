@@ -23,7 +23,7 @@ void mainMenu () {
 	settings_t settings;
 
 	settings.botNumber=1;
-	settings.botDifficuly=1;
+	settings.botDifficuly=HARD;
 	settings.character=1;
 	settings.levelSize=1;
 	settings.mazeAlgorithm=1;
