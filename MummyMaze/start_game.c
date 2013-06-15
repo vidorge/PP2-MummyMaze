@@ -11,6 +11,8 @@
 #include "background.h"
 #include "controls.h"
 #include "options.h"
+#include "position_cursor.h"
+#include "colors.h"
 
 
 int startGame(settings_t settings)
@@ -22,6 +24,7 @@ int startGame(settings_t settings)
 	elemTree_t* root;
 	int flag;
 	clock_t begin=clock();
+	float score;
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 	backgroundImage (GAME);
@@ -48,7 +51,12 @@ int startGame(settings_t settings)
 	printFormattedMatrix(matrix,dimension);
 
 	while (1) {
-		timef(begin);
+		score = timef(begin);
+
+		positionCursor (0,49);
+		changeColor(142);
+		printf ("%.2f",score);
+
 		newMovement=FALSE;
 
 		movement=controls(_getch());
