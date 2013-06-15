@@ -17,159 +17,203 @@ void options (settings_t *settings) {
 		
 		if (selection==11) {                //11
 			changeColor(MENUC);
-			positionCursor(FIRST,TOP);
+			positionCursor(FIRST,TOPOPTIONS);
 			printf ("LEVEL SIZE");
 			changeColor(MENUA);
-			positionCursor(FIRST,TOP+2);
+			positionCursor(FIRST,TOPOPTIONS+2);
 			printf ("K");
 		}
 		else {
 			changeColor(MENUC);
-			positionCursor(FIRST,TOP);
+			positionCursor(FIRST,TOPOPTIONS);
 			printf ("LEVEL SIZE");
 			changeColor(MENUC);
-			positionCursor(FIRST,TOP+2);
+			positionCursor(FIRST,TOPOPTIONS+2);
 			printf ("K");
 		}
 
 		if (selection==12) {                //12
 			changeColor(MENUC);
-			positionCursor(FIRST,BOTOM);
+			positionCursor(FIRST,BOTTOMOPTIONS);
 			printf ("WALL COLOR");
 			changeColor(MENUA);
-			positionCursor(FIRST,BOTOM+2);
+			positionCursor(FIRST,BOTTOMOPTIONS+2);
 			printf ("K");
 		}
 		else {
 			changeColor(MENUC);
-			positionCursor(FIRST,BOTOM);
+			positionCursor(FIRST,BOTTOMOPTIONS);
 			printf ("WALL COLOR");
 			changeColor(MENUC);
-			positionCursor(FIRST,BOTOM+2);
+			positionCursor(FIRST,BOTTOMOPTIONS+2);
 			printf ("K");
 		}
 
 		if (selection==21) {                //21
 			changeColor(MENUC);
-			positionCursor(SECOND,TOP);
+			positionCursor(SECOND,TOPOPTIONS);
 			printf ("PLAYER");
 			changeColor(MENUA);
-			positionCursor(SECOND,TOP+2);
+			positionCursor(SECOND,TOPOPTIONS+2);
 			printf ("K");
 		}
 		else {
 			changeColor(MENUC);
-			positionCursor(SECOND,TOP);
+			positionCursor(SECOND,TOPOPTIONS);
 			printf ("PLAYER");
 			changeColor(MENUC);
-			positionCursor(SECOND,TOP+2);
+			positionCursor(SECOND,TOPOPTIONS+2);
+			printf ("K");
+		}
+
+		if (selection==22) {                //22
+			changeColor(MENUC);
+			positionCursor(SECOND,BOTTOMOPTIONS);
+			printf ("MAZE ALGORITHM");
+			changeColor(MENUA);
+			positionCursor(SECOND,BOTTOMOPTIONS+2);
+			printf ("K");
+		}
+		else {
+			changeColor(MENUC);
+			positionCursor(SECOND,BOTTOMOPTIONS);
+			printf ("MAZE ALGORITHM");
+			changeColor(MENUC);
+			positionCursor(SECOND,BOTTOMOPTIONS+2);
 			printf ("K");
 		}
 
 		if (selection==31) {                //31
 			changeColor(MENUC);
-			positionCursor(THIRD,TOP);
-			printf ("BOT ALGORITHM");
+			positionCursor(THIRD,TOPOPTIONS);
+			printf ("BOT NUMBER");
 			changeColor(MENUA);
-			positionCursor(THIRD,TOP+2);
-			printf ("K");
+			positionCursor(THIRD,TOPOPTIONS+2);
+			printf ("%d",settings->botNumber);
 		}
 		else {
 			changeColor(MENUC);
-			positionCursor(THIRD,TOP);
-			printf ("BOT ALGORITHM");
+			positionCursor(THIRD,TOPOPTIONS);
+			printf ("BOT NUMBER");
 			changeColor(MENUC);
-			positionCursor(THIRD,TOP+2);
-			printf ("K");
+			positionCursor(THIRD,TOPOPTIONS+2);
+			printf ("%d",settings->botNumber);
 		}
 
 		if (selection==32) {                //32
 			changeColor(MENUC);
-			positionCursor(THIRD,BOTOM);
+			positionCursor(THIRD,BOTTOMOPTIONS);
 			printf ("BOT DIFFICULTY");
 			changeColor(MENUA);
-			positionCursor(THIRD,BOTOM+2);
-			printf ("K");
+			positionCursor(THIRD,BOTTOMOPTIONS+2);
+			if (settings->botDifficuly==EASY)
+				printf ("EASY");
+			else
+				printf ("HARD");
 		}
 		else {
 			changeColor(MENUC);
-			positionCursor(THIRD,BOTOM);
+			positionCursor(THIRD,BOTTOMOPTIONS);
 			printf ("BOT DIFFICULTY");
 			changeColor(MENUC);
-			positionCursor(THIRD,BOTOM+2);
-			printf ("K");
+			positionCursor(THIRD,BOTTOMOPTIONS+2);
+			if (settings->botDifficuly==EASY)
+				printf ("EASY");
+			else
+				printf ("HARD");
 		}
 		
 		choice=controls(_getch());
 		if ((choice==EXIT)||(choice==PAUSE)) break;
 
 		switch (choice)	{
-			case UP:	 if ((selection==12)||(selection==32)) selection--; 
-						 else if (selection==11) selection=12; 
-						 else if (selection==21) selection=21;
-						 else selection=32; 
+			case UP:	 if (selection%10 == 2) selection--; 
+						 else selection++; 
 						 break;
-			case DOWN:	 if ((selection==11)||(selection==31)) selection++; 
-						 else if (selection==12) selection=11;
-						 else if (selection==21) selection=21;
-						 else selection=31; 
+			case DOWN:	 if (selection%10 == 1) selection++; 
+						 else if (selection%10 == 2) selection--;
 						 break;
-			case LEFT:	 if (selection==11) selection=31; 
-						 else if (selection==12) selection=32;
-						 else if ((selection==31)||(selection==32)) selection=21;
+			case LEFT:	 if (selection/10 == 1) selection+=20; 
 						 else selection-=10;
 						 break;
-			case RIGHT:	 if (selection==31) selection=11; 
-						 else if (selection==32) selection=12;
-						 else if ((selection==11)||(selection==12)) selection=21;
+			case RIGHT:	 if (selection/10 == 3) selection-=20; 
 						 else selection+=10;
 						 break;
 			case ENTER:	 switch (selection) {
-							case 11: 
+							case 11: break;
+
+							case 12: break;
+
+							case 21: break;
+
+							case 31:
 								while (1) {
-									if (subselection==1) {
-										changeColor(MENUA);positionCursor(FIRST+1,TOP+3);printf ("    a    ");
+									if (settings->botNumber==1) {
+										changeColor(MENUA);positionCursor(THIRD+1,TOP+3);printf ("    1    ");
 									}
 									else {
-										changeColor(126);positionCursor(FIRST+1,TOP+3);printf ("    a    ");
+										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,TOP+3);printf ("    1    ");
 									}
 
-									if (subselection==2) {
-										changeColor(MENUA);positionCursor(FIRST+1,TOP+4);printf ("    b    ");
+									if (settings->botNumber==2) {
+										changeColor(MENUA);positionCursor(THIRD+1,TOP+4);printf ("    2    ");
 									}
 									else {
-										changeColor(126);positionCursor(FIRST+1,TOP+4);printf ("    b    ");
+										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,TOP+4);printf ("    2    ");
 									}
 
-									if (subselection==3) {
-										changeColor(MENUA);positionCursor(FIRST+1,TOP+5);printf ("    c    ");
+									if (settings->botNumber==3) {
+										changeColor(MENUA);positionCursor(THIRD+1,TOP+5);printf ("    3    ");
 									}
 									else {
-										changeColor(126);positionCursor(FIRST+1,TOP+5);printf ("    c    ");
+										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,TOP+5);printf ("    3    ");
 									}
 
 									choice=controls(_getch());
 									
 									if (choice==ENTER) break;
 									switch (choice) {
-										case UP:	if (subselection>1) subselection--; else subselection=3; break;
-										case DOWN:	if (subselection<3) subselection++; else subselection=1; break;
+										case UP:	if (settings->botNumber>1) settings->botNumber--; else settings->botNumber=3; break;
+										case DOWN:	if (settings->botNumber<3) settings->botNumber++; else settings->botNumber=1; break;
 									}								
 								}
-								for (i=TOP+1;i<BOTOM-1;i++) {
-									positionCursor(FIRST,i);changeColor(MENUC);printf ("                   ");
-								}							
+								
+								for (i=TOP+1;i<BOTTOM-1;i++) {
+									positionCursor(THIRD,i);changeColor(MENUC);printf ("                   ");
+								}
 							break;
 
-							case 12: break;
+							case 32: 
+								while (1) {
+									if (settings->botDifficuly==EASY) {
+										changeColor(MENUA);positionCursor(THIRD+1,BOTTOMOPTIONS+3);printf ("    EASY    ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,BOTTOMOPTIONS+3);printf ("    EASY    ");
+									}
 
-							case 21: break;
+									if (settings->botDifficuly==HARD) {
+										changeColor(MENUA);positionCursor(THIRD+1,BOTTOMOPTIONS+4);printf ("    HARD    ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(THIRD+1,BOTTOMOPTIONS+4);printf ("    HARD    ");
+									}
 
-							case 31: break;
+									choice=controls(_getch());
+									
+									if (choice==ENTER) break;
+									switch (choice) {
+										case UP:	if (settings->botDifficuly==EASY) settings->botDifficuly=HARD; else settings->botDifficuly=EASY; break;
+										case DOWN:	if (settings->botDifficuly==HARD) settings->botDifficuly=EASY; else settings->botDifficuly=HARD; break;
+									}								
+								}
 
-							case 32: break;
+								for (i=TOP+1;i<BOTTOM-1;i++) {
+									positionCursor(THIRD,i);changeColor(MENUC);printf ("                   ");
+								}
+							break;
 
-						 } break;
+						 } break; //break enter
 		}
 
 

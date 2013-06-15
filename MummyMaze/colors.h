@@ -17,6 +17,9 @@
 //Start animation colors
 #define ETF		79
 #define ARROW	14
+
+//Options
+#define DROPUNACTIVE 126
 	
 void changeColor (int color);
 

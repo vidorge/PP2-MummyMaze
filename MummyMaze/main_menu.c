@@ -22,7 +22,7 @@ void mainMenu () {
 
 	settings_t settings;
 
-	settings.botNumber=4;
+	settings.botNumber=1;
 	settings.botDifficuly=1;
 	settings.character=1;
 	settings.levelSize=1;
@@ -140,7 +140,7 @@ void mainMenu () {
 					case NEWGAME:		system("CLS");game=TRUE;startGame(settings);backgroundImage(MENU);break;
 					case LOADGAME:		break;
 					case SAVEGAME:		break;
-					case OPTIONS:		system ("CLS");options(& settings);backgroundImage(MENU);selection=(NEWGAME);break;
+					case OPTIONS:		system ("CLS");options(&settings);backgroundImage(MENU);selection=(NEWGAME);break;
 					case HIGHSCORES:	break;
 					case HELP:			system("CLS");help();backgroundImage(MENU);selection=(NEWGAME);break;
 					case ABOUT:			system("CLS");about();backgroundImage(MENU);selection=(NEWGAME);break;

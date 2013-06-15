@@ -1,12 +1,15 @@
 #ifndef _options_h
 #define _options_h
 
-#define TOP		22
-#define BOTOM	33
+#define TOPOPTIONS		22
+#define BOTTOMOPTIONS	33
 
 #define FIRST	20
 #define SECOND	60
 #define THIRD	93
+
+#define EASY	1
+#define HARD	2
 
 typedef struct settings_t {
 	int levelSize;

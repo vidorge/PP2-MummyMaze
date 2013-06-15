@@ -106,14 +106,16 @@ int startGame(settings_t settings)
 		if (newMovement) {
 			for(i=0;i<settings.botNumber;i++)
 			{	
-				root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);// ovo koment ako upalite dummyMummy
+				if (settings.botDifficuly==EASY)
+					mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,2,&wave);
+				else {
+					root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);
 	
-				mummyPosition[i]=go(matrix,root,dimension,1,&wave);// ovo koment ako upalite dummyMummy
+					mummyPosition[i]=go(matrix,root,dimension,1,&wave);
 
-				// za glupu mumiju------ mummyPosition=dummyMummy(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,2,&wave);
+					dealocateTree_r(root);
+				}
 
-
-				dealocateTree_r(root);// ovo koment ako upalite dummyMummy
 			}
 		}
 		
