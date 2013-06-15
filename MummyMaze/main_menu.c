@@ -22,7 +22,7 @@ void mainMenu () {
 
 	settings_t settings;
 
-	settings.botNumber=2;
+	settings.botNumber=4;
 	settings.botDifficuly=1;
 	settings.character=1;
 	settings.levelSize=1;
