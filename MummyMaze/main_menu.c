@@ -20,6 +20,15 @@ void mainMenu () {
 	int selection=NEWGAME, choice, game=FALSE;
 	int i=0,end=3;
 
+	settings_t settings;
+
+	settings.botNumber=2;
+	settings.botDifficuly=1;
+	settings.character=1;
+	settings.levelSize=1;
+	settings.mazeAlgorithm=1;
+	settings.wallColor=1;
+
 	_getch();
 
 	//***************************************************************************
@@ -128,10 +137,10 @@ void mainMenu () {
 			case DOWN: { if (selection<EXIT) selection++; else selection=NEWGAME; break; }
 			case ENTER: { 
 				switch (selection){
-					case NEWGAME:		system("CLS");game=TRUE;startGame();backgroundImage(MENU);break;
+					case NEWGAME:		system("CLS");game=TRUE;startGame(settings);backgroundImage(MENU);break;
 					case LOADGAME:		break;
 					case SAVEGAME:		break;
-					case OPTIONS:		system ("CLS");options();backgroundImage(MENU);selection=(NEWGAME);break;
+					case OPTIONS:		system ("CLS");options(& settings);backgroundImage(MENU);selection=(NEWGAME);break;
 					case HIGHSCORES:	break;
 					case HELP:			system("CLS");help();backgroundImage(MENU);selection=(NEWGAME);break;
 					case ABOUT:			system("CLS");about();backgroundImage(MENU);selection=(NEWGAME);break;

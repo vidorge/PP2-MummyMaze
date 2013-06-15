@@ -8,7 +8,7 @@
 #include "background.h"
 #include "options.h"
 
-void options () {
+void options (settings_t *settings) {
 	int i, choice, selection=11, subselection=1;
 
 	backgroundImage(TEXT);

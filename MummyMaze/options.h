@@ -8,6 +8,15 @@
 #define SECOND	60
 #define THIRD	93
 
-void options ();
+typedef struct settings_t {
+	int levelSize;
+	int wallColor;
+	int character;
+	int mazeAlgorithm;
+	int botDifficuly;
+	int botNumber;
+}settings_t;
+
+void options (settings_t *settings);
 
 #endif

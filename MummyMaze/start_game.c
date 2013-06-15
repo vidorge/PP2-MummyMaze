@@ -10,18 +10,19 @@
 #include "maze_solve.h"
 #include "background.h"
 #include "controls.h"
+#include "options.h"
 
 
-int startGame()
+int startGame(settings_t settings)
 {
-	int **matrix, movement, newMovement, wave=0;
+	int **matrix, movement, newMovement, wave=0, i;
 
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
 	elemTree_t* root;
 	int flag;
 
-	mummyPosition= malloc(m*sizeof(position_t);
+	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 	backgroundImage (GAME);
 
 	dimension.x = 41; //81
@@ -39,7 +40,7 @@ int startGame()
 
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 
-	for (i=0; i<m; i++)
+	for (i=0; i<settings.botNumber; i++)
 	{
 		spawnEnemy(matrix,dimension,&mummyPosition[i].x,&mummyPosition[i].y);
 	}
@@ -101,7 +102,7 @@ int startGame()
 
 		
 		if (newMovement) {
-			for(i=0;i<m;i++)
+			for(i=0;i<settings.botNumber;i++)
 			{	
 				root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);// ovo koment ako upalite dummyMummy
 	
@@ -115,7 +116,7 @@ int startGame()
 		}
 		
 			flag=0;
-			for(i=0;i<m;i++) 
+			for(i=0;i<settings.botNumber;i++) 
 				if ((playerPosition.x==mummyPosition[i].x)&&(playerPosition.y==mummyPosition[i].y)) flag=1;
 
 			if (flag) break;

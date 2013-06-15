@@ -1,6 +1,8 @@
 #ifndef _start_game_h
 #define _start_game_h
 
-int startGame();
+#include "options.h"
+
+int startGame(settings_t settings);
 
 #endif
