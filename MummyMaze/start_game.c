@@ -102,8 +102,8 @@ int startGame(settings_t settings)
 			}
 		}
 		
-
-		if ((score-last)>0.5) {
+		
+		if ((score-last)>0.2) {
 
 			for(i=0;i<settings.botNumber;i++)
 			{	
