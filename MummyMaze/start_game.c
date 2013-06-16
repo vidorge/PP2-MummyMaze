@@ -37,10 +37,17 @@ int startGame(settings_t settings)
 
 	matrix = initMatrix(dimension);
 
-	Prim(matrix, dimension);
 
-	
-	//DfsInit(matrix, dimension);
+	if (settings.mazeAlgorithm==PRIM)
+
+		Prim(matrix, dimension);
+
+	else {	
+		DfsInit(matrix, dimension);
+ 		RemoveRandomWalls(matrix, dimension, 4);
+ 		RemoveAloneWalls(matrix, dimension);
+	}
+
 
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 
@@ -95,25 +102,7 @@ int startGame(settings_t settings)
 			}
 		}
 		
-		/*while (1) {		
-			printMovement(mummyPosition.x,mummyPosition.y,mummyPosition.x,mummyPosition.y, MUMMY, & wave);
-			Sleep (100);
-			if(_kbhit()) {
-				if (newMovement) {
-					root=branchAndBound(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,dimension);// ovo koment ako upalite dummyMummy
 
-					mummyPosition=go(matrix,root,dimension, 1, &wave);// ovo koment ako upalite dummyMummy
-			
-					// za glupu mumiju------ mummyPosition=dummyMummy(matrix,mummyPosition.x,mummyPosition.y,playerPosition.x,playerPosition.y,2);
-		
-
-					dealocateTree_r(root);// ovo koment ako upalite dummyMummy
-				}
-				break;
-			}
-		}*/
-
-		
 		//if (newMovement) {
 		if (!_kbhit()) 
 			Sleep(150);
@@ -131,7 +120,7 @@ int startGame(settings_t settings)
 				}
 
 			}
-	//	}
+		//}
 		
 			flag=0;
 			for(i=0;i<settings.botNumber;i++) 

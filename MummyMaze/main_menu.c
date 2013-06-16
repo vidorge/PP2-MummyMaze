@@ -26,7 +26,7 @@ void mainMenu () {
 	settings.botDifficuly=HARD;
 	settings.character=1;
 	settings.levelSize=1;
-	settings.mazeAlgorithm=1;
+	settings.mazeAlgorithm=DFS;
 	settings.wallColor=1;
 
 	_getch();

@@ -72,7 +72,10 @@ void options (settings_t *settings) {
 			printf ("MAZE ALGORITHM");
 			changeColor(MENUA);
 			positionCursor(SECOND,BOTTOMOPTIONS+2);
-			printf ("K");
+			if (settings->mazeAlgorithm==PRIM)
+				printf ("PRIM");
+			else
+				printf ("DFS");
 		}
 		else {
 			changeColor(MENUC);
@@ -80,7 +83,10 @@ void options (settings_t *settings) {
 			printf ("MAZE ALGORITHM");
 			changeColor(MENUC);
 			positionCursor(SECOND,BOTTOMOPTIONS+2);
-			printf ("K");
+			if (settings->mazeAlgorithm==PRIM)
+				printf ("PRIM");
+			else
+				printf ("DFS");
 		}
 
 		if (selection==31) {                //31
@@ -145,6 +151,36 @@ void options (settings_t *settings) {
 							case 12: break;
 
 							case 21: break;
+
+							case 22: 
+								while (1) {
+									if (settings->mazeAlgorithm==PRIM) {
+										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+3);printf ("    PRIM    ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+3);printf ("    PRIM    ");
+									}
+
+									if (settings->mazeAlgorithm==DFS) {
+										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+4);printf ("     DFS    ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+4);printf ("     DFS    ");
+									}
+
+									choice=controls(_getch());
+									
+									if (choice==ENTER) break;
+									switch (choice) {
+										case UP:	if (settings->mazeAlgorithm==PRIM) settings->mazeAlgorithm=DFS; else settings->mazeAlgorithm=PRIM; break;
+										case DOWN:	if (settings->mazeAlgorithm==DFS) settings->mazeAlgorithm=PRIM; else settings->mazeAlgorithm=DFS; break;
+									}								
+								}
+
+								for (i=TOP+1;i<BOTTOM-1;i++) {
+									positionCursor(SECOND,i);changeColor(MENUC);printf ("                   ");
+								}
+								break;
 
 							case 31:
 								while (1) {

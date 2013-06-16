@@ -11,6 +11,9 @@
 #define EASY	1
 #define HARD	2
 
+#define PRIM	1
+#define DFS		2
+
 typedef struct settings_t {
 	int levelSize;
 	int wallColor;
