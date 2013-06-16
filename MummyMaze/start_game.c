@@ -28,9 +28,13 @@ int startGame(settings_t settings)
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 
-	dimension.x = 41; //81
-	dimension.y = 15; //23
+	switch (settings.levelSize) {
+		case SMALL:		dimension.x = 21;dimension.y = 15;break;
+		case MEDIUM:	dimension.x = 31;dimension.y = 15;break;
+		case LARGE:		dimension.x = 41;dimension.y = 15;break;
+	}
 	
+
 	//OVO CEMO JEDNOM POZVATI I NIKEAD VISE DA LI SAM JASAN??? I <3 DORVI
 	srand( (unsigned) time(NULL) );
 
@@ -131,7 +135,7 @@ int startGame(settings_t settings)
 
 	}
 	
-	Sleep (1000);
+	// Sleep (1000);
 
 	if(DEBUGE_MODE)
 		printf("Tree Destroy");

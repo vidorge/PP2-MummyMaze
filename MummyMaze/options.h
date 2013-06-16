@@ -26,6 +26,11 @@
 #define PRIM	1
 #define DFS		2
 
+//MAZE SIZE
+#define	SMALL	1
+#define MEDIUM	2
+#define LARGE	3
+
 //WALL COLORS
 #define LIGHT	1
 #define DARK	2

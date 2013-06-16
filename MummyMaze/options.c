@@ -21,7 +21,12 @@ void options (settings_t *settings) {
 			printf ("LEVEL SIZE");
 			changeColor(MENUA);
 			positionCursor(FIRST,TOPOPTIONS+2);
-			printf ("K");
+			if (settings->levelSize==SMALL)
+				printf ("SMALL");
+			else if (settings->levelSize==MEDIUM)
+				printf ("MEDIUM");
+			else
+				printf ("LARGE");
 		}
 		else {
 			changeColor(MENUC);
@@ -29,7 +34,12 @@ void options (settings_t *settings) {
 			printf ("LEVEL SIZE");
 			changeColor(MENUC);
 			positionCursor(FIRST,TOPOPTIONS+2);
-			printf ("K");
+			if (settings->levelSize==SMALL)
+				printf ("SMALL");
+			else if (settings->levelSize==MEDIUM)
+				printf ("MEDIUM");
+			else
+				printf ("LARGE");
 		}
 
 		if (selection==WALLCOLOR) {
@@ -152,7 +162,42 @@ void options (settings_t *settings) {
 						 else selection+=10;
 						 break;
 			case ENTER:	 switch (selection) {
-							case LEVELSIZE: break;
+							case LEVELSIZE: 
+								while (1) {
+									if (settings->levelSize==SMALL) {
+										changeColor(MENUA);positionCursor(FIRST+1,TOPOPTIONS+3);printf ("    SMALL     ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(FIRST+1,TOPOPTIONS+3);printf ("    SMALL     ");
+									}
+
+									if (settings->levelSize==MEDIUM) {
+										changeColor(MENUA);positionCursor(FIRST+1,TOPOPTIONS+4);printf ("    MEDIUM    ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(FIRST+1,TOPOPTIONS+4);printf ("    MEDIUM    ");
+									}
+
+									if (settings->levelSize==LARGE) {
+										changeColor(MENUA);positionCursor(FIRST+1,TOPOPTIONS+5);printf ("    LARGE     ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(FIRST+1,TOPOPTIONS+5);printf ("    LARGE     ");
+									}
+
+									choice=controls(_getch());
+									
+									if (choice==ENTER) break;
+									switch (choice) {
+										case UP:	if (settings->levelSize==SMALL) settings->levelSize=LARGE; else settings->levelSize--; break;
+										case DOWN:	if (settings->levelSize==LARGE) settings->levelSize=SMALL; else settings->levelSize++; break;
+									}								
+								}
+
+								for (i=TOP+1;i<BOTTOM-1;i++) {
+									positionCursor(FIRST,i);changeColor(MENUC);printf ("                   ");
+								}
+								break;
 
 							case WALLCOLOR:
 								while (1) {

@@ -8,9 +8,9 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 	
 	system ("CLS");
 	if (settings.wallColor==LIGHT)
-		changeColor(96);	
+		changeColor(LIGHTBACK);	
 	else
-		changeColor(8);
+		changeColor(DARKBACK);
 	
 	for (i=0;i<HEIGHT;i++)	{
 		for (j=0;j<WIDTH;j++)
@@ -103,9 +103,9 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 	int i, row;
 	
 	if (settings.wallColor==LIGHT)
-		changeColor(102);
+		changeColor(LIGHTBLANK);
 	else
-		changeColor(51);
+		changeColor(DARKBLANK);
 
 	row=beforeRow*3;
 	positionCursor(MAZECOLUMN+(beforeColumn*3),MAZEROW+row++);printf("   ");
@@ -114,9 +114,9 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 
 	if (whatToPrint==PLAYER) {
 		if (settings.wallColor==LIGHT)
-					changeColor(111);
-				else
-					changeColor(63);
+			changeColor(LIGHTPLAYER);
+		else
+			changeColor(DARKPLAYER);
 
 		row=afterRow*3;
 		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" \225 ");
@@ -125,9 +125,9 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 	}
 	else if (*wave==0) {
 		if (settings.wallColor==LIGHT)
-					changeColor(110);
-				else
-					changeColor(62);
+			changeColor(LIGHTMUMMY);
+		else
+			changeColor(DARKMUMMY);
 
 		row=afterRow*3;
 		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("_\@_");
@@ -137,9 +137,9 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 	}
 	else if (*wave==1){
 		if (settings.wallColor==LIGHT)
-					changeColor(110);
-				else
-					changeColor(62);
+			changeColor(LIGHTMUMMY);
+		else
+			changeColor(DARKMUMMY);
 		row=afterRow*3;
 		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" \@ ");
 		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("/|\\");
@@ -148,9 +148,9 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 	}
 	else {
 		if (settings.wallColor==LIGHT)
-					changeColor(110);
-				else
-					changeColor(62);
+			changeColor(LIGHTMUMMY);
+		else
+			changeColor(DARKMUMMY);
 		row=afterRow*3;
 		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("\\@/");
 		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" | ");
@@ -171,24 +171,21 @@ void printHelpMatrix(int **matrix, dimension_t dimension) {
 		for(j=0; j<dimension.x; j++) {
 
 			if(matrix[i][j]==0) {
-				changeColor(102);
+				changeColor(LIGHTBLANK);
 				printf(" ");
-				changeColor(119);
 
 			} else if (matrix[i][j]==PLAYER) {
-				changeColor(111);
-				printf ("\225",matrix[i][j]);
-				changeColor(119);
+				changeColor(LIGHTPLAYER);
+				printf ("\225");
 			}
 
 			else if (matrix[i][j]==JEWEL) {
 				changeColor(108);
-				printf ("\4",matrix[i][j]);
-				changeColor(119);
+				printf ("\4");
 			}
 			else {	
-				changeColor(119);
-				printf("%d", matrix[i][j]);
+				changeColor(LIGHTWALL);
+				printf(" ");
 			}
 
 		}
