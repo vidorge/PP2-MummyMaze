@@ -6,6 +6,7 @@
 #include <windows.h>
 #include "maze_gui.h"
 #include "position_cursor.h"
+#include "start_game.h"
 
 int manhattanLength (int x1, int y1 , int x2, int y2 ){
 	return abs(x2-x1)+abs(y2-y1);
@@ -243,11 +244,10 @@ position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int
 }
 void spawnPlayer(int **matrix, dimension_t dimension,int *i,int *j){
 	
-	do
-	{
-	*i=(rand()/RAND_MAX)*(dimension.y-1-1)+1;
-	*j=(rand()/RAND_MAX)*(dimension.x-1-1)+1;
-	} while(matrix[(*i)][(*j)]!=0);
+	
+	*i= SetEntrance(matrix, dimension);
+	*j=0;
+	
 	matrix[(*i)][(*j)]=PLAYER;
 
 }
