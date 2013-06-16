@@ -15,7 +15,7 @@ void options (settings_t *settings) {
 
 	while(1) {
 		
-		if (selection==11) {                //11
+		if (selection==LEVELSIZE) {
 			changeColor(MENUC);
 			positionCursor(FIRST,TOPOPTIONS);
 			printf ("LEVEL SIZE");
@@ -32,7 +32,7 @@ void options (settings_t *settings) {
 			printf ("K");
 		}
 
-		if (selection==12) {                //12
+		if (selection==WALLCOLOR) {
 			changeColor(MENUC);
 			positionCursor(FIRST,BOTTOMOPTIONS);
 			printf ("WALL COLOR");
@@ -49,10 +49,10 @@ void options (settings_t *settings) {
 			printf ("K");
 		}
 
-		if (selection==21) {                //21
+		if (selection==CHARACTER) {
 			changeColor(MENUC);
 			positionCursor(SECOND,TOPOPTIONS);
-			printf ("PLAYER");
+			printf ("CHARACTER");
 			changeColor(MENUA);
 			positionCursor(SECOND,TOPOPTIONS+2);
 			printf ("K");
@@ -60,13 +60,13 @@ void options (settings_t *settings) {
 		else {
 			changeColor(MENUC);
 			positionCursor(SECOND,TOPOPTIONS);
-			printf ("PLAYER");
+			printf ("CHARACTER");
 			changeColor(MENUC);
 			positionCursor(SECOND,TOPOPTIONS+2);
 			printf ("K");
 		}
 
-		if (selection==22) {                //22
+		if (selection==MAZEALGORTIHM) {
 			changeColor(MENUC);
 			positionCursor(SECOND,BOTTOMOPTIONS);
 			printf ("MAZE ALGORITHM");
@@ -89,7 +89,7 @@ void options (settings_t *settings) {
 				printf ("DFS");
 		}
 
-		if (selection==31) {                //31
+		if (selection==BOTNUMBER) {
 			changeColor(MENUC);
 			positionCursor(THIRD,TOPOPTIONS);
 			printf ("BOT NUMBER");
@@ -106,7 +106,7 @@ void options (settings_t *settings) {
 			printf ("%d",settings->botNumber);
 		}
 
-		if (selection==32) {                //32
+		if (selection==BOTDIFFICULTY) {
 			changeColor(MENUC);
 			positionCursor(THIRD,BOTTOMOPTIONS);
 			printf ("BOT DIFFICULTY");
@@ -146,13 +146,13 @@ void options (settings_t *settings) {
 						 else selection+=10;
 						 break;
 			case ENTER:	 switch (selection) {
-							case 11: break;
+							case LEVELSIZE: break;
 
-							case 12: break;
+							case WALLCOLOR: break;
 
-							case 21: break;
+							case CHARACTER: break;
 
-							case 22: 
+							case MAZEALGORTIHM: 
 								while (1) {
 									if (settings->mazeAlgorithm==PRIM) {
 										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+3);printf ("    PRIM    ");
@@ -182,7 +182,7 @@ void options (settings_t *settings) {
 								}
 								break;
 
-							case 31:
+							case BOTNUMBER:
 								while (1) {
 									if (settings->botNumber==1) {
 										changeColor(MENUA);positionCursor(THIRD+1,TOPOPTIONS+3);printf ("    1    ");
@@ -219,7 +219,7 @@ void options (settings_t *settings) {
 								}
 							break;
 
-							case 32: 
+							case BOTDIFFICULTY: 
 								while (1) {
 									if (settings->botDifficuly==EASY) {
 										changeColor(MENUA);positionCursor(THIRD+1,BOTTOMOPTIONS+3);printf ("    EASY    ");
