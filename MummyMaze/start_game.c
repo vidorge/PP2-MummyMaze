@@ -24,7 +24,7 @@ int startGame(settings_t settings)
 	elemTree_t* root;
 	int flag;
 	clock_t begin=clock();
-	float score;
+	float score, last=0;
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 	backgroundImage (GAME);
@@ -103,9 +103,7 @@ int startGame(settings_t settings)
 		}
 		
 
-		//if (newMovement) {
-		if (!_kbhit()) 
-			Sleep(150);
+		if ((score-last)>0.5) {
 
 			for(i=0;i<settings.botNumber;i++)
 			{	
@@ -120,7 +118,9 @@ int startGame(settings_t settings)
 				}
 
 			}
-		//}
+			last=score;
+
+		}
 		
 			flag=0;
 			for(i=0;i<settings.botNumber;i++) 
