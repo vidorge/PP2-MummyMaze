@@ -3,6 +3,7 @@
 #include "maze_create.h"
 #include <stdio.h>
 #include <time.h>
+#include "options.h"
 /* makrooi za proveru statsa clanova glavne matrice */
 #define null 0
 #define isUp(A) (A & 0x01)
@@ -45,10 +46,10 @@ elemTree_t* createNode(int i, int j,elemTree_t* pre,int traveled);
 char neighbours(int **matrix,char **visted,int i , int j);
 void dealocateTree_r	( elemTree_t* root);
 void moveTo(int **matrix,int i1,int j1, int i2, int j2 );
-position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int *wave);
+position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int *wave, settings_t settings);
 void spawnPlayer(int **matrix, dimension_t dimension,int *i,int *j);
 void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j);
-position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int *wave);
+position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int *wave,settings_t settings);
 void deletePrioQueue2(elemPrioQueue_t *q);
 float timef(clock_t begin);
 

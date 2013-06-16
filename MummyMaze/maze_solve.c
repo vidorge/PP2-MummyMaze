@@ -218,7 +218,7 @@ void moveTo(int **matrix,int i1,int j1, int i2, int j2 ){
 	matrix[i1][j1]=0;
 	
 }
-position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int *wave){// moze i rekurzivno
+position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int *wave, settings_t settings){// moze i rekurzivno
 	int i;
 	position_t re;
 	elemTree_t* tmp2,*tmp1=root;
@@ -229,7 +229,7 @@ position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int
 		while(tmp1->arrayElem[i++]->status!=1);
 		tmp2=tmp1->arrayElem[--i];
 		moveTo(matrix,tmp1->i,tmp1->j,tmp2->i,tmp2->j);
-		printMovement(tmp1->i,tmp1->j,tmp2->i,tmp2->j, MUMMY,wave);
+		printMovement(tmp1->i,tmp1->j,tmp2->i,tmp2->j, MUMMY,wave,settings);
 		tmp1=tmp2;
 
 		steps--;
@@ -261,7 +261,7 @@ void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j){
 	} while(matrix[(*i)][(*j)]!=0);
 	matrix[(*i)][(*j)]=MUMMY;
 }
-position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int *wave)
+position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int *wave,settings_t settings)
 {	
 	int k , m;
 	int min,i;
@@ -322,7 +322,7 @@ position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int 
 		else 
 		{
 		moveTo(matrix,re.x,re.y,k,m);
-		printMovement(re.x,re.y,k,m, MUMMY,wave);
+		printMovement(re.x,re.y,k,m, MUMMY,wave,settings);
 		re.x=k;
 		re.y=m;
 		

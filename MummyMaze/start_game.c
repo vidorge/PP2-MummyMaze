@@ -27,7 +27,6 @@ int startGame(settings_t settings)
 	float score, last=0;
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
-	backgroundImage (GAME);
 
 	dimension.x = 41; //81
 	dimension.y = 15; //23
@@ -38,10 +37,12 @@ int startGame(settings_t settings)
 	matrix = initMatrix(dimension);
 
 
-	if (settings.mazeAlgorithm==PRIM)
+	if (settings.mazeAlgorithm==PRIM){
 
 		Prim(matrix, dimension);
-
+		RemoveRandomWalls(matrix, dimension, 4);
+ 		RemoveAloneWalls(matrix, dimension);
+	}
 	else {	
 		DfsInit(matrix, dimension);
  		RemoveRandomWalls(matrix, dimension, 4);
@@ -55,7 +56,7 @@ int startGame(settings_t settings)
 	{
 		spawnEnemy(matrix,dimension,&mummyPosition[i].x,&mummyPosition[i].y);
 	}
-	printFormattedMatrix(matrix,dimension);
+	printFormattedMatrix(matrix,dimension,settings);
 
 	while (1) {
 		score = timef(begin);
@@ -73,28 +74,28 @@ int startGame(settings_t settings)
 			switch (movement) {
 				case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=1) {
 								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y);
-								printMovement(playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y,PLAYER,0);
+								printMovement(playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y,PLAYER,0,settings);
 								playerPosition.x-=1;
 								newMovement=TRUE;
 								break;
 							}else break;
 				case DOWN:	if (matrix[playerPosition.x+1][playerPosition.y]!=1) {
 								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y);
-								printMovement(playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y,PLAYER,0);
+								printMovement(playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y,PLAYER,0,settings);
 								playerPosition.x+=1;
 								newMovement=TRUE;
 								break;
 							}else break;
 				case LEFT:	if (matrix[playerPosition.x][playerPosition.y-1]!=1) {
 								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1);
-								printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1,PLAYER,0);
+								printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1,PLAYER,0,settings);
 								playerPosition.y-=1;
 								newMovement=TRUE;
 								break;
 							}else break;
 				case RIGHT:	if (matrix[playerPosition.x][playerPosition.y+1]!=1) {
 								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1);
-								printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1,PLAYER,0);
+								printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1,PLAYER,0,settings);
 								playerPosition.y+=1;
 								newMovement=TRUE;
 								break;
@@ -108,11 +109,11 @@ int startGame(settings_t settings)
 			for(i=0;i<settings.botNumber;i++)
 			{	
 				if (settings.botDifficuly==EASY)
-					mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,2,&wave);
+					mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,2,&wave,settings);
 				else {
 					root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);
 	
-					mummyPosition[i]=go(matrix,root,dimension,1,&wave);
+					mummyPosition[i]=go(matrix,root,dimension,1,&wave,settings);
 
 					dealocateTree_r(root);
 				}

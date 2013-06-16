@@ -26,6 +26,10 @@
 #define PRIM	1
 #define DFS		2
 
+//WALL COLORS
+#define LIGHT	1
+#define DARK	2
+
 
 typedef struct settings_t {
 	int levelSize;
