@@ -44,13 +44,11 @@ int startGame(settings_t settings)
 	if (settings.mazeAlgorithm==PRIM){
 
 		Prim(matrix, dimension);
-		RemoveRandomWalls(matrix, dimension, 4);
- 		RemoveAloneWalls(matrix, dimension);
+
 	}
 	else {	
 		DfsInit(matrix, dimension);
- 		RemoveRandomWalls(matrix, dimension, 4);
- 		RemoveAloneWalls(matrix, dimension);
+ 	
 	}	
 
 	entrance.x = 0;
