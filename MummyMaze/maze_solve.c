@@ -29,10 +29,9 @@ elemPrioQueue_t* deletePrioQueue1(elemPrioQueue_t *q){
 void deletePrioQueue2(elemPrioQueue_t *q){
 	elemPrioQueue_t *temp;
 	
-	if (q==null) 
-		return null;
-	else 
-	{
+	
+	 
+	
 		
 		while(q)
 		{
@@ -41,7 +40,7 @@ void deletePrioQueue2(elemPrioQueue_t *q){
 			free(temp);
 			
 		}
-	}
+	
 }
 void insertPrioQueue(elemPrioQueue_t **q, elemTree_t* t, int len){
 	elemPrioQueue_t * new1, *pred;
@@ -94,10 +93,10 @@ char neighbours(int **matrix,char **visited,int i , int j){
 
 	char re;
 	re=0;
-	if(matrix[i+1][j] != 1 && visited[i+1][j]==0 )re+=4;
-	 if(matrix[i-1][j] != 1 && visited[i-1][j]==0)re+=1;
-	 if( matrix[i][j-1] != 1 && visited[i][j-1]==0)re+=8;
-	 if( matrix[i][j+1] != 1 && visited[i][j+1]==0) re+=2;
+	if(matrix[i+1][j] !=1 /*&& matrix[i+1][j] !=4*/ && visited[i+1][j]==0  )re+=4;
+	 if(matrix[i-1][j] != 1 /*&& matrix[i-1][j] != 4*/ && visited[i-1][j]==0   )re+=1;
+	 if( matrix[i][j-1] != 1 /*&& matrix[i][j-1] != 4*/ && visited[i][j-1]==0   )re+=8;
+	 if( matrix[i][j+1] != 1 /*&& matrix[i][j+1] != 4 */ && visited[i][j+1]==0  ) re+=2;
 	 return re;
 	 
 }
@@ -116,7 +115,7 @@ elemTree_t* createNode(int i, int j,elemTree_t* pre,int traveled){
 
 }
 
-elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension,FILE* izlaz){
+elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension){
 	int i,j,n,br=0;
 	char nb;
 	char **visited;
@@ -124,7 +123,7 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 	elemTree_t *root, *tmp;
 								
 	n=0;
-	visited=(char**)malloc( dimension.y * sizeof(char*));
+	visited=(char**)malloc( dimension.y * sizeof(char*)); 
 	
 	for (i=0;i<dimension.y; i++)
 	{
@@ -148,7 +147,7 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 		tmp->arrayElem=(elemTree_t**) malloc((1+sumBits(nb))*sizeof(elemTree_t*));
 		for(i=0;i<sumBits(nb);i++)
 		 {
-			br++;
+			
 			tmp->arrayElem[i]=malloc(sizeof(elemTree_t));
 		}
 		i=0;
@@ -228,12 +227,17 @@ position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int
 	while(steps!=0 && tmp1->arrayElem!=null ){
 		i=0;
 		while(tmp1->arrayElem[i++]->status!=1);
-		tmp2=tmp1->arrayElem[--i];
-		moveTo(matrix,tmp1->i,tmp1->j,tmp2->i,tmp2->j);
-		printMovement(tmp1->i,tmp1->j,tmp2->i,tmp2->j, MUMMY,wave,settings);
-		tmp1=tmp2;
+		
+			tmp2=tmp1->arrayElem[--i];
+		if(matrix[tmp2->i][tmp2->j]!=4 )
+		{
+			moveTo(matrix,tmp1->i,tmp1->j,tmp2->i,tmp2->j);
+			printMovement(tmp1->i,tmp1->j,tmp2->i,tmp2->j, MUMMY,wave,settings);
+			tmp1=tmp2;
 
-		steps--;
+			steps--;
+		}
+		else break;
 	}
 	re.x=tmp1->i;
 	re.y=tmp1->j;
