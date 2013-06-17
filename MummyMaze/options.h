@@ -6,14 +6,15 @@
 #define BOTTOMOPTIONS	33
 
 //COLUMNS
-#define FIRST	20
-#define SECOND	60
-#define THIRD	93
+#define FIRST	18
+#define SECOND	42
+#define THIRD	68
+#define FOURTH	88
 
 //OPTIONS
 #define	LEVELSIZE		11
 #define	WALLCOLOR		12
-#define	CHARACTER		21
+#define	PLAYMETOD		21
 #define	MAZEALGORTIHM	22
 #define BOTNUMBER		31
 #define BOTDIFFICULTY	32
@@ -35,6 +36,10 @@
 #define LIGHT	1
 #define DARK	2
 
+//PLAY METOD
+#define REALTIME	1
+#define POSITIONAL	2
+
 
 typedef struct settings_t {
 	int levelSize;
@@ -43,6 +48,7 @@ typedef struct settings_t {
 	int mazeAlgorithm;
 	int botDifficuly;
 	int botNumber;
+	int playMetod;
 }settings_t;
 
 void options (settings_t *settings);

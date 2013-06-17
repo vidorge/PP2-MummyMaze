@@ -24,7 +24,7 @@ int startGame(settings_t settings)
 	elemTree_t* root;
 	int flag;
 	clock_t begin=clock();
-	float score, last=0;
+	float score=0, last=0;
 	position_t entrance, exit;
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
@@ -71,7 +71,8 @@ int startGame(settings_t settings)
 	printFormattedMatrix(matrix,dimension,settings);
 
 	while (1) {
-		score = timef(begin);
+		if (firstMove)
+			score = timef(begin);
 
 		positionCursor (0,49);
 		changeColor(142);
@@ -119,25 +120,47 @@ int startGame(settings_t settings)
 			if ((playerPosition.x!=entrance.y)||(playerPosition.y!=entrance.x)) 
 				firstMove=1;
 
-		if (((score-last)>0.2)&&(firstMove)) {
+		
+		if (settings.playMetod==REALTIME) {
+			if (((score-last)>0.2)&&(firstMove)) {
 
-			for(i=0;i<settings.botNumber;i++)
-			{	
-				if (settings.botDifficuly==EASY)
-					mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,2,&wave,settings);
-				else {
-					root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);
+				for(i=0;i<settings.botNumber;i++)
+				{	
+					if (settings.botDifficuly==EASY)
+						mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,2,&wave,settings);
+					else {
+						root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);
 	
-					mummyPosition[i]=go(matrix,root,dimension,1,&wave,settings);
+						mummyPosition[i]=go(matrix,root,dimension,1,&wave,settings);
 
-					dealocateTree_r(root);
+						dealocateTree_r(root);
+					}
+
 				}
+				last=score;
 
 			}
-			last=score;
-
 		}
-		
+		else {
+			if (newMovement) {
+				for(i=0;i<settings.botNumber;i++)
+				{	
+					if (settings.botDifficuly==EASY)
+						mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,2,&wave,settings);
+					else {
+						root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);
+	
+						mummyPosition[i]=go(matrix,root,dimension,1,&wave,settings);
+
+						dealocateTree_r(root);
+					}
+
+				}
+				last=score;
+
+			}
+		}
+
 			flag=0;
 			for(i=0;i<settings.botNumber;i++) 
 				if ((playerPosition.x==mummyPosition[i].x)&&(playerPosition.y==mummyPosition[i].y)) flag=1;

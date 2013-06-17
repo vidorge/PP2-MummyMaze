@@ -65,21 +65,27 @@ void options (settings_t *settings) {
 				printf ("DARK");
 		}
 
-		if (selection==CHARACTER) {
+		if (selection==PLAYMETOD) {
 			changeColor(MENUC);
 			positionCursor(SECOND,TOPOPTIONS);
-			printf ("CHARACTER");
+			printf ("PLAY METOD");
 			changeColor(MENUA);
 			positionCursor(SECOND,TOPOPTIONS+2);
-			printf ("K");
+			if (settings->playMetod==REALTIME)
+				printf ("REAL TIME");
+			else 
+				printf ("POSITIONAL");
 		}
 		else {
 			changeColor(MENUC);
 			positionCursor(SECOND,TOPOPTIONS);
-			printf ("CHARACTER");
+			printf ("PLAY METOD");
 			changeColor(MENUC);
 			positionCursor(SECOND,TOPOPTIONS+2);
-			printf ("K");
+			if (settings->playMetod==REALTIME)
+				printf ("REAL TIME");
+			else 
+				printf ("POSITIONAL");
 		}
 
 		if (selection==MAZEALGORTIHM) {
@@ -229,7 +235,35 @@ void options (settings_t *settings) {
 								}
 								break;								
 
-							case CHARACTER: break;
+							case PLAYMETOD: 
+								while (1) {
+									if (settings->playMetod==REALTIME) {
+										changeColor(MENUA);positionCursor(SECOND+1,TOPOPTIONS+3);printf ("    REAL TIME    ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,TOPOPTIONS+3);printf ("    REAL TIME    ");
+									}
+
+									if (settings->playMetod==POSITIONAL) {
+										changeColor(MENUA);positionCursor(SECOND+1,TOPOPTIONS+4);printf ("    POSITIONAL   ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,TOPOPTIONS+4);printf ("    POSITIONAL   ");
+									}
+
+									choice=controls(_getch());
+									
+									if (choice==ENTER) break;
+									switch (choice) {
+										case UP:	if (settings->playMetod==REALTIME) settings->playMetod=POSITIONAL; else settings->playMetod=REALTIME; break;
+										case DOWN:	if (settings->playMetod==POSITIONAL) settings->playMetod=REALTIME; else settings->playMetod=POSITIONAL; break;
+									}								
+								}
+
+								for (i=TOP+1;i<BOTTOM-1;i++) {
+									positionCursor(SECOND,i);changeColor(MENUC);printf ("                   ");
+								}
+								break;
 
 							case MAZEALGORTIHM: 
 								while (1) {

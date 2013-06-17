@@ -28,6 +28,7 @@ void mainMenu () {
 	settings.levelSize=LARGE;
 	settings.mazeAlgorithm=DFS;
 	settings.wallColor=DARK;
+	settings.playMetod=REALTIME;
 
 	_getch();
 
