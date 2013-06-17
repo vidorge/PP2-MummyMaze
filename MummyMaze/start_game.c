@@ -100,14 +100,14 @@ int startGame(settings_t settings)
 								newMovement=TRUE;
 								break;
 							}else break;
-				case LEFT:	if (matrix[playerPosition.x][playerPosition.y-1]!=1) {
+				case LEFT:	if ((matrix[playerPosition.x][playerPosition.y-1]!=1)&&(entrance.y!=playerPosition.x || entrance.x!=playerPosition.y)) {
 								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1);
 								printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1,PLAYER,0,settings);
 								playerPosition.y-=1;
 								newMovement=TRUE;
 								break;
 							}else break;
-				case RIGHT:	if (matrix[playerPosition.x][playerPosition.y+1]!=1) {
+				case RIGHT:	if ((matrix[playerPosition.x][playerPosition.y+1]!=1)&&(exit.y!=playerPosition.x || exit.x!=playerPosition.y)) {
 								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1);
 								printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1,PLAYER,0,settings);
 								playerPosition.y+=1;
