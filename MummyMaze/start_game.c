@@ -25,6 +25,7 @@ int startGame(settings_t settings)
 	int flag;
 	clock_t begin=clock();
 	float score, last=0;
+	position_t entrance, exit;
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 
@@ -53,7 +54,11 @@ int startGame(settings_t settings)
  		RemoveAloneWalls(matrix, dimension);
 	}
 
-	CarveGateways(matrix, dimension);
+	entrance.x = 0;
+	entrance.y = SetEntrance(matrix, dimension);
+
+	exit.x = dimension.x - 1;
+	exit.y = SetExit(matrix, dimension);
 
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 

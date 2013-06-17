@@ -12,8 +12,6 @@
 #define WALL 1
 #define PATH 0
 
-
-
 typedef struct
 {
 	int x;
@@ -94,5 +92,9 @@ void Prim(int **a, dimension_t dimension);
 
 
 void CarveGateways(int **a, dimension_t dimension);
+
+int SetExit(int **a, dimension_t dimension);
+
+int SetEntrance(int **a, dimension_t dimension);
 
 #endif

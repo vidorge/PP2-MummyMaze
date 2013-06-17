@@ -3,6 +3,7 @@
 #include <Windows.h>
 
 #include "maze_create.h"
+#include "maze_solve.h"
 #include "stack.h"
 #include "maze_gui.h"
 
@@ -496,5 +497,32 @@ void CarveGateways(int **a, dimension_t dimension)
 			break;
 
 		}
+
+}
+
+int SetEntrance(int **a, dimension_t dimension)
+{
+
+	int i;
+
+	for( i = 1; i < dimension.y - 2; i++ )
+		if ( a[i][1] == 0 )
+			break;
+	
+	return i;
+
+
+}
+
+int SetExit(int **a, dimension_t dimension)
+{
+
+	int i;
+
+	for ( i = dimension.y - 2; i > 0; i-- )
+		if ( a[i][dimension.x - 2] == 0 )
+			break;
+
+	return i;
 
 }
