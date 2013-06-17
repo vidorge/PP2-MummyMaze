@@ -41,15 +41,6 @@ int startGame(settings_t settings)
 
 	matrix = initMatrix(dimension);
 
-	entrance.x = 0;
-	entrance.y = SetEntrance(matrix, dimension);
-
-	exit.x = dimension.x - 1;
-	exit.y = SetExit(matrix, dimension);
-
-	matrix [entrance.y][entrance.x]=6;
-	matrix [exit.y][exit.x]=7;
-
 	if (settings.mazeAlgorithm==PRIM){
 
 		Prim(matrix, dimension);
@@ -61,6 +52,17 @@ int startGame(settings_t settings)
  		RemoveRandomWalls(matrix, dimension, 4);
  		RemoveAloneWalls(matrix, dimension);
 	}	
+
+	entrance.x = 0;
+	entrance.y = SetEntrance(matrix, dimension);
+
+	exit.x = dimension.x - 1;
+	exit.y = SetExit(matrix, dimension);
+
+
+	matrix [entrance.y][entrance.x]=6;
+	matrix [exit.y][exit.x]=7;
+
 
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 

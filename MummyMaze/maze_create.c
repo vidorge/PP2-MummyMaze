@@ -505,7 +505,7 @@ int SetEntrance(int **a, dimension_t dimension)
 
 	int i;
 
-	for( i = 1; i < dimension.y - 2; i++ )
+	for( i = 1; i < dimension.y - 1; i++ )
 		if ( a[i][1] == 0 )
 			break;
 	
