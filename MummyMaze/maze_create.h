@@ -92,4 +92,7 @@ int ** GeneratePrimMatrix(dimension_t dimension);
 
 void Prim(int **a, dimension_t dimension);
 
+
+void CarveGateways(int **a, dimension_t dimension);
+
 #endif

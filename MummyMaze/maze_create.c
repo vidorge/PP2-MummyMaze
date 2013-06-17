@@ -476,3 +476,25 @@ void Prim(int **a, dimension_t dimension)
 		}
 		
 }
+
+void CarveGateways(int **a, dimension_t dimension)
+{
+
+	int i, j;
+
+	for( i = 1; i < dimension.y - 2; i++ )
+		if ( a[i][1] == 0 )
+		{
+			a[i][0] = ENTRANCE;
+			break;
+		}
+
+	for ( i = dimension.y - 2; i > 0; i-- )
+		if ( a[i][dimension.x - 2] == 0 )
+		{
+			a[i][dimension.x - 1] = EXIT;
+			break;
+
+		}
+
+}

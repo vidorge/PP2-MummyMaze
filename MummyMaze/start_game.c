@@ -53,6 +53,7 @@ int startGame(settings_t settings)
  		RemoveAloneWalls(matrix, dimension);
 	}
 
+	CarveGateways(matrix, dimension);
 
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 
