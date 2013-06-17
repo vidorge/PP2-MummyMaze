@@ -79,32 +79,18 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 				printf ("\4\4\4");
 				changeColor(119);
 			}
-			else if (matrix[j][i]==ENTRANCE) {
-				if (settings.wallColor==LIGHT)
-					changeColor(43);
-				else
-					changeColor(43);
-
-				positionCursor(column,temp++);
-				printf ("\4\4\4");
-				positionCursor(column,temp++);
-				printf ("\4\4\4");
-				positionCursor(column,temp++);
-				printf ("\4\4\4");
-				changeColor(119);
-			}
 			else if (matrix[j][i]==EXIT) {
 				if (settings.wallColor==LIGHT)
-					changeColor(45);
+					changeColor(108);
 				else
-					changeColor(45);
+					changeColor(60);
 
 				positionCursor(column,temp++);
-				printf ("\4\4\4");
+				printf ("\260\260\262");
 				positionCursor(column,temp++);
-				printf ("\4\4\4");
+				printf ("\260\260\262");
 				positionCursor(column,temp++);
-				printf ("\4\4\4");
+				printf ("\260\260\262");
 				changeColor(119);
 			}
 			else {

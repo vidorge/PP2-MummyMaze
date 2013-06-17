@@ -17,7 +17,7 @@
 
 int startGame(settings_t settings)
 {
-	int **matrix, movement, newMovement, wave=0, i;
+	int **matrix, movement, newMovement, wave=0, i, firstMove=0;
 
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
@@ -115,8 +115,11 @@ int startGame(settings_t settings)
 			}
 		}
 		
-		
-		if ((score-last)>0.2) {
+		if (!firstMove)
+			if ((playerPosition.x!=entrance.y)||(playerPosition.y!=entrance.x)) 
+				firstMove=1;
+
+		if (((score-last)>0.2)&&(firstMove)) {
 
 			for(i=0;i<settings.botNumber;i++)
 			{	
@@ -138,6 +141,10 @@ int startGame(settings_t settings)
 			flag=0;
 			for(i=0;i<settings.botNumber;i++) 
 				if ((playerPosition.x==mummyPosition[i].x)&&(playerPosition.y==mummyPosition[i].y)) flag=1;
+
+			if ((playerPosition.x==exit.y)&&(playerPosition.y==exit.x)) {
+				startGame(settings); flag=1;
+			}
 
 			if (flag) break;
 
