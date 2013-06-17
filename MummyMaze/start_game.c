@@ -17,7 +17,7 @@
 
 int startGame(settings_t settings)
 {
-	int **matrix, movement, newMovement, wave=0, i, firstMove=0;
+	int **matrix, movement, newMovement, wave=0, i, firstMove=0; // VIDORE SKI TE MNOGO VOLI
 
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
