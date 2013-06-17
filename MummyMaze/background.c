@@ -146,20 +146,6 @@ void backgroundImage (int whichTime) {
 			break;
 		}	//text end
 			
-		case GAME: {
-			changeColor(GROUND);
-			system ("CLS");
-			changeColor(GROUND);
-
-			changeColor(MENUC);
-
-			for (i=0;i<HEIGHT;i++)	{
-				for (j=0;j<WIDTH;j++)
-					printf ("\261");
-			}
-			break;   
-		}
-
 	}		//switch end
 
 }

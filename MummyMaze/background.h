@@ -7,7 +7,6 @@
 #define WELCOME 1
 #define MENU	2
 #define TEXT	3
-#define GAME	4
 
 void backgroundImage(int whichTime);
 

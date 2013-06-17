@@ -25,9 +25,9 @@ void mainMenu () {
 	settings.botNumber=1;
 	settings.botDifficuly=HARD;
 	settings.character=1;
-	settings.levelSize=1;
+	settings.levelSize=LARGE;
 	settings.mazeAlgorithm=DFS;
-	settings.wallColor=1;
+	settings.wallColor=DARK;
 
 	_getch();
 
