@@ -36,6 +36,7 @@ typedef struct position_t
 	int x;
 	int y;
 } position_t;
+
 typedef struct highscore_t
 {
 	float score;
@@ -60,5 +61,5 @@ void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j);
 position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int *wave,settings_t settings);
 void deletePrioQueue2(elemPrioQueue_t *q);
 float timef(clock_t begin);
-
+void hint (int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension);
 #endif

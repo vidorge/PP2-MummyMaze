@@ -348,3 +348,22 @@ float timef (clock_t begin)
 
 	return (float)(end-begin)/CLOCKS_PER_SEC;
 }
+void hint (int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension)
+{
+	elemTree_t* root,*tmp;
+	int br;
+
+	root=branchAndBound(matrix,i1,j1,i2,j2,dimension,&br);
+	if(br<4);
+	else br=4;
+	tmp=root;
+	while (br--!=0)
+	{
+		int i=0;
+		while (tmp->arrayElem[i++]->status!=1);
+		i--;
+		matrix[tmp->arrayElem[i]->i][tmp->arrayElem[i]->j]=8;
+		tmp=tmp->arrayElem[i]
+
+	}
+}

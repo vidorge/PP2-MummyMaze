@@ -7,7 +7,7 @@
 #define PLAYER		3
 #define MUMMY		4
 #define JEWEL		5
-
+#define HINT		8
 #define ENTRANCE	6
 #define EXIT		7
 
