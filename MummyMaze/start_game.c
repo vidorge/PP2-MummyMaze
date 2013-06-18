@@ -41,8 +41,7 @@ int startGame(settings_t settings)
 
 	LivePrint(matrix, dimension);
 	
-	switch ( settings.mazeAlgorithm )
-	{
+	switch ( settings.mazeAlgorithm ) {
 		case PRIM: Prim(matrix, dimension); break;
 		case DFS: DfsInit(matrix, dimension); break;
 		case BACKTRACK: RecursiveBacktrack(matrix, dimension); break;

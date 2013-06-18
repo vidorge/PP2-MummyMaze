@@ -6,7 +6,6 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 	int temp, column=MAZECOLUMN;
 
 	
-	system ("CLS");
 	if (settings.wallColor==LIGHT)
 		changeColor(LIGHTBACK);	
 	else

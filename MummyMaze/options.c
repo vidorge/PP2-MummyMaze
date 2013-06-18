@@ -96,8 +96,12 @@ void options (settings_t *settings) {
 			positionCursor(SECOND,BOTTOMOPTIONS+2);
 			if (settings->mazeAlgorithm==PRIM)
 				printf ("PRIM");
-			else
+			else if (settings->mazeAlgorithm==DFS)
 				printf ("DFS");
+			else if (settings->mazeAlgorithm==BACKTRACK)
+				printf ("BACKTRACK");
+			else
+				printf ("BINARY");
 		}
 		else {
 			changeColor(MENUC);
@@ -107,8 +111,12 @@ void options (settings_t *settings) {
 			positionCursor(SECOND,BOTTOMOPTIONS+2);
 			if (settings->mazeAlgorithm==PRIM)
 				printf ("PRIM");
-			else
+			else if (settings->mazeAlgorithm==DFS)
 				printf ("DFS");
+			else if (settings->mazeAlgorithm==BACKTRACK)
+				printf ("BACKTRACK");
+			else
+				printf ("BINARY");
 		}
 
 		if (selection==BOTNUMBER) {
@@ -268,25 +276,40 @@ void options (settings_t *settings) {
 							case MAZEALGORTIHM: 
 								while (1) {
 									if (settings->mazeAlgorithm==PRIM) {
-										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+3);printf ("    PRIM    ");
+										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+3);printf ("       PRIM      ");
 									}
 									else {
-										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+3);printf ("    PRIM    ");
+										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+3);printf ("       PRIM      ");
 									}
 
 									if (settings->mazeAlgorithm==DFS) {
-										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+4);printf ("     DFS    ");
+										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+4);printf ("       DFS       ");
 									}
 									else {
-										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+4);printf ("     DFS    ");
+										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+4);printf ("       DFS       ");
 									}
+									if (settings->mazeAlgorithm==BACKTRACK) {
+										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+5);printf ("    BACKTRACK    ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+5);printf ("    BACKTRACK    ");
+									}
+
+									if (settings->mazeAlgorithm==BINARY) {
+										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+6);printf ("      BINARY     ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+6);printf ("      BINARY     ");
+									}
+
+
 
 									choice=controls(_getch());
 									
 									if (choice==ENTER) break;
 									switch (choice) {
-										case UP:	if (settings->mazeAlgorithm==PRIM) settings->mazeAlgorithm=DFS; else settings->mazeAlgorithm=PRIM; break;
-										case DOWN:	if (settings->mazeAlgorithm==DFS) settings->mazeAlgorithm=PRIM; else settings->mazeAlgorithm=DFS; break;
+										case UP:	if (settings->mazeAlgorithm==PRIM) settings->mazeAlgorithm=BINARY; else settings->mazeAlgorithm--; break;
+										case DOWN:	if (settings->mazeAlgorithm==BINARY) settings->mazeAlgorithm=PRIM; else settings->mazeAlgorithm++; break;
 									}								
 								}
 
