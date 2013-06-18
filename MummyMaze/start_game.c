@@ -226,7 +226,7 @@ int startGame(settings_t settings, float totalScore) {
 				Sleep (250);
 				gameover ();
 				Sleep (5000);
-				//UPIS HIGHSCORE
+				scoreEntry();
 				break;
 			} 
 

@@ -1,4 +1,4 @@
-#include "highscore_entry.h"
+#include "score_entry.h"
 
 void scoreEntry() {
 
