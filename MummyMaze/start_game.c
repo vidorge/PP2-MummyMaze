@@ -17,7 +17,7 @@
 
 int startGame(settings_t settings, float totalScore) {
 
-	int **matrix, movement, newMovement, wave=0, i, j, firstMove=0, closed=0, doorItr=0, entranceTemp;
+	int **matrix, movement, newMovement, wave=0, i, j, firstMove=0, closed=0, doorItr=0, entranceTemp, size;
 
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
@@ -26,6 +26,12 @@ int startGame(settings_t settings, float totalScore) {
 	clock_t begin = clock();
 	float score=0, last=0, doorClosed=0;
 	position_t entrance, exit;
+
+	switch (settings.levelSize) {
+		case SMALL: size=29;break;
+		case MEDIUM: size=20;break;
+		case LARGE: size=0;break;
+	}
 
 	if (settings.wallColor==LIGHT)
 		changeColor(LIGHTBACK);	
@@ -53,7 +59,6 @@ int startGame(settings_t settings, float totalScore) {
 
 	switch ( settings.mazeAlgorithm ) {
 		case PRIM: Prim(matrix, dimension, settings); break;
-		//case DFS: DfsInit(matrix, dimension); break;
 		case BACKTRACK: RecursiveBacktrack(matrix, dimension, settings); break;
 		case BINARY: BinaryTreeMaze(matrix, dimension, settings); break;
 	}
@@ -96,7 +101,7 @@ int startGame(settings_t settings, float totalScore) {
 		
 		if (firstMove)
 			if (((score-doorClosed)>0.3)&&(!closed)) {
-				positionCursor(MAZECOLUMN,MAZECOLUMN+doorItr+(entranceTemp*3));
+				positionCursor(MAZECOLUMN+size,MAZECOLUMN+doorItr+(entranceTemp*3));
 				if (settings.wallColor==LIGHT)
 					changeColor(LIGHTWALL);
 				else

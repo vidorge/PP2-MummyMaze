@@ -5,6 +5,10 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 	int i,j;
 	int temp, column=MAZECOLUMN;
 
+	switch (settings.levelSize) {
+		case SMALL: column+=29;break;
+		case MEDIUM: column+=20;break;
+	}
 	
 	for (i=0;i<dimension.x;i++) {
 		temp=MAZEROW;
@@ -105,7 +109,11 @@ void LivePrint(int **matrix, dimension_t dimension, settings_t settings) {
 	int i,j;
 	int temp, column=MAZECOLUMN;
 
-	
+	switch (settings.levelSize) {
+		case SMALL: column+=29;break;
+		case MEDIUM: column+=20;break;
+	}
+
 	for (i=0;i<dimension.x;i++) {
 		temp = MAZEROW;
 		for (j=0;j<dimension.y;j++) {
@@ -146,48 +154,24 @@ void LivePrint(int **matrix, dimension_t dimension, settings_t settings) {
 }
 
 
-void LiveChange(int **matrix, int row, int column)
-{
+void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint, int *wave, settings_t settings) {
+	int row, size;
 	
-	if(matrix[column][row]==BLANK) {
-	
-		changeColor(DARKBLANK);
-
-		positionCursor(column,row++);
-		printf ("   ");
-		positionCursor(column,row++);
-		printf ("   ");
-		positionCursor(column,row++);
-		printf ("   ");
-		changeColor(119);
-
-	} else {
-				
-		changeColor(DARKWALL);
-
-		positionCursor(column,row++);
-		printf ("\260\260\260");
-		positionCursor(column,row++);
-		printf ("\261\261\261");
-		positionCursor(column,row++);
-		printf ("\262\262\262");
+	switch (settings.levelSize) {
+		case SMALL: size=29;break;
+		case MEDIUM: size=20;break;
+		case LARGE: size=0;break;
 	}
 
-
-}
-
-void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint, int *wave, settings_t settings) {
-	int row;
-	
 	if (settings.wallColor==LIGHT)
 		changeColor(LIGHTBLANK);
 	else
 		changeColor(DARKBLANK);
 
 	row=beforeRow*3;
-	positionCursor(MAZECOLUMN+(beforeColumn*3),MAZEROW+row++);printf("   ");
-	positionCursor(MAZECOLUMN+(beforeColumn*3),MAZEROW+row++);printf("   ");
-	positionCursor(MAZECOLUMN+(beforeColumn*3),MAZEROW+row);printf("   ");
+	positionCursor(MAZECOLUMN+(beforeColumn*3)+size,MAZEROW+row++);printf("   ");
+	positionCursor(MAZECOLUMN+(beforeColumn*3)+size,MAZEROW+row++);printf("   ");
+	positionCursor(MAZECOLUMN+(beforeColumn*3)+size,MAZEROW+row);printf("   ");
 
 	if (whatToPrint==PLAYER) {
 		if (settings.wallColor==LIGHT)
@@ -196,9 +180,9 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 			changeColor(DARKPLAYER);
 
 		row=afterRow*3;
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" \225 ");
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("/|\\");
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row);printf("/ \\");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row++);printf(" \225 ");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row++);printf("/|\\");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row);printf("/ \\");
 	}
 	else if (*wave==0) {
 		if (settings.wallColor==LIGHT)
@@ -207,9 +191,9 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 			changeColor(DARKMUMMY);
 
 		row=afterRow*3;
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("_\@_");
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" | ");
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row);printf("/ \\");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row++);printf("_\@_");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row++);printf(" | ");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row);printf("/ \\");
 		*wave=1;
 	}
 	else if (*wave==1){
@@ -218,9 +202,9 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 		else
 			changeColor(DARKMUMMY);
 		row=afterRow*3;
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" \@ ");
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("/|\\");
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row);printf("/ \\");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row++);printf(" \@ ");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row++);printf("/|\\");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row);printf("/ \\");
 		*wave=2;
 	}
 	else {
@@ -229,9 +213,9 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 		else
 			changeColor(DARKMUMMY);
 		row=afterRow*3;
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf("\\@/");
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row++);printf(" | ");
-		positionCursor(MAZECOLUMN+(afterColumn*3),MAZEROW+row);printf("/ \\");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row++);printf("\\@/");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row++);printf(" | ");
+		positionCursor(MAZECOLUMN+(afterColumn*3)+size,MAZEROW+row);printf("/ \\");
 		*wave=0;
 	}
 
