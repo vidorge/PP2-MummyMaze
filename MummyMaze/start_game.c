@@ -48,6 +48,7 @@ int startGame(settings_t settings)
 		case BINARY: BinaryTreeMaze(matrix, dimension); break;
 	}
 
+	FilterDeadEnds(matrix, dimension);
 
 	entrance.x = 0;
 	entrance.y = SetEntrance(matrix, dimension);

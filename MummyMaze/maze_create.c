@@ -797,3 +797,43 @@ int SetExit(int **a, dimension_t dimension)
 	return i;
 
 }
+
+void FilterDeadEnds(int **a, dimension_t dimension)
+{
+
+	int i, j, count = 0;
+	int ude, rde, dde, lde;
+
+	for ( i = 0; i < dimension.y; i++ )
+		for ( j = 0; j < dimension.x; j++ )
+		{
+
+			if ( a[i][j] == PATH )
+			{
+
+				ude = a[i][j-1] == WALL && a[i][j+1] == WALL && a[i-1][j] == WALL && i-1>0;
+				rde = a[i-1][j] == WALL && a[i+1][j] == WALL && a[i][j+1] == WALL && j+1<dimension.x-1;
+				dde = a[i][j-1] == WALL && a[i][j+1] == WALL && a[i+1][j] == WALL && i+1<dimension.y-1;
+				lde = a[i-1][j] == WALL && a[i+1][j] == WALL && a[i][j-1] == WALL && j-1>0;
+
+
+				if ( (ude || rde || dde || lde) && ( ++count % 3 == 0 ) )
+				{
+
+					if ( ude ) a[i-1][j] = PATH;
+					if ( rde ) a[i][j+1] = PATH;
+					if ( dde ) a[i+1][j] = PATH;
+					if ( lde ) a[i][j-1] = PATH;
+			
+				} 
+
+
+			}
+
+
+
+		}
+
+
+
+}

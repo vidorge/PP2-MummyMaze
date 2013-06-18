@@ -103,4 +103,6 @@ void BinaryTreeMaze(int **a, dimension_t dimension);
 
 void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension);
 
+void FilterDeadEnds(int **a, dimension_t dimension);
+
 #endif
