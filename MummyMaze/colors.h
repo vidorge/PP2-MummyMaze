@@ -26,16 +26,18 @@
 	//light
 	#define LIGHTWALL	120
 	#define LIGHTBLANK	102
-	#define LIGHTPLAYER	111
+	#define LIGHTDAZY	111
 	#define LIGHTMUMMY	110
 	#define LIGHTBACK	96
+	#define	LIGHTLAZY	96
 
 	//dark
 	#define DARKWALL	3
 	#define DARKBLANK	51
-	#define DARKPLAYER	63
+	#define DARKDAZY	63
 	#define DARKMUMMY	62
 	#define DARKBACK	8
+	#define DARKLAZY	48
 
 
 void changeColor (int color);

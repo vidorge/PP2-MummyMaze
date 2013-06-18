@@ -37,7 +37,7 @@ void mainMenu () {
 	//******************             FOOTER                **********************
 	//***************************************************************************
 	changeColor(GROUND);
-	positionCursor(0,HEIGHT-1);changeColor(MENUC);printf ("     Mummy Maze v1.2 BETA                                                       Git Commit Team      All Rights Reserved     ");
+	positionCursor(0,HEIGHT-1);changeColor(MENUC);printf ("     Mummy Maze v2.0 RC0.0001                                                                            Git Commit Team      All Rights Reserved     ");
 
 
 	//***************************
