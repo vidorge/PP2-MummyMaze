@@ -15,17 +15,29 @@
 #include "colors.h"
 
 
-int startGame(settings_t settings)
-{
-	int **matrix, movement, newMovement, wave=0, i, firstMove=0; // VIDORE SKI TE MNOGO VOLI
+int startGame(settings_t settings) {
+
+	int **matrix, movement, newMovement, wave=0, i, j, firstMove=0, closed=0, doorItr=0, entranceTemp;
 
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
 	elemTree_t* root=null;
 	int flag,br,ply,enm;
 	clock_t begin = clock();
-	float score=0, last=0;
+	float score=0, last=0, doorClosed=0;
 	position_t entrance, exit;
+
+	if (settings.wallColor==LIGHT)
+		changeColor(LIGHTBACK);	
+	else
+		changeColor(DARKBACK);
+	
+	for (i=0;i<HEIGHT;i++)	{
+		for (j=0;j<WIDTH;j++)
+			printf ("\261");
+	}
+
+
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 
@@ -51,7 +63,7 @@ int startGame(settings_t settings)
 	FilterDeadEnds(matrix, dimension);
 
 	entrance.x = 0;
-	entrance.y = SetEntrance(matrix, dimension);
+	entrance.y = entranceTemp = SetEntrance(matrix, dimension);
 
 	exit.x = dimension.x - 1;
 	exit.y = SetExit(matrix, dimension);
@@ -83,6 +95,25 @@ int startGame(settings_t settings)
 	while (1) {
 		if (firstMove)
 			score = timef(begin);
+
+		if (firstMove)
+			if (((score-doorClosed)>0.3)&&(!closed)) {
+				positionCursor(MAZECOLUMN,MAZECOLUMN+doorItr+(entranceTemp*3));
+				if (settings.wallColor==LIGHT)
+					changeColor(LIGHTWALL);
+				else
+					changeColor(DARKWALL);
+				printf ("\262\260\261");
+				
+				doorItr++;
+				if (doorItr==1) 
+					matrix[entrance.y][entrance.x]=1;
+				
+				doorClosed=score;
+				if (doorItr==3) closed=1;
+			}
+
+
 
 		positionCursor (0,49);
 		changeColor(142);
