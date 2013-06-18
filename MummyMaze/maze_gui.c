@@ -116,7 +116,6 @@ void LivePrint(int **matrix, dimension_t dimension) {
 	int i,j;
 	int temp, column=MAZECOLUMN;
 
-	//changeColor(DARKBACK);
 	
 	for (i=0;i<dimension.x;i++) {
 		temp = MAZEROW;

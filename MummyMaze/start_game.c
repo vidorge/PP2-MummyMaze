@@ -17,7 +17,7 @@
 
 int startGame(settings_t settings)
 {
-	int **matrix, movement, newMovement, wave=0, i, firstMove=0; // VIDORE SKI TE MNOGO VOLI
+	int **matrix, movement, newMovement, wave=0, i, j, firstMove=0; // VIDORE SKI TE MNOGO VOLI
 
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
@@ -26,6 +26,12 @@ int startGame(settings_t settings)
 	clock_t begin = clock();
 	float score=0, last=0;
 	position_t entrance, exit;
+
+	changeColor(0);
+	for (i=0;i<HEIGHT;i++)	{
+		for (j=0;j<WIDTH;j++)
+			printf (" ");
+	}
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 
@@ -38,9 +44,7 @@ int startGame(settings_t settings)
 	srand( (unsigned) time(NULL) );
 
 	matrix = initMatrix(dimension);
-
-	LivePrint(matrix, dimension);
-	
+		
 	switch ( settings.mazeAlgorithm ) {
 		case PRIM: Prim(matrix, dimension); break;
 		//case DFS: DfsInit(matrix, dimension); break;
