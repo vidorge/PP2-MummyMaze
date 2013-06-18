@@ -44,7 +44,7 @@ int startGame(settings_t settings, float totalScore) {
 	switch (settings.levelSize) {
 		case SMALL:		dimension.x = 21; dimension.y = 15; break;
 		case MEDIUM:	dimension.x = 31; dimension.y = 15; break;
-		case LARGE:		dimension.x = 41; dimension.y = 15; break;
+		case LARGE:		dimension.x = 49; dimension.y = 17; break;
 	}
 	
 	srand( (unsigned) time(NULL) );

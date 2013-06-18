@@ -8,8 +8,8 @@
 //To change console size change width and height
 //**********************************************
 
-#define WIDTH 125
-#define HEIGHT 50
+#define WIDTH 150
+#define HEIGHT 56
 
 void setConsoleSize(int width,int height);
 

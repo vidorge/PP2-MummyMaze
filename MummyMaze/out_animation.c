@@ -11,7 +11,7 @@ void outAnimation () {
 	for (i=0;i<HEIGHT;i++) {
 		positionCursor(0,i);
 		changeColor(255);
-		printf ("                                                                                                                             ");
+		printf ("                                                                                                                                                      ");
 	
 	}
 	
@@ -20,34 +20,34 @@ void outAnimation () {
 		if (i<HEIGHT/2) {
 			positionCursor(0,j);
 			changeColor(119);
-			printf ("                                                                                                                             ");
+			printf ("                                                                                                                                                      ");
 
 			positionCursor(0,i);
 			changeColor(119);
-			printf ("                                                                                                                             ");
+			printf ("                                                                                                                                                      ");
 		}		
 		
 		if ((i>1)&&(i<((HEIGHT/2)-1))) {
 			positionCursor(0,j+2);
 			changeColor(136);
-			printf ("                                                                                                                             ");
+			printf ("                                                                                                                                                      ");
 
 			positionCursor(0,i-2);
 			changeColor(136);
-			printf ("                                                                                                                             ");
+			printf ("                                                                                                                                                      ");
 		}
 
 		if (i>2) {
 			positionCursor(0,j+3);
 			changeColor(0);
-			printf ("                                                                                                                             ");
+			printf ("                                                                                                                                                      ");
 
 			positionCursor(0,i-3);
 			changeColor(0);
-			printf ("                                                                                                                             ");		
+			printf ("                                                                                                                                                      ");		
 		}
 
 	}
 
-	Sleep (250);
+	Sleep (270);
 }

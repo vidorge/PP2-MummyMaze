@@ -50,62 +50,62 @@ void startAnimation () {
 	changeColor(ETF);
 	system ("CLS");
 	changeColor(ETF);
-	positionCursor(0,7);
-	printf ("                                    ``.-:://+oosssyyyyyyyysso++/:.`                              \n"
-			"                                +dmNNNNMMMMMMMNNNmdddhhhyyyyyyyyhhhhyo:.                         \n"
-			"                                .NMMMMyo+/:-..``````              ````.-//`                      \n"
-			"                                 +MMMMh          .--://++oosssyyyyyys.   -so.                    \n"
-			"                                  dMMMM+         :NNMMMMMMMMMMMMMMNNNd-    :do`                  \n"
-			"                                  -MMMMN.         odhhyso++oMMMN/-.````     `..                  \n"
-			"                                   yMMMMh          ``   `:ohMMMMNNmmho:.                         \n"
-			"                                   .NMMMM/            `omNMMdmMMMMyoyhmNh+.    `os-              \n"
-			"                                    oMMMMm`          /mMMmo-`-NMMMm. ``-odms-   -mN/             \n"
-			"                                    `mMMMMo         +NMMs.    +MMMMh`    `/dNs`  -mN/            \n"
-			"                                     +MMMMN.       -NMMo       yMMMMo      `+Nd-  :NN/           \n"
-			"                                     `mMMMMy       yMMm`       .mMMMN-``.--:/hMNssyNMN:          \n"
-			"                                      +MMMMN-      mMMy     `.--yMMMMNdmmNNMMMMMMMMMMMm.         \n"
-			"                                      `mMMMMh      mMMd/oshdmmNNMMMMMMMMMMMMMMMMMNhyomMh`        \n"
-			"                                       +MMMMM/:/oshNMMMMMMMMMMMMMMMMMMMNmdhyo+:+MN.  :NM+        \n"
-			"                                       `mMMMMMMMMMMMMMMMMMMMMNmmdydMMMMd.`     -MM-   yMN.       \n"
-			"                                        +MMMMMMMMMNNNMMMmso/:-.`` .NMMMM:      +MM.   .NMs       \n"
-			"                                        `NMMMMNs+:-..dMMm:         sMMMMh     .mMd     oho       \n"
-			"                                         oMMMMM-     .hMMNo.       .NMMMM-   -dMN-               \n"
-			"                                         .NMMMMy      `omMMmo-`     yMMMMy .omMm/                \n"
-			"                                          sMMMMM.       .smMMNhs/-.`:MMMMMhNMNy-        `-+.     \n"
-			"                                          .NMMMMs         .+hNMMMNNmdMMMMMMms:          .NM+     \n"
-			"                                           yMMMMN.           .:oyhdmmmMMMMh...:+sh+      mMy     \n"
-			"                                           -MMMMMo                 ``.dMMMNdmNMMMMh      hMd     \n"
-			"                                            hMMMMm`          ``.-/oyhmMMMMMMMMMNmds      yMd     \n"
-			"                                            /MMMMM/          smNMMMMMMMMMNmdyo/-`     ``:hMd     \n"
-			"                                            `mMMMMh          +MMMMNNmdy+/-`       `./shmMMNy     \n"
-			"                                             oMMMMN.         .dyo/:.`       ``-/shmMMMMNds:`     \n"
-			"                                             .NMMMMo                  ``.:oydNMMMMMNds/.         \n"
-			"                                              yMMMMm            ``-/oydmMMMMMMNmho:.             \n"
-			"                                              :MMMMM-    ``.:+shdNMMMMMMNNmyo/.                  \n"
-			"                                              `mMMMMy/+shmNMMMMMMMNNmhs/:.                       \n"
-			"                                               oMMMMMMMMMMMMNNdyo/-`                             \n"
-			"                                               .MMMMMMNdhs+:.`                                   \n"
-			"                                                sso/-.                                           \n");
+	positionCursor(0,9);
+	printf ("                                                ``.-:://+oosssyyyyyyyysso++/:.`                              \n"
+			"                                            +dmNNNNMMMMMMMNNNmdddhhhyyyyyyyyhhhhyo:.                         \n"
+			"                                            .NMMMMyo+/:-..``````              ````.-//`                      \n"
+			"                                             +MMMMh          .--://++oosssyyyyyys.   -so.                    \n"
+			"                                              dMMMM+         :NNMMMMMMMMMMMMMMNNNd-    :do`                  \n"
+			"                                              -MMMMN.         odhhyso++oMMMN/-.````     `..                  \n"
+			"                                               yMMMMh          ``   `:ohMMMMNNmmho:.                         \n"
+			"                                               .NMMMM/            `omNMMdmMMMMyoyhmNh+.    `os-              \n"
+			"                                                oMMMMm`          /mMMmo-`-NMMMm. ``-odms-   -mN/             \n"
+			"                                                `mMMMMo         +NMMs.    +MMMMh`    `/dNs`  -mN/            \n"
+			"                                                 +MMMMN.       -NMMo       yMMMMo      `+Nd-  :NN/           \n"
+			"                                                 `mMMMMy       yMMm`       .mMMMN-``.--:/hMNssyNMN:          \n"
+			"                                                  +MMMMN-      mMMy     `.--yMMMMNdmmNNMMMMMMMMMMMm.         \n"
+			"                                                  `mMMMMh      mMMd/oshdmmNNMMMMMMMMMMMMMMMMMNhyomMh`        \n"
+			"                                                   +MMMMM/:/oshNMMMMMMMMMMMMMMMMMMMNmdhyo+:+MN.  :NM+        \n"
+			"                                                   `mMMMMMMMMMMMMMMMMMMMMNmmdydMMMMd.`     -MM-   yMN.       \n"
+			"                                                    +MMMMMMMMMNNNMMMmso/:-.`` .NMMMM:      +MM.   .NMs       \n"
+			"                                                    `NMMMMNs+:-..dMMm:         sMMMMh     .mMd     oho       \n"
+			"                                                     oMMMMM-     .hMMNo.       .NMMMM-   -dMN-               \n"
+			"                                                     .NMMMMy      `omMMmo-`     yMMMMy .omMm/                \n"
+			"                                                      sMMMMM.       .smMMNhs/-.`:MMMMMhNMNy-        `-+.     \n"
+			"                                                      .NMMMMs         .+hNMMMNNmdMMMMMMms:          .NM+     \n"
+			"                                                       yMMMMN.           .:oyhdmmmMMMMh...:+sh+      mMy     \n"
+			"                                                       -MMMMMo                 ``.dMMMNdmNMMMMh      hMd     \n"
+			"                                                        hMMMMm`          ``.-/oyhmMMMMMMMMMNmds      yMd     \n"
+			"                                                        /MMMMM/          smNMMMMMMMMMNmdyo/-`     ``:hMd     \n"
+			"                                                        `mMMMMh          +MMMMNNmdy+/-`       `./shmMMNy     \n"
+			"                                                         oMMMMN.         .dyo/:.`       ``-/shmMMMMNds:`     \n"
+			"                                                         .NMMMMo                  ``.:oydNMMMMMNds/.         \n"
+			"                                                          yMMMMm            ``-/oydmMMMMMMNmho:.             \n"
+			"                                                          :MMMMM-    ``.:+shdNMMMMMMNNmyo/.                  \n"
+			"                                                          `mMMMMy/+shmNMMMMMMMNNmhs/:.                       \n"
+			"                                                           oMMMMMMMMMMMMNNdyo/-`                             \n"
+			"                                                           .MMMMMMNdhs+:.`                                   \n"
+			"                                                            sso/-.                                           \n");
 	if (!DEBUGGING) Sleep(2000);
 
 	changeColor(GROUND);
 	system ("CLS");
 	changeColor(GROUND);
-	positionCursor(0,13);
-	printf ("                                     ______ _          ______                  _      \n"
-			"                                    / _____|_)_       / _____)                (_)_    \n"
-			"                                   | /  ___ _| |_    | /      ___  ____  ____  _| |_  \n"
-			"                                   | | (___) |  _)   | |     / _ \\|    \\|    \\| |  _) \n"
-			"                                   | \\____/| | |__   | \\____| |_| | | | | | | | | |__ \n"
-			"                                    \\_____/|_|\\___)   \\______)___/|_|_|_|_|_|_|_|\\___)\n"
-			"                                                                                          \n"
-			"                                                _______ _______        ______           \n"
-			"                                              (_______|_______)  /\\  |  ___ \\          \n"
-			"                                               _       _____    /  \\ | | _ | |         \n"
-			"                                               | |     |  ___)  / /\\ \\| || || |         \n"
-			"                                               | |_____| |_____| |__| | || || |         \n"
-			"                                                \\______)_______)______|_||_||_|         \n");
-	positionCursor(50,27);
+	positionCursor(0,20);
+	printf ("                                                 ______ _          ______                  _      \n"
+			"                                                / _____|_)_       / _____)                (_)_    \n"
+			"                                               | /  ___ _| |_    | /      ___  ____  ____  _| |_  \n"
+			"                                               | | (___) |  _)   | |     / _ \\|    \\|    \\| |  _) \n"
+			"                                               | \\____/| | |__   | \\____| |_| | | | | | | | | |__ \n"
+			"                                                \\_____/|_|\\___)   \\______)___/|_|_|_|_|_|_|_|\\___)\n"
+			"                                                                                                      \n"
+			"                                                            _______ _______        ______           \n"
+			"                                                          (_______|_______)  /\\  |  ___ \\          \n"
+			"                                                           _       _____    /  \\ | | _ | |         \n"
+			"                                                           | |     |  ___)  / /\\ \\| || || |         \n"
+			"                                                           | |_____| |_____| |__| | || || |         \n"
+			"                                                            \\______)_______)______|_||_||_|         \n");
+	positionCursor(62,34);
 	printf ("---PRESENTS YOU---");
 	if (!DEBUGGING) Sleep(2000);
 
@@ -116,12 +116,12 @@ void startAnimation () {
 	if (!DEBUGGING) 
 		while (1) {		
 			switch (blink) {
-				case 0:{positionCursor (50,40);printf ("  -- Press any key --  ");Sleep(500);blink=1;break;}
-				case 1:{positionCursor (50,40);printf ("                       ");Sleep(500);blink=0;break;}		
+				case 0:{positionCursor (62,40);printf ("  -- Press any key --  ");Sleep(500);blink=1;break;}
+				case 1:{positionCursor (62,40);printf ("                       ");Sleep(500);blink=0;break;}		
 			}
 
 			if(_kbhit()) {
-				positionCursor (50,40);
+				positionCursor (62,40);
 				printf ("                       ");
 				break;
 			}
