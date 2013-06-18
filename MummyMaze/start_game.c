@@ -23,7 +23,7 @@ int startGame(settings_t settings, float totalScore) {
 	dimension_t dimension;
 	elemTree_t* root=null;
 	int flag,br,ply,enm,dis;
-	clock_t begin = clock();
+	clock_t begin;
 	float score=0, last=0, doorClosed=0;
 	position_t entrance, exit;
 
@@ -77,9 +77,6 @@ int startGame(settings_t settings, float totalScore) {
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 	root=branchAndBound(matrix,playerPosition.x,playerPosition.y,exit.y,exit.x,dimension,&ply);
 
-
-
-
 	for (i=0; i<settings.botNumber; i++)
 	{
 
@@ -94,6 +91,8 @@ int startGame(settings_t settings, float totalScore) {
 		
 	}
 	printFormattedMatrix(matrix,dimension,settings);
+
+	begin = clock();
 
 	while (1) {
 		if (firstMove)
@@ -211,8 +210,10 @@ int startGame(settings_t settings, float totalScore) {
 			flag=0;
 			for(i=0;i<settings.botNumber;i++) 
 				if ((playerPosition.x==mummyPosition[i].x)&&(playerPosition.y==mummyPosition[i].y)) flag=1;
+			// OVDE GA JE POJEO BROJ POENA KONACAN RACUNAS KAO score + totalScore
 
 			if ((playerPosition.x==exit.y)&&(playerPosition.y==exit.x)) {
+			
 				startGame(settings, score + totalScore); flag=1;
 			}
 
