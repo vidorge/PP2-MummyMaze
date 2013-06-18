@@ -44,6 +44,6 @@
 	#define DARKEXIT		60
 
 
-void changeColor (int color);
+void changeColor (int color); //tivolisnju
 
 #endif

@@ -15,6 +15,6 @@
 #define PAUSE	8
 #define HINT	104	
 
-int controls (int keyboardInput);
+int controls (int keyboardInput); //tivolisnju
 
 #endif
