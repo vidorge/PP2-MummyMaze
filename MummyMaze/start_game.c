@@ -42,8 +42,8 @@ int startGame(settings_t settings, float totalScore) {
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 
 	switch (settings.levelSize) {
-		case SMALL:		dimension.x = 21; dimension.y = 15; break;
-		case MEDIUM:	dimension.x = 31; dimension.y = 15; break;
+		case SMALL:		dimension.x = 27; dimension.y = 17; break;
+		case MEDIUM:	dimension.x = 37; dimension.y = 17; break;
 		case LARGE:		dimension.x = 49; dimension.y = 17; break;
 	}
 	
