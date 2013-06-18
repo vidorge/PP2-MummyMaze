@@ -152,6 +152,37 @@ void LivePrint(int **matrix, dimension_t dimension) {
 	}
 }
 
+
+void LiveChange(int **matrix, int row, int column)
+{
+	
+	if(matrix[column][row]==BLANK) {
+	
+		changeColor(DARKBLANK);
+
+		positionCursor(column,row++);
+		printf ("   ");
+		positionCursor(column,row++);
+		printf ("   ");
+		positionCursor(column,row++);
+		printf ("   ");
+		changeColor(119);
+
+	} else {
+				
+		changeColor(DARKWALL);
+
+		positionCursor(column,row++);
+		printf ("\260\260\260");
+		positionCursor(column,row++);
+		printf ("\261\261\261");
+		positionCursor(column,row++);
+		printf ("\262\262\262");
+	}
+
+
+}
+
 void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint, int *wave, settings_t settings) {
 	int row;
 	

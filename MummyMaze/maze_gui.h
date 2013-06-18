@@ -32,4 +32,6 @@ void printHelpMatrix(int **matrix, dimension_t dimension);
 
 void LivePrint(int **matrix, dimension_t dimension);
 
+void LiveChange(int **matrix, int row, int column);
+
 #endif

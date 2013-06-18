@@ -131,7 +131,6 @@ void fillHelpMatrix(int **matrix, dimension_t dimension)
 
 }
 
-
 void printDebugMatrix(int **matrix, dimension_t dimension)
 {
 	int i, j;
@@ -345,7 +344,7 @@ void Prim(int **a, dimension_t dimension)
 					primMatrix[y-1][x] &= ~DOWN_WALL;
 					primMatrix[y][x] &= ~UP_WALL;
 					done = 1;
-					//printf("\n Probijen zid na gore  %d %d", x, y-1);
+				
 				}
 				break;
 
@@ -394,33 +393,22 @@ void Prim(int **a, dimension_t dimension)
 		if ( y - 1 >= 0 && !(primMatrix[y-1][x] & IN_MAZE) ) 
 		{// up
 
-
 			if ( !FindInList(rear, x, y-1) )
-			{
 				InsertElement(&rear, x, y-1);
-				//printf("\n Dodat komsija  %d %d", x, y-1);
-			}
-
 
 		}
 		if ( y + 1 < h && !(primMatrix[y+1][x] & IN_MAZE) ) 
 		{//down
 
 			if ( !FindInList(rear, x, y+1) )
-			{
 				InsertElement(&rear, x, y+1);
-				//printf("\n Dodat komsija  %d %d", x, y+1);
-			}
 
 		}
 		if ( x - 1 >= 0 && !(primMatrix[y][x-1] & IN_MAZE) ) 
 		{//left
 
 			if ( !FindInList(rear, x-1, y) )
-			{
 				InsertElement(&rear, x-1, y);
-				//printf("\n Dodat komsija  %d %d", x-1, y);
-			}
 
 		}
 			
@@ -429,10 +417,7 @@ void Prim(int **a, dimension_t dimension)
 		{//right
 
 			if ( !FindInList(rear, x+1, y) )
-			{
 				InsertElement(&rear, x+1, y);
-				//printf("\n Dodat komsija  %d %d", x+1, y);
-			}
 
 		}
 
@@ -464,6 +449,41 @@ void Prim(int **a, dimension_t dimension)
 
 		}
 		
+}
+
+
+void ConvertPartial(int **minMatrix, int **a, int i, int j)
+{
+
+	if ( minMatrix[i][j] & UP_WALL )
+	{
+		a[i*2][j*2] = 1;
+		a[i*2][j*2 + 1] = 1;
+		a[i*2][j*2 + 2] = 1;
+	}
+	if ( minMatrix[i][j] & LEFT_WALL )
+	{
+		a[i*2][j*2] = 1;
+		a[i*2 + 1][j*2] = 1;
+		a[i*2 + 2][j*2] = 1;
+	}
+	if ( minMatrix[i][j] & DOWN_WALL )
+	{
+		a[i*2 + 2][j*2] = 1;
+		a[i*2 + 2][j*2 + 1] = 1;
+		a[i*2 + 2][j*2 + 2] = 1;
+	}
+	if ( minMatrix[i][j] & RIGHT_WALL )
+	{
+		a[i*2][j*2 + 2] = 1;
+		a[i*2 + 1][j*2 + 2] = 1;
+		a[i*2 + 2][j*2 + 2] = 1;
+	}
+
+	LiveChange(a, 2*i, 2*j);
+	Sleep(100);
+
+
 }
 
 
@@ -674,8 +694,6 @@ void BinaryTreeMaze(int **a, dimension_t dimension)
 	int w, h, x, y;
 	int dn, rn;
 	int print = 0;
-
-
 
 	minMatrix = GenerateMinMatrix(dimension);
 

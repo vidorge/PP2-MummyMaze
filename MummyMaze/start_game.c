@@ -39,34 +39,22 @@ int startGame(settings_t settings)
 
 	matrix = initMatrix(dimension);
 
+	LivePrint(matrix, dimension);
 	
 	switch ( settings.mazeAlgorithm )
 	{
-
-	case PRIM:
-		Prim(matrix, dimension);
-		break;
-
-	case DFS:
-		DfsInit(matrix, dimension);
-		break;
-
-	case BACKTRACK:
-		RecursiveBacktrack(matrix, dimension);
-		break;
-
-	case BINARY:
-		BinaryTreeMaze(matrix, dimension);
-		break;
-
+		case PRIM: Prim(matrix, dimension); break;
+		case DFS: DfsInit(matrix, dimension); break;
+		case BACKTRACK: RecursiveBacktrack(matrix, dimension); break;
+		case BINARY: BinaryTreeMaze(matrix, dimension); break;
 	}
+
 
 	entrance.x = 0;
 	entrance.y = SetEntrance(matrix, dimension);
 
 	exit.x = dimension.x - 1;
 	exit.y = SetExit(matrix, dimension);
-
 
 	matrix [entrance.y][entrance.x]=6;
 	matrix [exit.y][exit.x]=7;
