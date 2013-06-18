@@ -656,10 +656,20 @@ int SetEntrance(int **a, dimension_t dimension)
 
 	int i;
 
+	/*
 	for( i = 1; i < dimension.y - 1; i++ )
 		if ( a[i][1] == 0 )
 			break;
+	*/
 
+
+	for( i = (dimension.y - 1) / 2; i > 0; i-- )
+	{
+		if ( a[i][1] == 0 ) return i;
+		if ( a[i-1][1] == 0 ) return i-1;
+		if ( a[i+1][1] == 0 ) return i+1;
+	}
+	
 
 	return i;
 
