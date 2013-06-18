@@ -7,8 +7,8 @@
 #include "stack.h"
 #include "maze_gui.h"
 
-
-int **initMatrix(dimension_t dimension)
+//done
+int ** initMatrix(dimension_t dimension)
 {
 	int **a, i, j;
 
@@ -25,9 +25,7 @@ int **initMatrix(dimension_t dimension)
 
 }
 
-
-
-
+//done
 void ShuffleArray(int *randDir)
 {
 	int i, j, temp;
@@ -43,8 +41,7 @@ void ShuffleArray(int *randDir)
 
 }
 
-
-
+//not
 void fillHelpMatrix(int **matrix, dimension_t dimension)
 {
 	int i, j;
@@ -64,19 +61,7 @@ void fillHelpMatrix(int **matrix, dimension_t dimension)
 
 }
 
-void printDebugMatrix(int **matrix, dimension_t dimension)
-{
-	int i, j;
-
-	for (i=0; i<dimension.y; i++, printf("\n") )
-		for (j=0; j<dimension.x; j++)
-			printf("%d", matrix[i][j]);
-
-}
-
-
-
-
+//done
 void MazeDestroy(int **a, dimension_t dimension)
 {
 	int i;
@@ -88,19 +73,7 @@ void MazeDestroy(int **a, dimension_t dimension)
 
 }
 
-
-/* OVDE POCINJE PRIM */
-
-/*
-1. Početi sa mrežom zidova,
-2. Nasumično izabrati ćeliju, označiti je kao deo lavirnta i dodati sve njene zidove u listu zidova,
-3. Dok ima zidova u listi:
-	1) Slučajno izabrati zid iz liste. Ako ćelija sa suprotne strane nije u listi, onda:
-		1. Napraviti od zida prolaz, i označiti ćeliju sa suprotne strane kao deo lavirinta,
-		2. Dodati susedne zidove ćelije u listu zidova. 
-*/
-
-
+//done
 int ** GenerateMinMatrix(dimension_t dimension)
 {
 
@@ -124,7 +97,7 @@ int ** GenerateMinMatrix(dimension_t dimension)
 
 }
 
-
+//not
 void InsertElement(coordList_t **rear, int x, int y)
 {
 
@@ -146,6 +119,7 @@ void InsertElement(coordList_t **rear, int x, int y)
 
 }
 
+//not
 int FindInList(coordList_t *rear, int x, int y)
 {
 
@@ -164,6 +138,7 @@ int FindInList(coordList_t *rear, int x, int y)
 
 }
 
+//done
 void Prim(int **a, dimension_t dimension, settings_t settings)
 {
 
@@ -332,39 +307,6 @@ void Prim(int **a, dimension_t dimension, settings_t settings)
 		
 }
 
-
-void ConvertPartial(int **minMatrix, int **a, int i, int j)
-{
-
-	if ( minMatrix[i][j] & UP_WALL )
-	{
-		a[i*2][j*2] = 1;
-		a[i*2][j*2 + 1] = 1;
-		a[i*2][j*2 + 2] = 1;
-	}
-	if ( minMatrix[i][j] & LEFT_WALL )
-	{
-		a[i*2][j*2] = 1;
-		a[i*2 + 1][j*2] = 1;
-		a[i*2 + 2][j*2] = 1;
-	}
-	if ( minMatrix[i][j] & DOWN_WALL )
-	{
-		a[i*2 + 2][j*2] = 1;
-		a[i*2 + 2][j*2 + 1] = 1;
-		a[i*2 + 2][j*2 + 2] = 1;
-	}
-	if ( minMatrix[i][j] & RIGHT_WALL )
-	{
-		a[i*2][j*2 + 2] = 1;
-		a[i*2 + 1][j*2 + 2] = 1;
-		a[i*2 + 2][j*2 + 2] = 1;
-	}
-
-
-}
-
-
 void recursive_push(coordList_t **stack, int x, int y)
 {
 
@@ -380,7 +322,7 @@ void recursive_push(coordList_t **stack, int x, int y)
 
 }
 
-
+//done - rename to dfs
 void RecursiveBacktrack(int **a, dimension_t dimension, settings_t settings)
 {
 
@@ -529,6 +471,7 @@ void RecursiveBacktrack(int **a, dimension_t dimension, settings_t settings)
 
 }
 
+//done
 void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension)
 {
 	int i, j;
@@ -565,6 +508,7 @@ void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension)
 
 }
 
+//done
 void BinaryTreeMaze(int **a, dimension_t dimension, settings_t settings)
 {
 	int **minMatrix;
@@ -626,39 +570,11 @@ void BinaryTreeMaze(int **a, dimension_t dimension, settings_t settings)
 
 }
 
-void CarveGateways(int **a, dimension_t dimension)
-{
-
-	int i;
-
-	for( i = 1; i < dimension.y - 2; i++ )
-		if ( a[i][1] == 0 )
-		{
-			a[i][0] = ENTRANCE;
-			break;
-		}
-
-	for ( i = dimension.y - 2; i > 0; i-- )
-		if ( a[i][dimension.x - 2] == 0 )
-		{
-			a[i][dimension.x - 1] = EXIT;
-			break;
-
-		}
-
-}
-
+//done
 int SetEntrance(int **a, dimension_t dimension)
 {
 
 	int i;
-
-	/*
-	for( i = 1; i < dimension.y - 1; i++ )
-		if ( a[i][1] == 0 )
-			break;
-	*/
-
 
 	for( i = (dimension.y - 1) / 2; i > 0; i-- )
 	{
@@ -673,17 +589,11 @@ int SetEntrance(int **a, dimension_t dimension)
 
 }
 
+//done
 int SetExit(int **a, dimension_t dimension)
 {
 
 	int i;
-
-	/*
-	for ( i = dimension.y - 2; i > 0; i-- )
-		if ( a[i][dimension.x - 2] == 0 )
-			break;
-	*/
-
 
 	for( i = 1; i < dimension.y - 1; i++ )
 		if ( a[i][dimension.x - 2] == 0 )
@@ -692,6 +602,8 @@ int SetExit(int **a, dimension_t dimension)
 	return i;
 
 }
+
+
 
 void FilterDeadEnds(int **a, dimension_t dimension)
 {
@@ -730,6 +642,3 @@ void FilterDeadEnds(int **a, dimension_t dimension)
 		}
 
 }
-
-// RIP DFS
-

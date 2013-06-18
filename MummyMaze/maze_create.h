@@ -3,8 +3,6 @@
 
 #include "options.h"
 
-#define DIM 15
-
 #define UP_WALL		1 //0001
 #define DOWN_WALL	2 //0010
 #define LEFT_WALL	4 //0100
@@ -36,36 +34,15 @@ typedef struct CoordList
 */
 int **initMatrix(dimension_t dimension);
 
-
-/**
-*	@desc	Prints debug-formated matrix 1/0
-*	@param	int **matrix - double pointer to matrix
-*	@param	int dimension - dimension of matrix
-*	@author Vidor Gencel
-*/
-void printDebugMatrix(int **matrix, dimension_t dimension);
-
-
-/**
-*	@desc	See if a cell from game board has unvisited neighbours
-*	@param	int **matrix - double pointer to game board matrix
-*	@return	1 - has unvisited, 0 - doesn't
-*	@author Vidor Gencel
-*/
-//int hasUnvisitedNeighbour(int **matrix);
-
 /**
 *	@desc	Fills matrix used in help
 *	@param	int **matrix - double pointer to matrix
 *	@param	int dimension - dimension of matrix	
 *	@author Stefan Ilijevski
-*	PS		Sorry, Dorvi for messing with your code
 */
-
 void fillHelpMatrix(int **matrix, dimension_t dimension);
 
 //mrzelo me majke mi
-
 
 void ShuffleArray(int *randDir);
 
@@ -74,8 +51,6 @@ void MazeDestroy(int **a, dimension_t dimension);
 int ** GenerateMinMatrix(dimension_t dimension);
 
 void Prim(int **a, dimension_t dimension, settings_t settings);
-
-void CarveGateways(int **a, dimension_t dimension);
 
 int SetExit(int **a, dimension_t dimension);
 
@@ -88,10 +63,6 @@ void BinaryTreeMaze(int **a, dimension_t dimension, settings_t settings);
 void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension);
 
 void FilterDeadEnds(int **a, dimension_t dimension);
-
-
-
-//RIP DFS 
 
 
 #endif
