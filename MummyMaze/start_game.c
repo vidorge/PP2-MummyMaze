@@ -22,7 +22,7 @@ int startGame(settings_t settings) {
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
 	elemTree_t* root=null;
-	int flag,br,ply,enm;
+	int flag,br,ply,enm,dis;
 	clock_t begin = clock();
 	float score=0, last=0, doorClosed=0;
 	position_t entrance, exit;
@@ -82,8 +82,8 @@ int startGame(settings_t settings) {
 
 		spawnEnemy(matrix,dimension,&mummyPosition[i].x,&mummyPosition[i].y);
 		root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,exit.y,exit.x,dimension,&enm);
-
-		if(enm<ply) 
+		root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension,&dis);
+		if(enm<ply||dis <2 ) 
 		{
 			matrix[mummyPosition[i].x][mummyPosition[i].y]=0;
 			i--;                           
