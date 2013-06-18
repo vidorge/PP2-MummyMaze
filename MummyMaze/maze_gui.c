@@ -6,7 +6,7 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 	int temp, column=MAZECOLUMN;
 
 	switch (settings.levelSize) {
-		case SMALL: column+=29;break;
+		case SMALL: column+=32;break;
 		case MEDIUM: column+=20;break;
 	}
 	
@@ -125,7 +125,7 @@ void LivePrint(int **matrix, dimension_t dimension, settings_t settings) {
 	int temp, column=MAZECOLUMN;
 
 	switch (settings.levelSize) {
-		case SMALL: column+=29;break;
+		case SMALL: column+=32;break;
 		case MEDIUM: column+=20;break;
 	}
 
@@ -173,7 +173,7 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 	int row, size;
 	
 	switch (settings.levelSize) {
-		case SMALL: size=29;break;
+		case SMALL: size=32;break;
 		case MEDIUM: size=20;break;
 		case LARGE: size=0;break;
 	}

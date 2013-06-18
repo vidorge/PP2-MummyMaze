@@ -13,6 +13,7 @@
 #include "options.h"
 #include "position_cursor.h"
 #include "colors.h"
+#include "game_over.h"
 
 
 int startGame(settings_t settings, float totalScore) {
@@ -28,7 +29,7 @@ int startGame(settings_t settings, float totalScore) {
 	position_t entrance, exit;
 
 	switch (settings.levelSize) {
-		case SMALL: size=29;break;
+		case SMALL: size=32;break;
 		case MEDIUM: size=20;break;
 		case LARGE: size=0;break;
 	}
@@ -221,7 +222,13 @@ int startGame(settings_t settings, float totalScore) {
 				startGame(settings, score + totalScore); flag=1;
 			}
 
-			if (flag) break;
+			if (flag) {
+				Sleep (250);
+				gameover ();
+				Sleep (5000);
+				//UPIS HIGHSCORE
+				break;
+			} 
 
 	}
 	

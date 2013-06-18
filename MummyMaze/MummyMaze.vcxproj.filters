@@ -72,6 +72,9 @@
     <ClCompile Include="options.c">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="game_over.c">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="maze_create.h">
@@ -120,6 +123,9 @@
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="options.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="game_over.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>

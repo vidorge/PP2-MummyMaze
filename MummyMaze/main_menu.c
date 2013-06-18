@@ -24,9 +24,9 @@ void mainMenu () {
 
 	settings.botNumber=1;
 	settings.botDifficuly=HARD;
-	settings.character=LAZY;
-	settings.levelSize=LARGE;
-	settings.mazeAlgorithm=BINARY;
+	settings.character=DAZY;
+	settings.levelSize=SMALL;
+	settings.mazeAlgorithm=BACKTRACK;
 	settings.wallColor=DARK;
 	settings.playMetod=REALTIME;
 	settings.filterEnds=YES;
