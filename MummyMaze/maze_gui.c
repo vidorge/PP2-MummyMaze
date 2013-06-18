@@ -6,17 +6,6 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 	int temp, column=MAZECOLUMN;
 
 	
-	if (settings.wallColor==LIGHT)
-		changeColor(LIGHTBACK);	
-	else
-		changeColor(DARKBACK);
-	
-	for (i=0;i<HEIGHT;i++)	{
-		for (j=0;j<WIDTH;j++)
-			printf ("\261");
-	}
-
-
 	for (i=0;i<dimension.x;i++) {
 		temp=MAZEROW;
 		for (j=0;j<dimension.y;j++) {

@@ -17,20 +17,24 @@
 
 int startGame(settings_t settings)
 {
-	int **matrix, movement, newMovement, wave=0, i, j, firstMove=0; // VIDORE SKI TE MNOGO VOLI
+	int **matrix, movement, newMovement, wave=0, i, j, firstMove=0, closed=0;
 
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
 	elemTree_t* root;
 	int flag;
 	clock_t begin = clock();
-	float score=0, last=0;
+	float score=0, last=0, doorClosed=0, doorItr=0;
 	position_t entrance, exit;
 
-	changeColor(0);
+	if (settings.wallColor==LIGHT)
+		changeColor(LIGHTBACK);	
+	else
+		changeColor(DARKBACK);
+	
 	for (i=0;i<HEIGHT;i++)	{
 		for (j=0;j<WIDTH;j++)
-			printf (" ");
+			printf ("\261");
 	}
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
@@ -74,6 +78,24 @@ int startGame(settings_t settings)
 	while (1) {
 		if (firstMove)
 			score = timef(begin);
+
+		if (firstMove)
+			if (((score-doorClosed)>0.3)&&(!closed)) {
+				positionCursor(entrance.y,MAZEROW+doorItr+3);
+				if (settings.wallColor==LIGHT)
+					changeColor(LIGHTWALL);
+				else
+					changeColor(DARKWALL);
+				printf ("\262\260\261");
+				
+				doorItr++;
+				if (doorItr==1) {
+					entrance.x=1;
+					entrance.y=1;
+				}
+				doorClosed=score;
+				if (doorItr==3) closed=1;
+			}
 
 		positionCursor (0,49);
 		changeColor(142);
@@ -128,7 +150,7 @@ int startGame(settings_t settings)
 				for(i=0;i<settings.botNumber;i++)
 				{	
 					if (settings.botDifficuly==EASY)
-						mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,2,&wave,settings);
+						mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,1,&wave,settings);
 					else {
 						root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);
 	
@@ -174,10 +196,6 @@ int startGame(settings_t settings)
 
 	}
 	
-	// Sleep (1000);
-
-	if(DEBUGE_MODE)
-		printf("Tree Destroy");
 	MazeDestroy(matrix, dimension);
 
 	return 0;
