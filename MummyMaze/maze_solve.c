@@ -115,12 +115,13 @@ elemTree_t* createNode(int i, int j,elemTree_t* pre,int traveled){
 
 }
 
-elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension){
-	int i,j,n,br=0;
+elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension, int* br){
+	int i,j,n;
 	char nb;
 	char **visited;
 	elemPrioQueue_t *queue=null,*first;
 	elemTree_t *root, *tmp;
+	*br=0;
 								
 	n=0;
 	visited=(char**)malloc( dimension.y * sizeof(char*)); 
@@ -177,9 +178,11 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 		tmp=queue->info;
 		queue=deletePrioQueue1(queue);
 	}
-	while(tmp!=null){
-	tmp->status=1;
-	tmp=tmp->pred;
+	while(tmp!=null)
+	{
+		(*br)++;
+		tmp->status=1;
+		tmp=tmp->pred;
 	}
 	
 	if(DEBUGE_MODE) 
@@ -191,6 +194,7 @@ elemTree_t*  branchAndBound(int **matrix, int i1, int j1,int i2, int j2,dimensio
 		 free(visited[i]);
 		
 	free(visited);
+
 
 	return root;
 
@@ -282,7 +286,7 @@ position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int 
 		min=MAX_INT;
 		k=0;
 		m=0;
-		if(matrix[re.x][re.y+1]==0) 
+		if(matrix[re.x][re.y+1]!=1) 
 		{
 			if(min>manhattanLength(re.x,re.y+1,i2,j2))
 			{
@@ -292,7 +296,7 @@ position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int 
 			}
 
 		}
-		if(matrix[re.x][re.y-1]==0) 
+		if(matrix[re.x][re.y-1]!=1) 
 		{
 			if(min>manhattanLength(re.x,re.y-1,i2,j2))
 			{
@@ -302,7 +306,7 @@ position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int 
 			}
 
 		}
-		if(matrix[re.x+1][re.y]==0) 
+		if(matrix[re.x+1][re.y]!=1) 
 		{
 			if(min>manhattanLength(re.x+1,re.y,i2,j2))
 			{
@@ -312,7 +316,7 @@ position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int 
 			}
 
 		}
-		if(matrix[re.x-1][re.y]==0) 
+		if(matrix[re.x-1][re.y]!=1) 
 		{
 			if(min>manhattanLength(re.x-1,re.y,i2,j2))
 			{

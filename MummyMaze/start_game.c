@@ -17,25 +17,15 @@
 
 int startGame(settings_t settings)
 {
-	int **matrix, movement, newMovement, wave=0, i, j, firstMove=0, closed=0;
+	int **matrix, movement, newMovement, wave=0, i, firstMove=0; // VIDORE SKI TE MNOGO VOLI
 
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
-	elemTree_t* root;
-	int flag;
+	elemTree_t* root=null;
+	int flag,br,ply,enm;
 	clock_t begin = clock();
-	float score=0, last=0, doorClosed=0, doorItr=0;
+	float score=0, last=0;
 	position_t entrance, exit;
-
-	if (settings.wallColor==LIGHT)
-		changeColor(LIGHTBACK);	
-	else
-		changeColor(DARKBACK);
-	
-	for (i=0;i<HEIGHT;i++)	{
-		for (j=0;j<WIDTH;j++)
-			printf ("\261");
-	}
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 
@@ -48,7 +38,9 @@ int startGame(settings_t settings)
 	srand( (unsigned) time(NULL) );
 
 	matrix = initMatrix(dimension);
-		
+
+	LivePrint(matrix, dimension);
+	
 	switch ( settings.mazeAlgorithm ) {
 		case PRIM: Prim(matrix, dimension); break;
 		//case DFS: DfsInit(matrix, dimension); break;
@@ -68,34 +60,29 @@ int startGame(settings_t settings)
 	matrix [exit.y][exit.x]=7;
 
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
+	root=branchAndBound(matrix,playerPosition.x,playerPosition.y,exit.y,exit.x,dimension,&ply);
+
+
+
 
 	for (i=0; i<settings.botNumber; i++)
 	{
+
 		spawnEnemy(matrix,dimension,&mummyPosition[i].x,&mummyPosition[i].y);
+		root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,exit.y,exit.x,dimension,&enm);
+
+		if(enm<ply) 
+		{
+			matrix[mummyPosition[i].x][mummyPosition[i].y]=0;
+			i--;                           
+		}
+		
 	}
 	printFormattedMatrix(matrix,dimension,settings);
 
 	while (1) {
 		if (firstMove)
 			score = timef(begin);
-
-		if (firstMove)
-			if (((score-doorClosed)>0.3)&&(!closed)) {
-				positionCursor(entrance.y,MAZEROW+doorItr+3);
-				if (settings.wallColor==LIGHT)
-					changeColor(LIGHTWALL);
-				else
-					changeColor(DARKWALL);
-				printf ("\262\260\261");
-				
-				doorItr++;
-				if (doorItr==1) {
-					entrance.x=1;
-					entrance.y=1;
-				}
-				doorClosed=score;
-				if (doorItr==3) closed=1;
-			}
 
 		positionCursor (0,49);
 		changeColor(142);
@@ -150,9 +137,9 @@ int startGame(settings_t settings)
 				for(i=0;i<settings.botNumber;i++)
 				{	
 					if (settings.botDifficuly==EASY)
-						mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,1,&wave,settings);
+						mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,2,&wave,settings);
 					else {
-						root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);
+						root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension,&br);
 	
 						mummyPosition[i]=go(matrix,root,dimension,1,&wave,settings);
 
@@ -171,7 +158,7 @@ int startGame(settings_t settings)
 					if (settings.botDifficuly==EASY)
 						mummyPosition[i]=dummyMummy(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,2,&wave,settings);
 					else {
-						root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension);
+						root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension,&br);
 	
 						mummyPosition[i]=go(matrix,root,dimension,1,&wave,settings);
 
@@ -196,6 +183,10 @@ int startGame(settings_t settings)
 
 	}
 	
+	// Sleep (1000);
+
+	if(DEBUGE_MODE)
+		printf("Tree Destroy");
 	MazeDestroy(matrix, dimension);
 
 	return 0;
