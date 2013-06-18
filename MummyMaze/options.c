@@ -13,6 +13,22 @@ void options (settings_t *settings) {
 
 	backgroundImage(TEXT);
 
+	positionCursor(50,11);
+	printf (	"   ____  _____ _______ _____ ____  _   _  _____ \n");
+	positionCursor(50,12);
+	printf ("  / __ \\|  __ \\__   __|_   _/ __ \\| \\ | |/ ____|\n");
+	positionCursor(50,13);
+	printf (" | |  | | |__) | | |    | || |  | |  \\| | (___  \n");
+	positionCursor(50,14);
+	printf (" | |  | |  ___/  | |    | || |  | | . ` |\\___ \\ \n");
+	positionCursor(50,15);
+	printf (" | |__| | |      | |   _| || |__| | |\\  |____) |\n");
+	positionCursor(50,16);
+	printf ("  \\____/|_|      |_|  |_____\\____/|_| \\_|_____/ ");
+	positionCursor(50,17);
+	printf ("                                                ");
+
+
 	while(1) {
 		
 		if (selection==LEVELSIZE) {
@@ -96,8 +112,6 @@ void options (settings_t *settings) {
 			positionCursor(SECOND,BOTTOMOPTIONS+2);
 			if (settings->mazeAlgorithm==PRIM)
 				printf ("PRIM");
-			else if (settings->mazeAlgorithm==DFS)
-				printf ("DFS");
 			else if (settings->mazeAlgorithm==BACKTRACK)
 				printf ("BACKTRACK");
 			else
@@ -111,8 +125,6 @@ void options (settings_t *settings) {
 			positionCursor(SECOND,BOTTOMOPTIONS+2);
 			if (settings->mazeAlgorithm==PRIM)
 				printf ("PRIM");
-			else if (settings->mazeAlgorithm==DFS)
-				printf ("DFS");
 			else if (settings->mazeAlgorithm==BACKTRACK)
 				printf ("BACKTRACK");
 			else
@@ -158,6 +170,52 @@ void options (settings_t *settings) {
 			else
 				printf ("HARD");
 		}
+
+		if (selection==CHARACTER) {
+			changeColor(MENUC);
+			positionCursor(FOURTH,TOPOPTIONS);
+			printf ("CHARACTER");
+			changeColor(MENUA);
+			positionCursor(FOURTH,TOPOPTIONS+2);
+			if (settings->character==LAZY)
+				printf ("LAZY");
+			else
+				printf ("DAZY");
+		}
+		else {
+			changeColor(MENUC);
+			positionCursor(FOURTH,TOPOPTIONS);
+			printf ("CHARACTER");
+			changeColor(MENUC);
+			positionCursor(FOURTH,TOPOPTIONS+2);
+			if (settings->character==LAZY)
+				printf ("LAZY");
+			else
+				printf ("DAZY");
+		}
+
+		if (selection==FILTERENDS) {
+			changeColor(MENUC);
+			positionCursor(FOURTH,BOTTOMOPTIONS);
+			printf ("FILTER DEAD ENDS");
+			changeColor(MENUA);
+			positionCursor(FOURTH,BOTTOMOPTIONS+2);
+			if (settings->filterEnds==YES)
+				printf ("YES");
+			else
+				printf ("NO");
+		}
+		else {
+			changeColor(MENUC);
+			positionCursor(FOURTH,BOTTOMOPTIONS);
+			printf ("FILTER DEAD ENDS");
+			changeColor(MENUC);
+			positionCursor(FOURTH,BOTTOMOPTIONS+2);
+			if (settings->filterEnds==YES)
+				printf ("YES");
+			else
+				printf ("NO");
+		}
 		
 		choice=controls(_getch());
 		if ((choice==EXIT)||(choice==PAUSE)) break;
@@ -169,10 +227,10 @@ void options (settings_t *settings) {
 			case DOWN:	 if (selection%10 == 1) selection++; 
 						 else if (selection%10 == 2) selection--;
 						 break;
-			case LEFT:	 if (selection/10 == 1) selection+=20; 
+			case LEFT:	 if (selection/10 == 1) selection+=30; 
 						 else selection-=10;
 						 break;
-			case RIGHT:	 if (selection/10 == 3) selection-=20; 
+			case RIGHT:	 if (selection/10 == 4) selection-=30; 
 						 else selection+=10;
 						 break;
 			case ENTER:	 switch (selection) {
@@ -215,14 +273,14 @@ void options (settings_t *settings) {
 
 							case WALLCOLOR:
 								while (1) {
-									if (settings->wallColor==PRIM) {
+									if (settings->wallColor==LIGHT) {
 										changeColor(MENUA);positionCursor(FIRST+1,BOTTOMOPTIONS+3);printf ("    LIGHT    ");
 									}
 									else {
 										changeColor(DROPUNACTIVE);positionCursor(FIRST+1,BOTTOMOPTIONS+3);printf ("    LIGHT    ");
 									}
 
-									if (settings->wallColor==DFS) {
+									if (settings->wallColor==DARK) {
 										changeColor(MENUA);positionCursor(FIRST+1,BOTTOMOPTIONS+4);printf ("    DARK     ");
 									}
 									else {
@@ -282,24 +340,18 @@ void options (settings_t *settings) {
 										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+3);printf ("       PRIM      ");
 									}
 
-									if (settings->mazeAlgorithm==DFS) {
-										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+4);printf ("       DFS       ");
-									}
-									else {
-										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+4);printf ("       DFS       ");
-									}
 									if (settings->mazeAlgorithm==BACKTRACK) {
-										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+5);printf ("    BACKTRACK    ");
+										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+4);printf ("    BACKTRACK    ");
 									}
 									else {
-										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+5);printf ("    BACKTRACK    ");
+										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+4);printf ("    BACKTRACK    ");
 									}
 
 									if (settings->mazeAlgorithm==BINARY) {
-										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+6);printf ("      BINARY     ");
+										changeColor(MENUA);positionCursor(SECOND+1,BOTTOMOPTIONS+5);printf ("      BINARY     ");
 									}
 									else {
-										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+6);printf ("      BINARY     ");
+										changeColor(DROPUNACTIVE);positionCursor(SECOND+1,BOTTOMOPTIONS+5);printf ("      BINARY     ");
 									}
 
 
@@ -382,6 +434,66 @@ void options (settings_t *settings) {
 
 								for (i=TOP+1;i<BOTTOM-1;i++) {
 									positionCursor(THIRD,i);changeColor(MENUC);printf ("                   ");
+								}
+							break;
+
+							case CHARACTER:
+								while (1) {
+									if (settings->character==LAZY) {
+										changeColor(MENUA);positionCursor(FOURTH+1,TOPOPTIONS+3);printf ("    LAZY    ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(FOURTH+1,TOPOPTIONS+3);printf ("    LAZY    ");
+									}
+
+									if (settings->character==DAZY) {
+										changeColor(MENUA);positionCursor(FOURTH+1,TOPOPTIONS+4);printf ("    DAZY    ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(FOURTH+1,TOPOPTIONS+4);printf ("    DAZY    ");
+									}
+
+									choice=controls(_getch());
+									
+									if (choice==ENTER) break;
+									switch (choice) {
+										case UP:	if (settings->character==LAZY) settings->character=DAZY; else settings->character=LAZY; break;
+										case DOWN:	if (settings->character==DAZY) settings->character=LAZY; else settings->character=DAZY; break;
+									}								
+								}
+
+								for (i=TOP+1;i<BOTTOM-1;i++) {
+									positionCursor(FOURTH,i);changeColor(MENUC);printf ("                   ");
+								}
+							break;
+
+							case FILTERENDS:
+								while (1) {
+									if (settings->filterEnds==YES) {
+										changeColor(MENUA);positionCursor(FOURTH+1,BOTTOMOPTIONS+3);printf ("    YES    ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(FOURTH+1,BOTTOMOPTIONS+3);printf ("    YES    ");
+									}
+
+									if (settings->filterEnds==NO) {
+										changeColor(MENUA);positionCursor(FOURTH+1,BOTTOMOPTIONS+4);printf ("    NO     ");
+									}
+									else {
+										changeColor(DROPUNACTIVE);positionCursor(FOURTH+1,BOTTOMOPTIONS+4);printf ("    NO     ");
+									}
+
+									choice=controls(_getch());
+									
+									if (choice==ENTER) break;
+									switch (choice) {
+										case UP:	if (settings->filterEnds==NO) settings->filterEnds=YES; else settings->filterEnds=NO; break;
+										case DOWN:	if (settings->filterEnds==YES) settings->filterEnds=NO; else settings->filterEnds=YES; break;
+									}								
+								}
+
+								for (i=TOP+1;i<BOTTOM-1;i++) {
+									positionCursor(FOURTH,i);changeColor(MENUC);printf ("                   ");
 								}
 							break;
 

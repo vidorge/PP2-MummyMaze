@@ -18,16 +18,17 @@
 #define	MAZEALGORTIHM	22
 #define BOTNUMBER		31
 #define BOTDIFFICULTY	32
+#define CHARACTER		41
+#define	FILTERENDS		42
 
 //BOT DIFFICULTY
 #define EASY	1
 #define HARD	2
 
 //MAZE ALGORITHM
-#define PRIM	1
-#define DFS		2
-#define BACKTRACK 3
-#define BINARY 4
+#define PRIM		1
+#define BACKTRACK	2
+#define BINARY		3
 
 //MAZE SIZE
 #define	SMALL	1
@@ -42,6 +43,14 @@
 #define REALTIME	1
 #define POSITIONAL	2
 
+//CHARACTER
+#define LAZY	1
+#define DAZY	2
+
+//FILTER DEAD ENDS
+#define YES		1
+#define	NO		0
+
 
 typedef struct settings_t {
 	int levelSize;
@@ -51,6 +60,7 @@ typedef struct settings_t {
 	int botDifficuly;
 	int botNumber;
 	int playMetod;
+	int filterEnds;
 }settings_t;
 
 void options (settings_t *settings);

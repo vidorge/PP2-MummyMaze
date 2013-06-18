@@ -24,11 +24,12 @@ void mainMenu () {
 
 	settings.botNumber=1;
 	settings.botDifficuly=HARD;
-	settings.character=1;
+	settings.character=LAZY;
 	settings.levelSize=LARGE;
 	settings.mazeAlgorithm=BINARY;
 	settings.wallColor=DARK;
 	settings.playMetod=REALTIME;
+	settings.filterEnds=YES;
 
 	_getch();
 
