@@ -363,7 +363,7 @@ void hint (int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension)
 		int i=0;
 		while (tmp->arrayElem[i++]->status!=1);
 		i--;
-		if(tmp->arrayElem[i]->i!=i2 && tmp->arrayElem[i]->j!=j2)
+		if(tmp->arrayElem[i]->i!=i2 || tmp->arrayElem[i]->j!=j2)
 		matrix[tmp->arrayElem[i]->i][tmp->arrayElem[i]->j]=HINT;
 		else break;
 		tmp=tmp->arrayElem[i];
