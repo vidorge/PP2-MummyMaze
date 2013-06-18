@@ -83,7 +83,7 @@ int startGame(settings_t settings) {
 		spawnEnemy(matrix,dimension,&mummyPosition[i].x,&mummyPosition[i].y);
 		root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,exit.y,exit.x,dimension,&enm);
 		root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension,&dis);
-		if(enm<ply||dis <2 ) 
+		if(enm<ply||dis <4 ) 
 		{
 			matrix[mummyPosition[i].x][mummyPosition[i].y]=0;
 			i--;                           
