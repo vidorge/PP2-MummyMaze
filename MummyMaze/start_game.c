@@ -15,7 +15,7 @@
 #include "colors.h"
 
 
-int startGame(settings_t settings) {
+int startGame(settings_t settings, float totalScore) {
 
 	int **matrix, movement, newMovement, wave=0, i, j, firstMove=0, closed=0, doorItr=0, entranceTemp;
 
@@ -117,7 +117,7 @@ int startGame(settings_t settings) {
 
 		positionCursor (0,49);
 		changeColor(142);
-		printf ("%.2f",score);
+		printf ("%.2f",score + totalScore);
 
 		newMovement=FALSE;
 
@@ -207,7 +207,7 @@ int startGame(settings_t settings) {
 				if ((playerPosition.x==mummyPosition[i].x)&&(playerPosition.y==mummyPosition[i].y)) flag=1;
 
 			if ((playerPosition.x==exit.y)&&(playerPosition.y==exit.x)) {
-				startGame(settings); flag=1;
+				startGame(settings, score + totalScore); flag=1;
 			}
 
 			if (flag) break;

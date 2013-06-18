@@ -3,6 +3,6 @@
 
 #include "options.h"
 
-int startGame(settings_t settings);
+int startGame(settings_t settings, float totalScore);
 
 #endif

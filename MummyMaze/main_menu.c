@@ -138,7 +138,7 @@ void mainMenu () {
 			case DOWN: { if (selection<EXIT) selection++; else selection=NEWGAME; break; }
 			case ENTER: { 
 				switch (selection){
-					case NEWGAME:		system("CLS");game=TRUE;startGame(settings);backgroundImage(MENU);break;
+					case NEWGAME:		system("CLS");game=TRUE;startGame(settings, 0);backgroundImage(MENU);break;
 					case LOADGAME:		break;
 					case SAVEGAME:		break;
 					case OPTIONS:		system ("CLS");options(&settings);backgroundImage(MENU);selection=(NEWGAME);break;
