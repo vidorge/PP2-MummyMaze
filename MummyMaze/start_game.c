@@ -22,7 +22,7 @@ int startGame(settings_t settings, float totalScore) {
 	position_t	playerPosition, *mummyPosition;
 	dimension_t dimension;
 	elemTree_t* root=null;
-	int flag,br,ply,enm;
+	int flag,br,ply,enm,dis;
 	clock_t begin = clock();
 	float score=0, last=0, doorClosed=0;
 	position_t entrance, exit;
@@ -82,8 +82,8 @@ int startGame(settings_t settings, float totalScore) {
 
 		spawnEnemy(matrix,dimension,&mummyPosition[i].x,&mummyPosition[i].y);
 		root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,exit.y,exit.x,dimension,&enm);
-
-		if(enm<ply) 
+		root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension,&dis);
+		if(enm<ply||dis <4 ) 
 		{
 			matrix[mummyPosition[i].x][mummyPosition[i].y]=0;
 			i--;                           
@@ -95,7 +95,7 @@ int startGame(settings_t settings, float totalScore) {
 	while (1) {
 		if (firstMove)
 			score = timef(begin);
-		hint (matrix,playerPosition.x,playerPosition.y,exit.y,exit.x,dimension);
+		
 		if (firstMove)
 			if (((score-doorClosed)>0.3)&&(!closed)) {
 				positionCursor(MAZECOLUMN,MAZECOLUMN+doorItr+(entranceTemp*3));
@@ -154,6 +154,9 @@ int startGame(settings_t settings, float totalScore) {
 								newMovement=TRUE;
 								break;
 							}else break;
+				case HINT:	hint (matrix,playerPosition.x,playerPosition.y,exit.y,exit.x,dimension);
+							printFormattedMatrix(matrix,dimension,settings);
+							break;
 			}
 		}
 		

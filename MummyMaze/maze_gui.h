@@ -6,10 +6,10 @@
 
 #define PLAYER		3
 #define MUMMY		4
-#define JEWEL		5
-#define HINT		8
+#define HINT		5
 #define ENTRANCE	6
 #define EXIT		7
+#define JEWEL		8
 
 #define MAZECOLUMN	1
 #define MAZEROW		1
