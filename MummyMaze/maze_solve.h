@@ -51,16 +51,19 @@ int manhattanLength (int cordinateX1, int cordinateY1 , int cordinateX2, int cor
 
 elemPrioQueue_t* deletePrioQueue(elemPrioQueue_t* Q);
 void insertPrioQueue(elemPrioQueue_t **Q, elemTree_t* T,int Len);
-elemTree_t*  branchAndBound(int **matrix, int i, int j,int, int,dimension_t dimension,int *br ); // sexy viki
+elemTree_t*  branchAndBound(int **matrix, int i, int j,int, int,dimension_t dimension,int *br ); 
 elemTree_t* createNode(int i, int j,elemTree_t* pre,int traveled); 
 char neighbours(int **matrix,char **visted,int i , int j); 
 void dealocateTree_r	( elemTree_t* root);
-void moveTo(int **matrix,int i1,int j1, int i2, int j2 ); // sexy viki
-position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int *wave, settings_t settings); // sexy viki
-void spawnPlayer(int **matrix, dimension_t dimension,int *i,int *j); // sexy viki
-void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j);// sexy viki
-position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int *wave,settings_t settings);// sexy viki
+void moveTo(int **matrix,int i1,int j1, int i2, int j2 ); 
+position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int *wave, settings_t settings); 
+void spawnPlayer(int **matrix, dimension_t dimension,int *i,int *j); 
+void spawnEnemy(int **matrix,dimension_t dimension,int *i,int *j);
+position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int *wave,settings_t settings);
 void deletePrioQueue2(elemPrioQueue_t *q);
-float timef(clock_t begin); // sexy viki
-void hint (int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension); // sexy viki
+float timef(clock_t begin); 
+void hint (int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension); 
+createScoreElem(float score,char * str,highscore_t *first);
+highscore_t* readFromFile( FILE* output);
+void printInFile(highscore_t* first, FILE* output);
 #endif
