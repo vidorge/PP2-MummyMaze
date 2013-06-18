@@ -214,10 +214,6 @@ int startGame(settings_t settings) {
 
 	}
 	
-	// Sleep (1000);
-
-	if(DEBUGE_MODE)
-		printf("Tree Destroy");
 	MazeDestroy(matrix, dimension);
 
 	return 0;
