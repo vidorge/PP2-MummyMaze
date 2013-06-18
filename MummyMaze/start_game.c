@@ -43,7 +43,7 @@ int startGame(settings_t settings)
 	
 	switch ( settings.mazeAlgorithm ) {
 		case PRIM: Prim(matrix, dimension); break;
-		case DFS: DfsInit(matrix, dimension); break;
+		//case DFS: DfsInit(matrix, dimension); break;
 		case BACKTRACK: RecursiveBacktrack(matrix, dimension); break;
 		case BINARY: BinaryTreeMaze(matrix, dimension); break;
 	}

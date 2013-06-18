@@ -64,32 +64,14 @@ void fillHelpMatrix(int **matrix, dimension_t dimension);
 
 //mrzelo me majke mi
 
-void Dfs(int **a, int r, int c, dimension_t dimension);
-
-
-//int[] ShuffleArray(int randDir[]);
-
-
-void DfsInit(int **a, dimension_t dimension);
-
-
 
 void ShuffleArray(int *randDir);
 
-
-
-void RemoveRandomWalls(int **a, dimension_t dimension, int probability);
-
 void MazeDestroy(int **a, dimension_t dimension);
-
-void RemoveAloneWalls(int **a, dimension_t dimension);
-
 
 int ** GenerateMinMatrix(dimension_t dimension);
 
-
 void Prim(int **a, dimension_t dimension);
-
 
 void CarveGateways(int **a, dimension_t dimension);
 
@@ -104,5 +86,14 @@ void BinaryTreeMaze(int **a, dimension_t dimension);
 void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension);
 
 void FilterDeadEnds(int **a, dimension_t dimension);
+
+
+/*
+//RIP DFS 
+void Dfs(int **a, int r, int c, dimension_t dimension);
+void DfsInit(int **a, dimension_t dimension);
+void RemoveRandomWalls(int **a, dimension_t dimension, int probability);
+void RemoveAloneWalls(int **a, dimension_t dimension);
+*/
 
 #endif

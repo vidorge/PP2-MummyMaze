@@ -26,22 +26,7 @@ int **initMatrix(dimension_t dimension)
 }
 
 
-void DfsInit(int **a, dimension_t dimension)
-{
 
-	int c, r;
-
-	r = dimension.y / 2; //this must be more random for dense matrix
-	c = dimension.y / 2;
-
-	a[r][c] = 0;
-
-	Dfs(a, r, c, dimension);
-
-	RemoveRandomWalls(a, dimension, 4);
-	RemoveAloneWalls(a, dimension);
-
-}
 
 void ShuffleArray(int *randDir)
 {
@@ -58,59 +43,7 @@ void ShuffleArray(int *randDir)
 
 }
 
-void Dfs(int **a, int r, int c, dimension_t dimension)
-{
-	int randDir[] = {1, 2, 3, 4};
-	int i;
-	int print = 0;
-	ShuffleArray(randDir);
 
-	for (i = 0; i < 4; i++) {
- 
-         switch(randDir[i]){
-         case 1: // Up
-             if (r - 2 <= 0) continue;
-             if (a[r - 2][c] != 0) {
-                 a[r-2][c] = 0;
-                 a[r-1][c] = 0;
-                 Dfs(a, r - 2, c, dimension);
-             }
-             break;
-
-         case 2: // Right
-             if (c + 2 >= dimension.x - 1) continue;
-             if (a[r][c + 2] != 0) {
-                 a[r][c + 2] = 0;
-                 a[r][c + 1] = 0;
-                 Dfs(a, r, c + 2, dimension);
-             }
-             break;
-
-         case 3: // Down
-             if (r + 2 >= dimension.y - 1)  continue;
-             if (a[r + 2][c] != 0) {
-                 a[r+2][c] = 0;
-                 a[r+1][c] = 0;
-                 Dfs(a, r + 2, c, dimension);
-             }
-             break;
-
-         case 4: // Left
-             if (c - 2 <= 0) continue;
-             if (a[r][c - 2] != 0) {
-                 a[r][c - 2] = 0;
-                 a[r][c - 1] = 0;
-                 Dfs(a, r, c - 2, dimension);
-             }
-             break;
-
-         }
-
-		 LivePrint(a, dimension);
-
-     }
-
-}
 
 void fillHelpMatrix(int **matrix, dimension_t dimension)
 {
@@ -141,59 +74,7 @@ void printDebugMatrix(int **matrix, dimension_t dimension)
 
 }
 
-void RemoveRandomWalls(int **a, dimension_t dimension, int probability)
-{
-	int i, j;
 
-	for(i=1; i< dimension.y - 1; i++)
-	{
-		for(j=1; j < dimension.x - 1; j++)
-		{
-			if( !a[i][j] ) continue;
-			else
-			{
-
-				if( (rand() % probability) == 1 )
-					a[i][j] = 0;
-
-			}
-
-
-		}
-
-
-	}
-
-
-}
-
-
-void RemoveAloneWalls(int **a, dimension_t dimension)
-{
-	int i, j;
-
-	for(i=1; i< dimension.y - 1; i++)
-	{
-		for(j=1; j < dimension.x - 1; j++)
-		{
-			if( !a[i][j] ) continue;
-			else
-			{
-
-				if(
-					a[i-1][j] == 0 && a[i+1][j] == 0 && a[i][j-1] == 0 && a[i][j+1] == 0 &&
-					a[i-1][j-1] == 0 && a[i+1][j+1] == 0 && a[i-1][j+1] == 0 && a[i+1][j-1] == 0
-					
-					)
-					a[i][j] = 0;
-
-			}
-		}
-	}
-
-
-
-}
 
 
 void MazeDestroy(int **a, dimension_t dimension)
@@ -685,7 +566,6 @@ void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension)
 		}
 
 
-
 }
 
 void BinaryTreeMaze(int **a, dimension_t dimension)
@@ -834,6 +714,132 @@ void FilterDeadEnds(int **a, dimension_t dimension)
 
 		}
 
+}
+
+/*
+// RIP DFS
+void DfsInit(int **a, dimension_t dimension)
+{
+
+	int c, r;
+
+	r = dimension.y / 2; //this must be more random for dense matrix
+	c = dimension.y / 2;
+
+	a[r][c] = 0;
+
+	Dfs(a, r, c, dimension);
+
+	RemoveRandomWalls(a, dimension, 4);
+	RemoveAloneWalls(a, dimension);
+
+}
+
+
+void Dfs(int **a, int r, int c, dimension_t dimension)
+{
+	int randDir[] = {1, 2, 3, 4};
+	int i;
+	int print = 0;
+	ShuffleArray(randDir);
+
+	for (i = 0; i < 4; i++) {
+ 
+         switch(randDir[i]){
+         case 1: // Up
+             if (r - 2 <= 0) continue;
+             if (a[r - 2][c] != 0) {
+                 a[r-2][c] = 0;
+                 a[r-1][c] = 0;
+                 Dfs(a, r - 2, c, dimension);
+             }
+             break;
+
+         case 2: // Right
+             if (c + 2 >= dimension.x - 1) continue;
+             if (a[r][c + 2] != 0) {
+                 a[r][c + 2] = 0;
+                 a[r][c + 1] = 0;
+                 Dfs(a, r, c + 2, dimension);
+             }
+             break;
+
+         case 3: // Down
+             if (r + 2 >= dimension.y - 1)  continue;
+             if (a[r + 2][c] != 0) {
+                 a[r+2][c] = 0;
+                 a[r+1][c] = 0;
+                 Dfs(a, r + 2, c, dimension);
+             }
+             break;
+
+         case 4: // Left
+             if (c - 2 <= 0) continue;
+             if (a[r][c - 2] != 0) {
+                 a[r][c - 2] = 0;
+                 a[r][c - 1] = 0;
+                 Dfs(a, r, c - 2, dimension);
+             }
+             break;
+
+         }
+
+		 LivePrint(a, dimension);
+
+     }
+
+}
+
+void RemoveRandomWalls(int **a, dimension_t dimension, int probability)
+{
+	int i, j;
+
+	for(i=1; i< dimension.y - 1; i++)
+	{
+		for(j=1; j < dimension.x - 1; j++)
+		{
+			if( !a[i][j] ) continue;
+			else
+			{
+
+				if( (rand() % probability) == 1 )
+					a[i][j] = 0;
+
+			}
+
+
+		}
+
+
+	}
 
 
 }
+
+
+void RemoveAloneWalls(int **a, dimension_t dimension)
+{
+	int i, j;
+
+	for(i=1; i< dimension.y - 1; i++)
+	{
+		for(j=1; j < dimension.x - 1; j++)
+		{
+			if( !a[i][j] ) continue;
+			else
+			{
+
+				if(
+					a[i-1][j] == 0 && a[i+1][j] == 0 && a[i][j-1] == 0 && a[i][j+1] == 0 &&
+					a[i-1][j-1] == 0 && a[i+1][j+1] == 0 && a[i-1][j+1] == 0 && a[i+1][j-1] == 0
+					
+					)
+					a[i][j] = 0;
+
+			}
+		}
+	}
+
+}
+
+*/
