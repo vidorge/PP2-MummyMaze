@@ -95,7 +95,7 @@ int startGame(settings_t settings) {
 	while (1) {
 		if (firstMove)
 			score = timef(begin);
-
+		hint (matrix,playerPosition.x,playerPosition.y,exit.y,exit.x,dimension);
 		if (firstMove)
 			if (((score-doorClosed)>0.3)&&(!closed)) {
 				positionCursor(MAZECOLUMN,MAZECOLUMN+doorItr+(entranceTemp*3));

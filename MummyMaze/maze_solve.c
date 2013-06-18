@@ -228,7 +228,8 @@ position_t go(int **matrix,elemTree_t* root,dimension_t dimension,int steps ,int
 	elemTree_t* tmp2,*tmp1=root;
 	
 
-	while(steps!=0 && tmp1->arrayElem!=null ){
+	while(steps!=0 && tmp1->arrayElem!=null )
+	{
 		i=0;
 		while(tmp1->arrayElem[i++]->status!=1);
 		
@@ -362,7 +363,9 @@ void hint (int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension)
 		int i=0;
 		while (tmp->arrayElem[i++]->status!=1);
 		i--;
+		if(tmp->arrayElem[i]->i!=i2 && tmp->arrayElem[i]->j!=j2)
 		matrix[tmp->arrayElem[i]->i][tmp->arrayElem[i]->j]=8;
+		else break;
 		tmp=tmp->arrayElem[i];
 
 	}
