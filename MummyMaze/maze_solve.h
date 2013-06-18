@@ -36,6 +36,14 @@ typedef struct position_t
 	int x;
 	int y;
 } position_t;
+typedef struct highscore_t
+{
+	float score;
+	char * ime ;
+	struct highscore_t * succ;
+
+}highscore_t;
+
 int manhattanLength (int cordinateX1, int cordinateY1 , int cordinateX2, int cordinateY2 );
 
 
