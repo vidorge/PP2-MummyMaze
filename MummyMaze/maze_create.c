@@ -659,7 +659,8 @@ int SetEntrance(int **a, dimension_t dimension)
 	for( i = 1; i < dimension.y - 1; i++ )
 		if ( a[i][1] == 0 )
 			break;
-	
+
+
 	return i;
 
 
@@ -670,7 +671,14 @@ int SetExit(int **a, dimension_t dimension)
 
 	int i;
 
+	/*
 	for ( i = dimension.y - 2; i > 0; i-- )
+		if ( a[i][dimension.x - 2] == 0 )
+			break;
+	*/
+
+
+	for( i = 1; i < dimension.y - 1; i++ )
 		if ( a[i][dimension.x - 2] == 0 )
 			break;
 
