@@ -3,7 +3,7 @@
 #include <time.h>
 #include <conio.h>
 #include <windows.h>
-
+#include "score_entry.h"
 #include "stack.h"
 #include "maze_gui.h"
 #include "maze_create.h"

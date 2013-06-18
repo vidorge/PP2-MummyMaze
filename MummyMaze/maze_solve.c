@@ -370,43 +370,43 @@ void hint (int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension)
 
 	}
 }
-createScoreElem(float score,char * str,highscore_t *first)
+void createScoreElem(float score,char * str,highscore_t *first)
 {
-	highscore_t *tmp ,*pred,*new;
+	highscore_t *tmp ,*pred,*new1;
 	tmp=first;
 	first=null;
-
-	new= (highscore_t*) malloc (sizeof(highscore_t));
-	new->score=score;
-	strcpy(new->name,str)
-	while (tmp!=null && new->score< tmp->score )
+	pred=null;
+	new1= (highscore_t*) malloc (sizeof(highscore_t));
+	new1->score=score;
+	//strcpy(new1->name,str);
+	while (tmp!=null && new1->score< tmp->score )
 	{
 		pred=tmp;
 		tmp=tmp->succ;
 	}
 	if (pred==null)
 	{
-		new->succ=tmp;
-		first=new;
+		new1->succ=tmp;
+		first=new1;
 	}
 	else 
 	{
-		pred->succ=new;
-		new->succ=tmp;
+		pred->succ=new1;
+		new1->succ=tmp;
 	}
 }
 
 highscore_t* readFromFile( FILE* output)
 {
-	highscore_t *tmp,*new, *first=null;
+	highscore_t *tmp,*new1, *first=null;
 	tmp=first;
 	while (fread(tmp,sizeof(highscore_t),1,output)!=0)
 	{
-		new= (highscore_t*)malloc(sizeof(highscore_t));
-		new->score= tmp->score;
-		new->name=tmp->name;
-		tmp->succ=new;
-		new->succ=null;
+		new1= (highscore_t*)malloc(sizeof(highscore_t));
+		new1->score= tmp->score;
+		new1->name=tmp->name;
+		tmp->succ=new1;
+		new1->succ=null;
 		tmp=tmp->succ;
 	}
 
@@ -420,7 +420,7 @@ void printInFile(highscore_t* first, FILE* output)
  	highscore_t* tmp;
 
  	tmp=first;
- 	fseek(SEEK_SET);
+ 	fseek(output,0,SEEK_SET);
  	while(tmp!=null)
  	{
  		fwrite(tmp,sizeof(highscore_t),1,output);
