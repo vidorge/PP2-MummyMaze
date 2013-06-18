@@ -164,7 +164,7 @@ int FindInList(coordList_t *rear, int x, int y)
 
 }
 
-void Prim(int **a, dimension_t dimension)
+void Prim(int **a, dimension_t dimension, settings_t settings)
 {
 
 	int w, h, x, y, i, j;
@@ -268,7 +268,7 @@ void Prim(int **a, dimension_t dimension)
 
 		}
 
-		if ( ++print % 5 == 0 ) { ConvertFromMin(primMatrix, a, dimension); LivePrint(a, dimension); }
+		if ( ++print % 5 == 0 ) { ConvertFromMin(primMatrix, a, dimension); LivePrint(a, dimension, settings); }
 
 		// dodaj sve komsije koje nisu deo lafirinta u redic
 		if ( y - 1 >= 0 && !(primMatrix[y-1][x] & IN_MAZE) ) 
@@ -361,9 +361,6 @@ void ConvertPartial(int **minMatrix, int **a, int i, int j)
 		a[i*2 + 2][j*2 + 2] = 1;
 	}
 
-	LiveChange(a, 2*i, 2*j);
-	Sleep(100);
-
 
 }
 
@@ -384,7 +381,7 @@ void recursive_push(coordList_t **stack, int x, int y)
 }
 
 
-void RecursiveBacktrack(int **a, dimension_t dimension)
+void RecursiveBacktrack(int **a, dimension_t dimension, settings_t settings)
 {
 
 	int **minMatrix;
@@ -517,11 +514,11 @@ void RecursiveBacktrack(int **a, dimension_t dimension)
 
 			} // end_for_rand
 
-			if ( ++print % 5 == 0 ) { ConvertFromMin(minMatrix, a, dimension); LivePrint(a, dimension); }
+			if ( ++print % 5 == 0 ) { ConvertFromMin(minMatrix, a, dimension); LivePrint(a, dimension, settings); }
 
 		} // end_walk
 
-		if ( ++print % 5 == 0 ) { ConvertFromMin(minMatrix, a, dimension); LivePrint(a, dimension); }
+		if ( ++print % 5 == 0 ) { ConvertFromMin(minMatrix, a, dimension); LivePrint(a, dimension, settings); }
 
 	} // end_while_everything
 
@@ -568,7 +565,7 @@ void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension)
 
 }
 
-void BinaryTreeMaze(int **a, dimension_t dimension)
+void BinaryTreeMaze(int **a, dimension_t dimension, settings_t settings)
 {
 	int **minMatrix;
 	int w, h, x, y;
@@ -621,7 +618,7 @@ void BinaryTreeMaze(int **a, dimension_t dimension)
 
 			}
 
-			if ( ++print % 10 == 0 ) { ConvertFromMin(minMatrix, a, dimension); LivePrint(a, dimension); }
+			if ( ++print % 10 == 0 ) { ConvertFromMin(minMatrix, a, dimension); LivePrint(a, dimension, settings); }
 	
 		}
 
@@ -734,130 +731,5 @@ void FilterDeadEnds(int **a, dimension_t dimension)
 
 }
 
-/*
 // RIP DFS
-void DfsInit(int **a, dimension_t dimension)
-{
 
-	int c, r;
-
-	r = dimension.y / 2; //this must be more random for dense matrix
-	c = dimension.y / 2;
-
-	a[r][c] = 0;
-
-	Dfs(a, r, c, dimension);
-
-	RemoveRandomWalls(a, dimension, 4);
-	RemoveAloneWalls(a, dimension);
-
-}
-
-
-void Dfs(int **a, int r, int c, dimension_t dimension)
-{
-	int randDir[] = {1, 2, 3, 4};
-	int i;
-	int print = 0;
-	ShuffleArray(randDir);
-
-	for (i = 0; i < 4; i++) {
- 
-         switch(randDir[i]){
-         case 1: // Up
-             if (r - 2 <= 0) continue;
-             if (a[r - 2][c] != 0) {
-                 a[r-2][c] = 0;
-                 a[r-1][c] = 0;
-                 Dfs(a, r - 2, c, dimension);
-             }
-             break;
-
-         case 2: // Right
-             if (c + 2 >= dimension.x - 1) continue;
-             if (a[r][c + 2] != 0) {
-                 a[r][c + 2] = 0;
-                 a[r][c + 1] = 0;
-                 Dfs(a, r, c + 2, dimension);
-             }
-             break;
-
-         case 3: // Down
-             if (r + 2 >= dimension.y - 1)  continue;
-             if (a[r + 2][c] != 0) {
-                 a[r+2][c] = 0;
-                 a[r+1][c] = 0;
-                 Dfs(a, r + 2, c, dimension);
-             }
-             break;
-
-         case 4: // Left
-             if (c - 2 <= 0) continue;
-             if (a[r][c - 2] != 0) {
-                 a[r][c - 2] = 0;
-                 a[r][c - 1] = 0;
-                 Dfs(a, r, c - 2, dimension);
-             }
-             break;
-
-         }
-
-		 LivePrint(a, dimension);
-
-     }
-
-}
-
-void RemoveRandomWalls(int **a, dimension_t dimension, int probability)
-{
-	int i, j;
-
-	for(i=1; i< dimension.y - 1; i++)
-	{
-		for(j=1; j < dimension.x - 1; j++)
-		{
-			if( !a[i][j] ) continue;
-			else
-			{
-
-				if( (rand() % probability) == 1 )
-					a[i][j] = 0;
-
-			}
-
-
-		}
-
-
-	}
-
-
-}
-
-
-void RemoveAloneWalls(int **a, dimension_t dimension)
-{
-	int i, j;
-
-	for(i=1; i< dimension.y - 1; i++)
-	{
-		for(j=1; j < dimension.x - 1; j++)
-		{
-			if( !a[i][j] ) continue;
-			else
-			{
-
-				if(
-					a[i-1][j] == 0 && a[i+1][j] == 0 && a[i][j-1] == 0 && a[i][j+1] == 0 &&
-					a[i-1][j-1] == 0 && a[i+1][j+1] == 0 && a[i-1][j+1] == 0 && a[i+1][j-1] == 0
-					
-					)
-					a[i][j] = 0;
-
-			}
-		}
-	}
-
-}
-
-*/

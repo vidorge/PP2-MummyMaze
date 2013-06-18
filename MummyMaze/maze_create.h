@@ -1,6 +1,8 @@
 ﻿#ifndef _maze_create_h
 #define _maze_create_h
 
+#include "options.h"
+
 #define DIM 15
 
 #define UP_WALL		1 //0001
@@ -71,7 +73,7 @@ void MazeDestroy(int **a, dimension_t dimension);
 
 int ** GenerateMinMatrix(dimension_t dimension);
 
-void Prim(int **a, dimension_t dimension);
+void Prim(int **a, dimension_t dimension, settings_t settings);
 
 void CarveGateways(int **a, dimension_t dimension);
 
@@ -79,21 +81,17 @@ int SetExit(int **a, dimension_t dimension);
 
 int SetEntrance(int **a, dimension_t dimension);
 
-void RecursiveBacktrack(int **a, dimension_t dimension);
+void RecursiveBacktrack(int **a, dimension_t dimension, settings_t settings);
 
-void BinaryTreeMaze(int **a, dimension_t dimension);
+void BinaryTreeMaze(int **a, dimension_t dimension, settings_t settings);
 
 void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension);
 
 void FilterDeadEnds(int **a, dimension_t dimension);
 
 
-/*
+
 //RIP DFS 
-void Dfs(int **a, int r, int c, dimension_t dimension);
-void DfsInit(int **a, dimension_t dimension);
-void RemoveRandomWalls(int **a, dimension_t dimension, int probability);
-void RemoveAloneWalls(int **a, dimension_t dimension);
-*/
+
 
 #endif

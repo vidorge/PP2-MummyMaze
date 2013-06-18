@@ -101,7 +101,7 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 	}
 }
 
-void LivePrint(int **matrix, dimension_t dimension) {
+void LivePrint(int **matrix, dimension_t dimension, settings_t settings) {
 	int i,j;
 	int temp, column=MAZECOLUMN;
 
@@ -112,7 +112,10 @@ void LivePrint(int **matrix, dimension_t dimension) {
 
 			if(matrix[j][i]==BLANK) {
 	
-				changeColor(DARKBLANK);
+				if (settings.wallColor==LIGHT)
+					changeColor(LIGHTBLANK);
+				else
+					changeColor(DARKBLANK);
 
 				positionCursor(column,temp++);
 				printf ("   ");
@@ -124,7 +127,10 @@ void LivePrint(int **matrix, dimension_t dimension) {
 
 			} else {
 				
-				changeColor(DARKWALL);
+				if (settings.wallColor==LIGHT)
+					changeColor(LIGHTWALL);
+				else
+					changeColor(DARKWALL);
 
 				positionCursor(column,temp++);
 				printf ("\260\260\260");

@@ -30,7 +30,7 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 
 void printHelpMatrix(int **matrix, dimension_t dimension);
 
-void LivePrint(int **matrix, dimension_t dimension);
+void LivePrint(int **matrix, dimension_t dimension, settings_t settings);
 
 void LiveChange(int **matrix, int row, int column);
 

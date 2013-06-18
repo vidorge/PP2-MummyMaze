@@ -51,13 +51,11 @@ int startGame(settings_t settings, float totalScore) {
 
 	matrix = initMatrix(dimension);
 
-	LivePrint(matrix, dimension);
-	
 	switch ( settings.mazeAlgorithm ) {
-		case PRIM: Prim(matrix, dimension); break;
+		case PRIM: Prim(matrix, dimension, settings); break;
 		//case DFS: DfsInit(matrix, dimension); break;
-		case BACKTRACK: RecursiveBacktrack(matrix, dimension); break;
-		case BINARY: BinaryTreeMaze(matrix, dimension); break;
+		case BACKTRACK: RecursiveBacktrack(matrix, dimension, settings); break;
+		case BINARY: BinaryTreeMaze(matrix, dimension, settings); break;
 	}
 
 	FilterDeadEnds(matrix, dimension);
