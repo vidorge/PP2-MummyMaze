@@ -13,6 +13,7 @@
 #define EXIT	27
 #define ENTER	13
 #define PAUSE	8
+#define HINT	104	
 
 int controls (int keyboardInput);
 
