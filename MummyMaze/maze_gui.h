@@ -24,14 +24,12 @@
 #include "options.h"
 #include "screen_resolution.h"
 
-void printFormattedMatrix(int **matrix, dimension_t dimension, settings_t settings);
+void printFormattedMatrix(int **matrix, dimension_t dimension, settings_t settings); //tivolisnju
 
-void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint, int *wave, settings_t settings);
+void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint, int *wave, settings_t settings); //tivolisnju
 
 void printHelpMatrix(int **matrix, dimension_t dimension);
 
-void LivePrint(int **matrix, dimension_t dimension, settings_t settings);
-
-void LiveChange(int **matrix, int row, int column);
+void LivePrint(int **matrix, dimension_t dimension, settings_t settings); //tivolisnju
 
 #endif

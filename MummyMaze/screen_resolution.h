@@ -11,6 +11,6 @@
 #define WIDTH 150
 #define HEIGHT 56
 
-void setConsoleSize(int width,int height);
+void setConsoleSize(int width,int height); //tivolisnju
 
 #endif

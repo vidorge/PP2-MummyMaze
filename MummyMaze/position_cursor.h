@@ -3,6 +3,6 @@
 
 //Used to position cursor anywhere within range of screen buffer size
 
-void positionCursor (int column, int row);
+void positionCursor (int column, int row); //tivolisnju
 
 #endif
