@@ -26,6 +26,8 @@
 //MAZE ALGORITHM
 #define PRIM	1
 #define DFS		2
+#define BACKTRACK 3
+#define BINARY 4
 
 //MAZE SIZE
 #define	SMALL	1

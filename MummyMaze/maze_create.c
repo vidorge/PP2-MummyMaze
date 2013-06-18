@@ -62,7 +62,7 @@ void Dfs(int **a, int r, int c, dimension_t dimension)
 {
 	int randDir[] = {1, 2, 3, 4};
 	int i;
-
+	int print = 0;
 	ShuffleArray(randDir);
 
 	for (i = 0; i < 4; i++) {
@@ -105,6 +105,9 @@ void Dfs(int **a, int r, int c, dimension_t dimension)
              break;
 
          }
+
+		 LivePrint(a, dimension);
+
      }
 
 }
@@ -218,7 +221,7 @@ void MazeDestroy(int **a, dimension_t dimension)
 */
 
 
-int ** GeneratePrimMatrix(dimension_t dimension)
+int ** GenerateMinMatrix(dimension_t dimension)
 {
 
 	int **a;
@@ -288,12 +291,12 @@ void Prim(int **a, dimension_t dimension)
 	int **primMatrix, count = 0;
 	int randDir[] = {1, 2, 3, 4};
 	int done = 0, randNum = 0;
-
+	int print = 0;
 	coordList_t *rear, *element;
 
 	rear = NULL; element = NULL;
 
-	primMatrix = GeneratePrimMatrix(dimension);
+	primMatrix = GenerateMinMatrix(dimension);
 
 	w = dimension.x / 2;
 	h = dimension.y / 2;
@@ -304,8 +307,6 @@ void Prim(int **a, dimension_t dimension)
 
 
 	InsertElement(&rear, x, y);
-	//printf("\n Dodato  %d %d", x, y);
-
 
 	while ( rear != NULL )
 	{
@@ -324,10 +325,6 @@ void Prim(int **a, dimension_t dimension)
 		y = element->i;
 		if ( rear == element ) rear = NULL;
 		free(element);
-
-		//printf("\n Obrisano  %d %d", x, y);
-
-
 		//delete
 
 		primMatrix[y][x] |= IN_MAZE;
@@ -386,11 +383,12 @@ void Prim(int **a, dimension_t dimension)
 
 			}
 
+
 			if ( done == 1 ) break;
 
 		}
 
-
+		if ( ++print % 5 == 0 ) { ConvertFromMin(primMatrix, a, dimension); LivePrint(a, dimension); }
 
 		// dodaj sve komsije koje nisu deo lafirinta u redic
 		if ( y - 1 >= 0 && !(primMatrix[y-1][x] & IN_MAZE) ) 
@@ -440,16 +438,6 @@ void Prim(int **a, dimension_t dimension)
 
 	}
 
-
-	/*
-	printf("\n");
-	for ( i = 0; i < h; i++, printf("\n") )
-		for ( j = 0; j < w; j++ )
-			printf("%4d", primMatrix[i][j] - 16);
-	*/
-
-
-
 	// promeni primovu u nasu sugavu reprezentaciju
 	for ( i = 0; i < dimension.y; i++ )
 		for ( j = 0; j < dimension.x; j++ )
@@ -478,10 +466,275 @@ void Prim(int **a, dimension_t dimension)
 		
 }
 
+
+void recursive_push(coordList_t **stack, int x, int y)
+{
+
+		coordList_t *element;
+
+		element = (coordList_t*) malloc( sizeof( coordList_t ) );
+
+		element->i = y;
+		element->j = x;
+	
+		element->next = *stack;
+		*stack = element;
+
+}
+
+
+void RecursiveBacktrack(int **a, dimension_t dimension)
+{
+
+	int **minMatrix;
+	int w, h, x, y, i;
+	int un, rn, dn, ln;
+	coordList_t *stack = NULL, *element;
+	int randDir[] = {1, 2, 3, 4};
+	int done;
+	int print = 0;
+
+	minMatrix = GenerateMinMatrix(dimension);
+
+	w = dimension.x / 2;
+	h = dimension.y / 2;
+
+	x = w / 2;
+	y = h / 2;
+
+	
+
+	minMatrix[y][x] |= IN_MAZE;
+
+	// insert 
+	element = (coordList_t*) malloc( sizeof(coordList_t) );
+	element->i = y;
+	element->j = x;
+	element->next = stack;
+	stack = element;
+	//
+
+	while ( stack != NULL )
+	{
+
+		x = stack->j;
+		y = stack->i;
+		
+		element = stack;
+		stack = stack->next;
+		free(element);
+
+		while ( 1 )
+		{
+
+			un = y - 1 >= 0 && !(minMatrix[y-1][x] & IN_MAZE);
+			rn = x + 1 < w && !(minMatrix[y][x+1] & IN_MAZE);
+			dn = y + 1 < h && !(minMatrix[y+1][x] & IN_MAZE);
+			ln = x - 1 >= 0 && !(minMatrix[y][x-1] & IN_MAZE);
+
+			if ( !(un || rn || dn || ln) ) break;
+
+			ShuffleArray(randDir);
+
+			done = 0;
+
+			for ( i = 0; i < 4; i++ )
+			{
+
+				switch ( randDir[i] )
+				{
+
+				case 1: //up
+					if ( un )
+					{
+						minMatrix[y][x] &= ~UP_WALL;
+						minMatrix[y-1][x] &= ~DOWN_WALL;
+
+						y = y - 1;
+
+						minMatrix[y][x] |= IN_MAZE;
+						recursive_push(&stack, x, y);
+
+						done = 1;
+
+					}
+
+
+					break;
+
+				case 2: //right
+					if ( rn )
+					{
+						minMatrix[y][x] &= ~RIGHT_WALL;
+						minMatrix[y][x+1] &= ~LEFT_WALL;
+
+						x = x + 1;
+
+						minMatrix[y][x] |= IN_MAZE;
+						recursive_push(&stack, x, y);
+
+						done = 1;
+
+					}
+					break;
+
+				case 3: //down
+					if ( dn )
+					{
+						minMatrix[y][x] &= ~DOWN_WALL;
+						minMatrix[y+1][x] &= ~UP_WALL;
+
+						y = y + 1;
+
+						minMatrix[y][x] |= IN_MAZE;
+						recursive_push(&stack, x, y);
+
+						done = 1;
+
+					}
+					break;
+
+				case 4: //left
+					if ( ln )
+					{
+						minMatrix[y][x] &= ~LEFT_WALL;
+						minMatrix[y+1][x] &= ~RIGHT_WALL;
+
+						x = x - 1;
+
+						minMatrix[y][x] |= IN_MAZE;
+						recursive_push(&stack, x, y);
+
+						done = 1;
+
+					}
+					break;
+
+				} // end_switch
+
+				if ( done ) break;
+
+			} // end_for_rand
+
+			if ( ++print % 5 == 0 ) { ConvertFromMin(minMatrix, a, dimension); LivePrint(a, dimension); }
+
+		} // end_walk
+
+		if ( ++print % 5 == 0 ) { ConvertFromMin(minMatrix, a, dimension); LivePrint(a, dimension); }
+
+	} // end_while_everything
+
+
+
+
+	ConvertFromMin(minMatrix, a, dimension);
+
+}
+
+void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension)
+{
+	int i, j;
+	int w, h;
+
+	w = dimension.x / 2;
+	h = dimension.y / 2;
+
+	for ( i = 0; i < dimension.y; i++ )
+		for ( j = 0; j < dimension.x; j++ )
+			if ( i == 0 || i == dimension.y-1 || j == 0 || j == dimension.x-1 ) a[i][j] = 1;
+			else a[i][j] = 0;
+		
+	for ( i = 0; i < h; i++ )
+		for ( j = 0; j < w; j++ )
+		{
+
+			if ( minMatrix[i][j] & UP_WALL )
+			{
+				a[i*2][j*2] = 1;
+				a[i*2][j*2 + 1] = 1;
+				a[i*2][j*2 + 2] = 1;
+			}
+			if ( minMatrix[i][j] & LEFT_WALL )
+			{
+				a[i*2][j*2] = 1;
+				a[i*2 + 1][j*2] = 1;
+				a[i*2 + 2][j*2] = 1;
+
+			}
+
+		}
+
+
+
+}
+
+void BinaryTreeMaze(int **a, dimension_t dimension)
+{
+	int **minMatrix;
+	int w, h, x, y;
+	int dn, rn;
+	int print = 0;
+
+
+
+	minMatrix = GenerateMinMatrix(dimension);
+
+	w = dimension.x / 2;
+	h = dimension.y / 2;
+
+	x = w / 2;
+	y = h / 2;
+
+
+	//north west biast
+	//up right biast
+
+	for ( y = 0; y < h; y++ )
+		for ( x = 0; x < w; x++)
+		{
+			dn = y + 1 < h;
+			rn = x + 1 < w;
+			
+			if ( dn && !rn )
+			{
+				minMatrix[y][x] &= ~DOWN_WALL;
+				minMatrix[y+1][x] &= ~UP_WALL;
+			}
+			else if ( rn && !dn )
+			{
+				minMatrix[y][x] &= ~RIGHT_WALL;
+				minMatrix[y][x+1] &= ~LEFT_WALL;
+			}
+			else if ( rn && dn )
+			{
+
+				switch ( rand() & 1 )
+				{
+				case 0:
+					minMatrix[y][x] &= ~DOWN_WALL;
+					minMatrix[y+1][x] &= ~UP_WALL;
+					break;
+
+				case 1:
+					minMatrix[y][x] &= ~RIGHT_WALL;
+					minMatrix[y][x+1] &= ~LEFT_WALL;
+					break;
+				}
+
+			}
+
+			if ( ++print % 10 == 0 ) { ConvertFromMin(minMatrix, a, dimension); LivePrint(a, dimension); }
+	
+		}
+
+	ConvertFromMin(minMatrix, a, dimension);
+
+}
+
 void CarveGateways(int **a, dimension_t dimension)
 {
 
-	int i, j;
+	int i;
 
 	for( i = 1; i < dimension.y - 2; i++ )
 		if ( a[i][1] == 0 )

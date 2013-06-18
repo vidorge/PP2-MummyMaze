@@ -85,7 +85,7 @@ void MazeDestroy(int **a, dimension_t dimension);
 void RemoveAloneWalls(int **a, dimension_t dimension);
 
 
-int ** GeneratePrimMatrix(dimension_t dimension);
+int ** GenerateMinMatrix(dimension_t dimension);
 
 
 void Prim(int **a, dimension_t dimension);
@@ -96,5 +96,11 @@ void CarveGateways(int **a, dimension_t dimension);
 int SetExit(int **a, dimension_t dimension);
 
 int SetEntrance(int **a, dimension_t dimension);
+
+void RecursiveBacktrack(int **a, dimension_t dimension);
+
+void BinaryTreeMaze(int **a, dimension_t dimension);
+
+void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension);
 
 #endif

@@ -23,33 +23,43 @@ int startGame(settings_t settings)
 	dimension_t dimension;
 	elemTree_t* root;
 	int flag;
-	clock_t begin=clock();
+	clock_t begin = clock();
 	float score=0, last=0;
 	position_t entrance, exit;
 
 	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
 
 	switch (settings.levelSize) {
-		case SMALL:		dimension.x = 21;dimension.y = 15;break;
-		case MEDIUM:	dimension.x = 31;dimension.y = 15;break;
-		case LARGE:		dimension.x = 41;dimension.y = 15;break;
+		case SMALL:		dimension.x = 21; dimension.y = 15; break;
+		case MEDIUM:	dimension.x = 31; dimension.y = 15; break;
+		case LARGE:		dimension.x = 41; dimension.y = 15; break;
 	}
 	
-
-	//OVO CEMO JEDNOM POZVATI I NIKEAD VISE DA LI SAM JASAN??? I <3 DORVI
 	srand( (unsigned) time(NULL) );
 
 	matrix = initMatrix(dimension);
 
-	if (settings.mazeAlgorithm==PRIM){
+	
+	switch ( settings.mazeAlgorithm )
+	{
 
+	case PRIM:
 		Prim(matrix, dimension);
+		break;
+
+	case DFS:
+		DfsInit(matrix, dimension);
+		break;
+
+	case BACKTRACK:
+		RecursiveBacktrack(matrix, dimension);
+		break;
+
+	case BINARY:
+		BinaryTreeMaze(matrix, dimension);
+		break;
 
 	}
-	else {	
-		DfsInit(matrix, dimension);
- 	
-	}	
 
 	entrance.x = 0;
 	entrance.y = SetEntrance(matrix, dimension);
@@ -60,7 +70,6 @@ int startGame(settings_t settings)
 
 	matrix [entrance.y][entrance.x]=6;
 	matrix [exit.y][exit.x]=7;
-
 
 	spawnPlayer(matrix,dimension,&playerPosition.x,&playerPosition.y);
 

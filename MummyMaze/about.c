@@ -10,7 +10,7 @@
 
 void about () {
 
-	int i, input;
+	int i;
 
 	int status=TRUE, change=0;
 

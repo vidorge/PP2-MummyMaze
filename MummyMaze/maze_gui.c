@@ -113,8 +113,47 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 	}
 }
 
+void LivePrint(int **matrix, dimension_t dimension) {
+	int i,j;
+	int temp, column=MAZECOLUMN;
+
+	//changeColor(DARKBACK);
+	
+	for (i=0;i<dimension.x;i++) {
+		temp = MAZEROW;
+		for (j=0;j<dimension.y;j++) {
+
+			if(matrix[j][i]==BLANK) {
+	
+				changeColor(DARKBLANK);
+
+				positionCursor(column,temp++);
+				printf ("   ");
+				positionCursor(column,temp++);
+				printf ("   ");
+				positionCursor(column,temp++);
+				printf ("   ");
+				changeColor(119);
+
+			} else {
+				
+				changeColor(DARKWALL);
+
+				positionCursor(column,temp++);
+				printf ("\260\260\260");
+				positionCursor(column,temp++);
+				printf ("\261\261\261");
+				positionCursor(column,temp++);
+				printf ("\262\262\262");
+			}
+
+		}
+		column+=3;
+	}
+}
+
 void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColumn, int whatToPrint, int *wave, settings_t settings) {
-	int i, row;
+	int row;
 	
 	if (settings.wallColor==LIGHT)
 		changeColor(LIGHTBLANK);

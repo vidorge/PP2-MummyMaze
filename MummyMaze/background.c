@@ -23,7 +23,7 @@ void header () {
 
 void backgroundImage (int whichTime) {
 
-	int i, j;
+	int i;
 
 	switch (whichTime) {
 		case WELCOME: {
