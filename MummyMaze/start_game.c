@@ -43,9 +43,9 @@ int startGame(settings_t settings, float totalScore) {
 			printf ("\261");
 	}
 
+	backgroundImage(SCORETABLE);
 
-
-	mummyPosition= malloc(settings.botNumber*sizeof(position_t));
+	mummyPosition = malloc(settings.botNumber*sizeof(position_t));
 
 	switch (settings.levelSize) {
 		case SMALL:		dimension.x = 27; dimension.y = 17; break;
@@ -82,9 +82,9 @@ int startGame(settings_t settings, float totalScore) {
 	{
 
 		spawnEnemy(matrix,dimension,&mummyPosition[i].x,&mummyPosition[i].y);
-		//root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,exit.y,exit.x,dimension,&enm);
+
 		root=branchAndBound(matrix,mummyPosition[i].x,mummyPosition[i].y,playerPosition.x,playerPosition.y,dimension,&dis);
-		if(/*enm<ply||*/dis <25 ) 
+		if( dis <25 ) 
 		{
 			matrix[mummyPosition[i].x][mummyPosition[i].y]=0;
 			i--;                           
@@ -103,9 +103,9 @@ int startGame(settings_t settings, float totalScore) {
 			if (((score-doorClosed)>0.3)&&(!closed)) {
 				positionCursor(MAZECOLUMN+size,MAZECOLUMN+doorItr+(entranceTemp*3));
 				if (settings.wallColor==LIGHT)
-					changeColor(LIGHTWALL);
+					changeColor(LIGHTENTRANCE);
 				else
-					changeColor(DARKWALL);
+					changeColor(DARKENTRANCE);
 				printf ("\262\260\261");
 				
 				doorItr++;
@@ -118,8 +118,11 @@ int startGame(settings_t settings, float totalScore) {
 
 
 
-		positionCursor (0,49);
-		changeColor(142);
+		positionCursor (WIDTH-10,HEIGHT-3);
+		if (settings.wallColor==LIGHT)
+			changeColor(100);
+		else
+			changeColor(12);
 		printf ("%.2f",score + totalScore);
 
 		newMovement=FALSE;

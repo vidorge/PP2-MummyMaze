@@ -145,6 +145,26 @@ void backgroundImage (int whichTime) {
 			}
 			break;
 		}	//text end
+
+		case SCORETABLE: {
+			
+			positionCursor(0,HEIGHT-3);
+			printf ("======================================================================================================================================================");
+
+			positionCursor (0,HEIGHT-2);
+			printf ("||");
+			positionCursor (50,HEIGHT-2);
+			printf ("||");
+			positionCursor (100,HEIGHT-2);
+			printf ("||");
+			positionCursor (WIDTH-2,HEIGHT-2);
+			printf ("||");
+
+			positionCursor(0,HEIGHT-1);
+			printf ("======================================================================================================================================================");
+			break;			 
+		}
+
 			
 	}		//switch end
 

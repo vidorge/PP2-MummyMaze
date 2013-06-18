@@ -73,7 +73,7 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 				changeColor(119);
 			}
 			else if (matrix[j][i]==HINT) {
-				if (settings.wallColor==HINT)
+				if (settings.wallColor==LIGHT)
 					changeColor(106);
 				else
 					changeColor(58);
@@ -88,9 +88,9 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 			}
 			else if (matrix[j][i]==EXIT) {
 				if (settings.wallColor==LIGHT)
-					changeColor(108);
+					changeColor(LIGHTEXIT);
 				else
-					changeColor(60);
+					changeColor(DARKEXIT);
 
 				positionCursor(column,temp++);
 				printf ("\260\260\262");
