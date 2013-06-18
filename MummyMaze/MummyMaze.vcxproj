@@ -92,6 +92,7 @@
     <ClCompile Include="options.c" />
     <ClCompile Include="out_animation.c" />
     <ClCompile Include="position_cursor.c" />
+    <ClCompile Include="score_entry.c" />
     <ClCompile Include="screen_resolution.c" />
     <ClCompile Include="stack.c" />
     <ClCompile Include="start_animation.c" />
@@ -111,6 +112,7 @@
     <ClInclude Include="options.h" />
     <ClInclude Include="out_animation.h" />
     <ClInclude Include="position_cursor.h" />
+    <ClInclude Include="score_entry.h" />
     <ClInclude Include="screen_resolution.h" />
     <ClInclude Include="stack.h" />
     <ClInclude Include="start_animation.h" />
