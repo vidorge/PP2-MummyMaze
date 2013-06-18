@@ -363,7 +363,7 @@ void hint (int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension)
 		while (tmp->arrayElem[i++]->status!=1);
 		i--;
 		matrix[tmp->arrayElem[i]->i][tmp->arrayElem[i]->j]=8;
-		tmp=tmp->arrayElem[i]
+		tmp=tmp->arrayElem[i];
 
 	}
 }
