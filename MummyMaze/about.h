@@ -1,7 +1,7 @@
 #ifndef _about_h
 #define _about_h
 
-#define CENTER 43
+#define CENTER 56
 
 void about();
 

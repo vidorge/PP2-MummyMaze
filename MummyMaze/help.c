@@ -36,103 +36,103 @@ void help () {
 	//****   HEADING   **********
 	//***************************
 
-	positionCursor(50,11);
+	positionCursor(63,11);
 	printf ("  _    _ ______ _      _____  ");
-	positionCursor(50,12);
+	positionCursor(63,12);
 	printf (" | |  | |  ____| |    |  __ \\ ");
-	positionCursor(50,13);
+	positionCursor(63,13);
 	printf (" | |__| | |__  | |    | |__) |");
-	positionCursor(50,14);
+	positionCursor(63,14);
 	printf (" |  __  |  __| | |    |  ___/ ");
-	positionCursor(50,15);
+	positionCursor(63,15);
 	printf (" | |  | | |____| |____| |     ");
-	positionCursor(50,16);
+	positionCursor(63,16);
 	printf (" |_|  |_|______|______|_|     ");
-	positionCursor(50,17);
+	positionCursor(63,17);
 	printf ("                              ");
 
 	//***********************************
 	//*******    CONTAINER   ************
 	//***********************************
 
-	positionCursor(39,20);
+	positionCursor(42,20);
 	printf ("CONTROLS");
-	positionCursor(95,20);
+	positionCursor(108,20);
 	printf ("How to!");
 	
 	//*******  CURSORS  **********
-	positionCursor(10,22);
+	positionCursor(23,22);
 	printf ("          _______               ||");
-	positionCursor(10,23);
+	positionCursor(23,23);
 	printf ("         ||      ||             ||");
-	positionCursor(10,24);
+	positionCursor(23,24);
 	printf ("         ||  up  ||             || ");
-	positionCursor(10,25);
+	positionCursor(23,25);
 	printf ("         ||      ||             ||");
-	positionCursor(10,26);
+	positionCursor(23,26);
 	printf ("         ||______||             ||");
-	positionCursor(10,27);
+	positionCursor(23,27);
 	printf ("         |/______\\|             ||");
-	positionCursor(10,28);
+	positionCursor(23,28);
 	printf (" _______  _______  _______      ||");
-	positionCursor(10,29);
+	positionCursor(23,29);
 	printf ("||      |||      |||      ||    ||");
-	positionCursor(10,30);
+	positionCursor(23,30);
 	printf ("||      |||      |||      ||    ||");
-	positionCursor(10,31);
+	positionCursor(23,31);
 	printf ("||left  ||| down ||| right||    ||");
-	positionCursor(10,32);
+	positionCursor(23,32);
 	printf ("||______|||______|||______||    ||");
-	positionCursor(10,33);
+	positionCursor(23,33);
 	printf ("|/______\\|/______\\|/______\\|    ||");
 
-	positionCursor(10,34);
+	positionCursor(23,34);
 	printf ("                                ||");
-	positionCursor(10,35);
+	positionCursor(23,35);
 	printf ("                                ||");
 
-	positionCursor(10,36);
+	positionCursor(23,36);
 	printf (" ____________________           ||");
-	positionCursor(10,37);
+	positionCursor(23,37);
 	printf ("||                   ||         ||");
-	positionCursor(10,38);
+	positionCursor(23,38);
 	printf ("|| \33---    PAUSE     ||         ||");
-	positionCursor(10,39);
+	positionCursor(23,39);
 	printf ("||                   ||         ||");
-	positionCursor(10,40);
+	positionCursor(23,40);
 	printf ("||___________________||         ||");
-	positionCursor(10,41);
+	positionCursor(23,41);
 	printf ("|/___________________\\|         ||");
 
-	positionCursor(10,42);
+	positionCursor(23,42);
 	printf ("                                ||");
-	positionCursor(10,43);
+	positionCursor(23,43);
 	printf ("                                ||");
 
 	//*******  Description  **********
-	positionCursor(45,23);
+	positionCursor(58,23);
 	printf ("For movement use the Arrow keys");
-	positionCursor(45,24);
+	positionCursor(58,24);
 	printf ("and for pause/menu press");
-	positionCursor(45,25);
+	positionCursor(58,25);
 	printf ("Backspace or Escape key.");
 
-	positionCursor(45,30);
+	positionCursor(58,30);
 	printf ("Goal is to get around");
-	positionCursor(45,31);
+	positionCursor(58,31);
 	printf ("the Labirinth collect the");
-	positionCursor(45,32);
+	positionCursor(58,32);
 	printf ("Jewel and get out before");
-	positionCursor(45,33);
+	positionCursor(58,33);
 	printf ("mummy catches you!");
 
-	positionCursor(45,38);
+	positionCursor(58,38);
 	printf ("Try to get the Jewel on");
-	positionCursor(45,39);
+	positionCursor(58,39);
 	printf ("how to test run!");
 	
 	for (i=22;i<44;i++) {
-		positionCursor(77,i);
+		positionCursor(90,i);
 		printf ("||");
 	}
 
@@ -145,7 +145,7 @@ void help () {
 		if ((playerPosition.x==jewelPosition.x)&&(playerPosition.y==jewelPosition.y)) gotTheJewel=1;
 		
 		if (gotTheJewel) {
-			positionCursor(92,33);
+			positionCursor(105,33);
 			changeColor(14);
 			printf("YOU DID IT!");
 		}

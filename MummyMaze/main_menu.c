@@ -49,86 +49,86 @@ void mainMenu () {
 
 		if (selection==NEWGAME) {
 			if (game) {
-				positionCursor(54,18);printf ("----------------");
-				changeColor(MENUA);positionCursor(54,19);printf ("|  Resume Game |");
-				changeColor(MENUC);positionCursor(54,20);printf ("----------------");
+				positionCursor(66,18);printf ("----------------");
+				changeColor(MENUA);positionCursor(66,19);printf ("|  Resume Game |");
+				changeColor(MENUC);positionCursor(66,20);printf ("----------------");
 			}
 
 			else {
-				positionCursor(54,18);printf ("----------------");
-				changeColor(MENUA);positionCursor(54,19);printf ("|   New Game   |");
-				changeColor(MENUC);positionCursor(54,20);printf ("----------------");
+				positionCursor(66,18);printf ("----------------");
+				changeColor(MENUA);positionCursor(66,19);printf ("|   New Game   |");
+				changeColor(MENUC);positionCursor(66,20);printf ("----------------");
 			}
 		}
 		else {
 			if (game) {
-				positionCursor(54,19);printf ("|  Resume Game |");
+				positionCursor(66,19);printf ("|  Resume Game |");
 			}
 			else {
-				positionCursor(54,19);printf ("|   New Game   |");
+				positionCursor(66,19);printf ("|   New Game   |");
 			}
 		}
 
 		if (selection==LOADGAME) {
-			changeColor(MENUA);positionCursor(54,21);printf ("|  Load  Game  |");
+			changeColor(MENUA);positionCursor(66,21);printf ("|  Load  Game  |");
 			changeColor(MENUC);
 		}
 		else {
-			positionCursor(54,21);printf ("|  Load  Game  |");
-			positionCursor(54,22);printf ("----------------");
+			positionCursor(66,21);printf ("|  Load  Game  |");
+			positionCursor(66,22);printf ("----------------");
 		}
 
 		if (selection==SAVEGAME) {
-			changeColor(MENUA);positionCursor(54,23);printf ("|  Save  Game  |");
+			changeColor(MENUA);positionCursor(66,23);printf ("|  Save  Game  |");
 			changeColor(MENUC);
 		}
 		else { 
-			positionCursor(54,23);printf ("|  Save  Game  |");
-			positionCursor(54,24);printf ("----------------"); 
+			positionCursor(66,23);printf ("|  Save  Game  |");
+			positionCursor(66,24);printf ("----------------"); 
 		}
 
 		if (selection==OPTIONS) { 
-			changeColor(MENUA);positionCursor(54,25);printf ("|   Options    |");
+			changeColor(MENUA);positionCursor(66,25);printf ("|   Options    |");
 			changeColor(MENUC); 
 		}
-		else { positionCursor(54,25);printf ("|   Options    |");
-		positionCursor(54,26);printf ("----------------");
+		else { positionCursor(66,25);printf ("|   Options    |");
+		positionCursor(66,26);printf ("----------------");
 		}
 
 		if (selection==HIGHSCORES) { 
-			changeColor(MENUA);positionCursor(54,27);printf ("| High  Scores |");
+			changeColor(MENUA);positionCursor(66,27);printf ("| High  Scores |");
 			changeColor(MENUC); 
 		}
 		else { 
-			positionCursor(54,27);printf ("| High  Scores |");
-			positionCursor(54,28);printf ("----------------"); 
+			positionCursor(66,27);printf ("| High  Scores |");
+			positionCursor(66,28);printf ("----------------"); 
 		}
 
 		if (selection==HELP) { 
-			changeColor(MENUA);positionCursor(54,29);printf ("|     Help     |");
+			changeColor(MENUA);positionCursor(66,29);printf ("|     Help     |");
 			changeColor(MENUC);
 		}
 		else { 
-			positionCursor(54,29);printf ("|     Help     |");
-			positionCursor(54,30);printf ("----------------"); 
+			positionCursor(66,29);printf ("|     Help     |");
+			positionCursor(66,30);printf ("----------------"); 
 		}
 
 		if (selection==ABOUT) { 
-			changeColor(MENUA);positionCursor(54,31);printf ("|     About    |"); 
+			changeColor(MENUA);positionCursor(66,31);printf ("|     About    |"); 
 			changeColor(MENUC); 
 		}
 		else {
-			positionCursor(54,31);printf ("|     About    |");
-			positionCursor(54,32);printf ("----------------"); 
+			positionCursor(66,31);printf ("|     About    |");
+			positionCursor(66,32);printf ("----------------"); 
 		}
 
 		if (selection==EXIT) {
-			changeColor(MENUA);positionCursor(54,33);printf ("|     Exit     |");
+			changeColor(MENUA);positionCursor(66,33);printf ("|     Exit     |");
 			changeColor(MENUC); 
 		}
 		else { 
-			positionCursor(54,33);printf ("|     Exit     |");
-			positionCursor(54,34);printf ("----------------");
+			positionCursor(66,33);printf ("|     Exit     |");
+			positionCursor(66,34);printf ("----------------");
 		}		
 		
 		choice=controls(_getch());

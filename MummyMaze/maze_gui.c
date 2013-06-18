@@ -225,7 +225,7 @@ void printMovement (int beforeRow, int beforeColumn, int afterRow, int afterColu
 
 void printHelpMatrix(int **matrix, dimension_t dimension) {
 	int i, j;
-	int column=80, row=23;
+	int column=93, row=23;
 
 	for (i=0; i<dimension.y; i++) {
 		positionCursor(column,row++);

@@ -140,7 +140,7 @@ void backgroundImage (int whichTime) {
 			changeColor(MENUC);
 
 			for (i=TOP;i<BOTTOM;i++) {
-				positionCursor(5,i);
+				positionCursor(18,i);
 				printf ("                                                                                                                   ");
 			}
 			break;

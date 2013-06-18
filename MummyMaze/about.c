@@ -20,19 +20,19 @@ void about () {
 	//****   HEADING   **********
 	//***************************
 
-	positionCursor(43,11);
+	positionCursor(56,11);
 	printf ("           ____   ____  _    _ _______  ");
-	positionCursor(43,12);
+	positionCursor(56,12);
 	printf ("     /\\   |  _ \\ / __ \\| |  | |__   __| ");
-	positionCursor(43,13);
+	positionCursor(56,13);
 	printf ("    /  \\  | |_) | |  | | |  | |  | |    ");
-	positionCursor(43,14);
+	positionCursor(56,14);
 	printf ("   / /\\ \\ |  _ <| |  | | |  | |  | |    ");
-	positionCursor(43,15);
+	positionCursor(56,15);
 	printf ("  / ____ \\| |_) | |__| | |__| |  | |    ");
-	positionCursor(43,16);
+	positionCursor(56,16);
 	printf (" /_/    \\_\\____/ \\____/ \\____/   |_|    ");
-	positionCursor(43,17);
+	positionCursor(56,17);
 	printf ("                                        ");
 
 	for (i=93;i>19 && status;i--) {

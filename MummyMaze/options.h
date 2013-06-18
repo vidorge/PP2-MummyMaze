@@ -6,10 +6,10 @@
 #define BOTTOMOPTIONS	33
 
 //COLUMNS
-#define FIRST	18
-#define SECOND	42
-#define THIRD	68
-#define FOURTH	88
+#define FIRST	31
+#define SECOND	55
+#define THIRD	81
+#define FOURTH	101
 
 //OPTIONS
 #define	LEVELSIZE		11
