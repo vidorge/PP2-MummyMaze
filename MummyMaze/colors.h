@@ -43,6 +43,9 @@
 	#define DARKENTRANCE	70
 	#define DARKEXIT		60
 
+//Score
+#define	SCORE	143
+
 
 void changeColor (int color); //tivolisnju
 

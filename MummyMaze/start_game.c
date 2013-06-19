@@ -173,7 +173,7 @@ int startGame(settings_t settings, float totalScore) {
 
 		
 		if (settings.playMetod==REALTIME) {
-			if (((score-last)>0.2)&&(firstMove)) {
+			if (((score-last)>0)&&(firstMove)) {
 
 				for(i=0;i<settings.botNumber;i++)
 				{	
@@ -225,8 +225,8 @@ int startGame(settings_t settings, float totalScore) {
 			if (flag) {
 				Sleep (250);
 				gameover ();
-				Sleep (2000);
-				scoreEntry();
+				//Sleep (2000);
+				scoreEntry(settings,score);
 				break;
 			} 
 

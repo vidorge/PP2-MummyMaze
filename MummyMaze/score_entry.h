@@ -5,7 +5,9 @@
 #include <stdlib.h>
 #include <windows.h>
 #include "maze_solve.h"
+#include "position_cursor.h"
+#include "colors.h"
 
-void scoreEntry();
+void scoreEntry(settings_t settings, float score);
 
 #endif
