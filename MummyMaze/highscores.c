@@ -38,7 +38,7 @@ void highscores () {
 		
 	}
 	dealocateList(highscores);
-
+	fclose(list);
 	while (1) {
 		input=controls(_getch());
 		if ((input==PAUSE)||(input==EXIT)) break;
