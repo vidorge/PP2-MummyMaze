@@ -68,4 +68,5 @@ highscore_t * createScoreElem(float score,char * str,time_t date, highscore_t *f
 highscore_t* readFromFile( FILE* output);
 void printInFile(highscore_t* first, FILE* output);
 highscore_t* dealocateList(highscore_t*);
+highscore_t *createScoreElem2(float score,char * str,time_t date,highscore_t *first);
 #endif

@@ -9,5 +9,6 @@
 #include "colors.h"
 
 void scoreEntry(settings_t settings, float score);
+void scoreEntry2(settings_t settings, float score);
 
 #endif

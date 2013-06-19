@@ -35,9 +35,9 @@ void highscores () {
 
 		if (column>38) {row+=60; column=columnTemp;}
 		highscores=highscores->succ;
-		dealocateList(highscores);
+		
 	}
-
+	dealocateList(highscores);
 
 	while (1) {
 		input=controls(_getch());

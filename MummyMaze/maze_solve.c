@@ -384,11 +384,13 @@ highscore_t *createScoreElem(float score,char * str,time_t date,highscore_t *fir
 	new1->date= date;
 	
 	strcpy_s(new1->name,strlen(str)+1,str);
-	while (tmp!=null && new1->score < tmp->score && i++<10)
+	while (tmp!=null && new1->score < tmp->score && num++<10)
 	{
 		pred=tmp;
 		tmp=tmp->succ;
 	}
+	if(num<10)
+	{
 	if (pred==null)
 	{
 		first=new1;
@@ -401,10 +403,45 @@ highscore_t *createScoreElem(float score,char * str,time_t date,highscore_t *fir
 		pred->succ=new1;
 		
 	}
-	
+	}
 	return first;
 }
 
+highscore_t *createScoreElem2(float score,char * str,time_t date,highscore_t *first)
+{
+	highscore_t *tmp ,*pred,*new1;
+	int num=0;
+	tmp=first;
+
+	
+	pred=null;
+	new1= (highscore_t*) malloc (sizeof(highscore_t));
+	new1->score=score;
+	new1->date= date;
+	
+	strcpy_s(new1->name,strlen(str)+1,str);
+	while (tmp!=null && new1->score > tmp->score && num++<10)
+	{
+		pred=tmp;
+		tmp=tmp->succ;
+	}
+	if(num<10)
+	{
+	if (pred==null)
+	{
+		first=new1;
+		first->succ=tmp;
+		
+	}
+	else 
+	{
+		new1->succ=tmp;
+		pred->succ=new1;
+		
+	}
+	}
+	return first;
+}
 highscore_t* readFromFile( FILE* output)
 {
 	highscore_t *tmp,*tmp1=null,*new1, *first=null;
