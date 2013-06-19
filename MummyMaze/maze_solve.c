@@ -378,7 +378,7 @@ void createScoreElem(float score,char * str,highscore_t *first)
 	pred=null;
 	new1= (highscore_t*) malloc (sizeof(highscore_t));
 	new1->score=score;
-	//strcpy(new1->name,str);
+	strcpy(new1->name,str);
 	while (tmp!=null && new1->score< tmp->score )
 	{
 		pred=tmp;
