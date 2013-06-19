@@ -399,9 +399,16 @@ void createScoreElem(float score,char * str,highscore_t *first)
 highscore_t* readFromFile( FILE* output)
 {
 	highscore_t *tmp,*new1, *first=null;
+
 	tmp=first;
-	while (fread(tmp,sizeof(highscore_t),1,output)!=0)
+
+	tmp = malloc( sizeof(highscore_t) );
+
+	while ( !feof(output) )
 	{
+
+		if ( fread(tmp,sizeof(highscore_t),1,output) == EOF ) break;
+
 		new1= (highscore_t*)malloc(sizeof(highscore_t));
 		new1->score= tmp->score;
 		new1->name=tmp->name;
