@@ -1,10 +1,10 @@
 #include "highscores.h"
 
 void highscores () {
-	FILE* list;
-	highscore_t *highscores;
+	FILE *list,*list1;
+	highscore_t *highscores, *highscores1;
 	int input, i=1;
-	int row=25, columnTemp=19, column=19;
+	int row=25, rowTemp=row+50, columnTemp=22, column=22;
 
 	backgroundImage (TEXT);
 
@@ -23,22 +23,34 @@ void highscores () {
 	positionCursor(43,17);
 	printf ("                                                                ");
 
+	positionCursor (35,19);
+	printf ("REAL TIME");
+	positionCursor (100,19);
+	printf ("POSITIONAL");
+
 	list = fopen ("highscore.bin","rb");
 	highscores = readFromFile (list);
+	list1 = fopen ("highscore.bin","rb");
+	highscores1 = readFromFile (list1);
 
 	while (1) {
-		if(highscores==null) break;
-		positionCursor (row,column+=4);
-		printf("%d. %.2f %s | ", i++, highscores->score, highscores->name);
+		if((highscores==null)||(highscores1==null)) break;
+		positionCursor (row,column);
+		printf ("%d. %.2f %s | ", i, highscores->score, highscores->name);
+		printf(ctime(&(highscores->date)));
+		
+		positionCursor (rowTemp,column);
+		column+=2;
+		printf ("%d. %.2f %s | ", i++, highscores1->score, highscores1->name);
 		printf(ctime(&(highscores->date)));
 		
 
-		if (column>38) {row+=60; column=columnTemp;}
 		highscores=highscores->succ;
+		highscores1=highscores1->succ;
 		
 	}
 	dealocateList(highscores);
-	fclose(list);
+
 	while (1) {
 		input=controls(_getch());
 		if ((input==PAUSE)||(input==EXIT)) break;
