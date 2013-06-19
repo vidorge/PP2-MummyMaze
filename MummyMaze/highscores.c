@@ -50,6 +50,8 @@ void highscores () {
 		
 	}
 	dealocateList(highscores);
+	fclose(list);
+	fclose(list1);
 
 	while (1) {
 		input=controls(_getch());
