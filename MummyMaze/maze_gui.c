@@ -100,6 +100,20 @@ void printFormattedMatrix(int **matrix, dimension_t dimension,settings_t setting
 				printf ("\260\260\262");
 				changeColor(119);
 			}
+			else if (matrix[j][i]==ENTRANCE) {
+				if (settings.wallColor==LIGHT)
+					changeColor(LIGHTENTRANCE);
+				else
+					changeColor(DARKENTRANCE);
+
+				positionCursor(column,temp++);
+				printf ("\262\260\261");
+				positionCursor(column,temp++);
+				printf ("\262\260\261");
+				positionCursor(column,temp++);
+				printf ("\262\260\261");
+				changeColor(119);
+			}
 			else {
 				if (settings.wallColor==LIGHT)
 					changeColor(LIGHTWALL);

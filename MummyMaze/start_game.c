@@ -110,7 +110,7 @@ int startGame(settings_t settings, float totalScore) {
 				
 				doorItr++;
 				if (doorItr==1) 
-					matrix[entrance.y][entrance.x]=1;
+					matrix[entrance.y][entrance.x]=ENTRANCE;
 				
 				doorClosed=score;
 				if (doorItr==3) closed=1;
@@ -133,28 +133,28 @@ int startGame(settings_t settings, float totalScore) {
 			if (movement==EXIT) {pause ();printFormattedMatrix(matrix,dimension,settings);}
 		
 			switch (movement) {
-				case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=1) {
+				case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=WALL) {
 								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y);
 								printMovement(playerPosition.x,playerPosition.y,playerPosition.x-1,playerPosition.y,PLAYER,0,settings);
 								playerPosition.x-=1;
 								newMovement=TRUE;
 								break;
 							}else break;
-				case DOWN:	if (matrix[playerPosition.x+1][playerPosition.y]!=1) {
+				case DOWN:	if (matrix[playerPosition.x+1][playerPosition.y]!=WALL) {
 								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y);
 								printMovement(playerPosition.x,playerPosition.y,playerPosition.x+1,playerPosition.y,PLAYER,0,settings);
 								playerPosition.x+=1;
 								newMovement=TRUE;
 								break;
 							}else break;
-				case LEFT:	if ((matrix[playerPosition.x][playerPosition.y-1]!=1)&&(entrance.y!=playerPosition.x || entrance.x!=playerPosition.y)) {
+				case LEFT:	if ((matrix[playerPosition.x][playerPosition.y-1]!=WALL)&&(matrix[playerPosition.x][playerPosition.y-1]!=ENTRANCE)) {
 								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1);
 								printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y-1,PLAYER,0,settings);
 								playerPosition.y-=1;
 								newMovement=TRUE;
 								break;
 							}else break;
-				case RIGHT:	if ((matrix[playerPosition.x][playerPosition.y+1]!=1)&&(exit.y!=playerPosition.x || exit.x!=playerPosition.y)) {
+				case RIGHT:	if ((matrix[playerPosition.x][playerPosition.y+1]!=WALL)&&(exit.y!=playerPosition.x || exit.x!=playerPosition.y)) {
 								moveTo(matrix,playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1);
 								printMovement(playerPosition.x,playerPosition.y,playerPosition.x,playerPosition.y+1,PLAYER,0,settings);
 								playerPosition.y+=1;

@@ -2,7 +2,7 @@
 
 void pause () {
 
-	positionCursor (0,0);
+	positionCursor (70,25);
 	printf ("PAUSE");
 
 	while (1) {
