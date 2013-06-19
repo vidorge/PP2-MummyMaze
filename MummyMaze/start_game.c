@@ -225,7 +225,7 @@ int startGame(settings_t settings, float totalScore) {
 			if (flag) {
 				Sleep (250);
 				gameover ();
-				Sleep (5000);
+				Sleep (2000);
 				scoreEntry();
 				break;
 			} 
