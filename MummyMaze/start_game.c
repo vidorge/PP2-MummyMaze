@@ -47,7 +47,7 @@ int startGame(settings_t settings, float totalScore) {
 	backgroundImage(SCORETABLE);
 
 	mummyPosition = malloc(settings.botNumber*sizeof(position_t));
-	if ( mymmyPosition == NULL ) { printf("\nOut of memory\n"); exit(10); }
+	if ( mummyPosition == NULL ) { printf("\nOut of memory\n"); abort(); }
 
 	switch (settings.levelSize) {
 		case SMALL:		dimension.x = 27; dimension.y = 17; break;
@@ -228,7 +228,7 @@ int startGame(settings_t settings, float totalScore) {
 				Sleep (250);
 				gameover ();
 				Sleep (1500);
-				scoreEntry(settings,score);
+				scoreEntry(settings,score + totalScore);
 				highscores ();
 				break;
 			} 
