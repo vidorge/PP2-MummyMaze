@@ -12,10 +12,12 @@ int ** initMatrix(dimension_t dimension)
 	int **a, i, j;
 
 	a = (int**) malloc( dimension.y * sizeof(int*) );
+	if ( a == NULL ) { printf("\nOut of memory\n"); exit(3); }
 
 	for (i=0; i<dimension.y; i++)
 	{
 		a[i] = (int*) malloc( dimension.x * sizeof(int) );
+		if ( a[i] == NULL ) { printf("\nOut of memory\n"); exit(4); }
 		for (j=0; j<dimension.x; j++)
 			a[i][j] = 1;
 	}
@@ -79,9 +81,11 @@ int ** GenerateMinMatrix(dimension_t dimension)
 	h = dimension.x / 2;
 
 	a = (int**) malloc( h * sizeof(int*) );
+	if ( a == NULL ) { printf("\nOut of memory\n"); exit(5); }
 	for (i=0; i<h; i++)
 	{
 		a[i] = (int*) malloc( w * sizeof(int) );
+		if ( a[i] == NULL ) { printf("\nOut of memory\n"); exit(6); }
 
 		for (j=0; j<w; j++)
 			a[i][j] = 0 | UP_WALL | DOWN_WALL | LEFT_WALL | RIGHT_WALL;
@@ -98,6 +102,7 @@ void InsertElement(coordList_t **rear, int x, int y)
 		coordList_t *element;
 
 		element = (coordList_t*) malloc( sizeof( coordList_t ) );
+		if ( element == NULL ) { printf("\nOut of memory\n"); exit(7); }
 
 		element->i = y;
 		element->j = x;
@@ -305,6 +310,7 @@ void recursive_push(coordList_t **stack, int x, int y)
 		coordList_t *element;
 
 		element = (coordList_t*) malloc( sizeof( coordList_t ) );
+		if ( element == NULL ) { printf("\nOut of memory\n"); exit(8); }
 
 		element->i = y;
 		element->j = x;
@@ -340,6 +346,7 @@ void RecursiveBacktrack(int **a, dimension_t dimension, settings_t settings)
 
 	// insert 
 	element = (coordList_t*) malloc( sizeof(coordList_t) );
+	if ( element == NULL ) { printf("\nOut of memory\n"); exit(9); }
 	element->i = y;
 	element->j = x;
 	element->next = stack;
