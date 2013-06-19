@@ -444,16 +444,29 @@ highscore_t *createScoreElem2(float score,char * str,time_t date,highscore_t *fi
 }
 highscore_t* readFromFile( FILE* output)
 {
-	highscore_t *tmp,*tmp1=null,*new1, *first=null;
+	highscore_t *pred=null,*tmp,*tmp1=null,*new1, *first=null;
 
+		while(!feof(output))
+		{
 		tmp =(highscore_t*) malloc( sizeof(highscore_t) );
 		
-		if( fread(tmp,sizeof(highscore_t),1,output)<1) first=null;
+		if( fread(tmp,sizeof(highscore_t),1,output)<1) break;
 
-		else
+		if(pred==null)
+		{
+
 			first=tmp;
-		
-		
+			first->succ=null;
+			pred=first;
+		}
+		else
+		{
+			tmp->succ=null;
+			pred->succ=tmp;
+			pred=tmp;
+			
+		}
+		}
 
 	return first;
 
