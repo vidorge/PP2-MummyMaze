@@ -404,7 +404,6 @@ highscore_t* readFromFile( FILE* output)
 	highscore_t *tmp,*tmp1,*new1, *first=null;
 
 	tmp1=first;
-	printf("aa");
 	tmp =(highscore_t*) malloc( sizeof(highscore_t) );
 
 	while ( !feof(output) )

@@ -14,6 +14,7 @@
 #include "help.h"
 #include "about.h"
 #include "screen_resolution.h"
+#include "highscores.h"
 
 void mainMenu () {
 
@@ -111,7 +112,7 @@ void mainMenu () {
 				switch (selection){
 					case NEWGAME:		system("CLS");game=TRUE;startGame(settings, 0);backgroundImage(MENU);break;
 					case OPTIONS:		system ("CLS");options(&settings);backgroundImage(MENU);selection=(NEWGAME);break;
-					case HIGHSCORES:	break;
+					case HIGHSCORES:	system("CLS");highscores();backgroundImage(MENU);selection=(NEWGAME);break;
 					case HELP:			system("CLS");help();backgroundImage(MENU);selection=(NEWGAME);break;
 					case ABOUT:			system("CLS");about();backgroundImage(MENU);selection=(NEWGAME);break;
 					case EXIT:			outAnimation();exit (1);

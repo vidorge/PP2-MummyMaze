@@ -84,6 +84,7 @@
     <ClCompile Include="controls.c" />
     <ClCompile Include="game_over.c" />
     <ClCompile Include="help.c" />
+    <ClCompile Include="highscores.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="main_menu.c" />
     <ClCompile Include="maze_create.c" />
@@ -105,6 +106,7 @@
     <ClInclude Include="controls.h" />
     <ClInclude Include="game_over.h" />
     <ClInclude Include="help.h" />
+    <ClInclude Include="highscores.h" />
     <ClInclude Include="main_menu.h" />
     <ClInclude Include="maze_create.h" />
     <ClInclude Include="maze_gui.h" />

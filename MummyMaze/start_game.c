@@ -14,6 +14,7 @@
 #include "colors.h"
 #include "game_over.h"
 #include "pause.h"
+#include "highscores.h"
 
 int startGame(settings_t settings, float totalScore) {
 
@@ -173,7 +174,7 @@ int startGame(settings_t settings, float totalScore) {
 
 		
 		if (settings.playMetod==REALTIME) {
-			if (((score-last)>0)&&(firstMove)) {
+			if (((score-last)>0.2)&&(firstMove)) {
 
 				for(i=0;i<settings.botNumber;i++)
 				{	
@@ -225,8 +226,9 @@ int startGame(settings_t settings, float totalScore) {
 			if (flag) {
 				Sleep (250);
 				gameover ();
-				//Sleep (2000);
+				Sleep (1500);
 				scoreEntry(settings,score);
+				highscores ();
 				break;
 			} 
 
