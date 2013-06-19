@@ -6,6 +6,10 @@ void scoreEntry(settings_t settings, float score) {
 	int i;
 
 	output = fopen ("highscore.bin","wb+");
+	highscores = readFromFile (output);
+	player=malloc (sizeof(highscore_t));
+	player->name = malloc (50*sizeof(char));
+
 
 	for (i=15;i<25;i++) {
 		positionCursor (50,i);
@@ -26,24 +30,17 @@ void scoreEntry(settings_t settings, float score) {
 	positionCursor (52,18);
 	printf ("Your highscore:  ");
 	printf ("%.2f",score);
+	player->score=score;
 
 	positionCursor (52,20);
 	printf ("Enter your name:  ");
-	scanf ("%s");
+	scanf ("%s",player->name);
 
-
-	/*highscores = readFromFile (output);
 	
-	//UCITAVANJE PLAYERA;
-
-	player=malloc (sizeof(highscore_t));
-	player->name = "sdjo ";
-	player->score= 60.3;
-
 	createScoreElem (player->score,player->name,highscores);
 
 	printInFile (highscores,output);
 
-	fclose (output);*/
+	fclose (output);
 
 }
