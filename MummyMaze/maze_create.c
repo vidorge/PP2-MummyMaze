@@ -6,7 +6,7 @@
 #include "maze_solve.h"
 #include "maze_gui.h"
 
-//done
+
 int ** initMatrix(dimension_t dimension)
 {
 	int **a, i, j;
@@ -24,7 +24,6 @@ int ** initMatrix(dimension_t dimension)
 
 }
 
-//done
 void ShuffleArray(int *randDir)
 {
 	int i, j, temp;
@@ -40,7 +39,6 @@ void ShuffleArray(int *randDir)
 
 }
 
-//not
 void fillHelpMatrix(int **matrix, dimension_t dimension)
 {
 	int i, j;
@@ -60,7 +58,6 @@ void fillHelpMatrix(int **matrix, dimension_t dimension)
 
 }
 
-//done
 void MazeDestroy(int **a, dimension_t dimension)
 {
 	int i;
@@ -72,7 +69,6 @@ void MazeDestroy(int **a, dimension_t dimension)
 
 }
 
-//done
 int ** GenerateMinMatrix(dimension_t dimension)
 {
 
@@ -96,7 +92,6 @@ int ** GenerateMinMatrix(dimension_t dimension)
 
 }
 
-//not
 void InsertElement(coordList_t **rear, int x, int y)
 {
 
@@ -118,7 +113,6 @@ void InsertElement(coordList_t **rear, int x, int y)
 
 }
 
-//not
 int FindInList(coordList_t *rear, int x, int y)
 {
 
@@ -137,7 +131,6 @@ int FindInList(coordList_t *rear, int x, int y)
 
 }
 
-//done
 void Prim(int **a, dimension_t dimension, settings_t settings)
 {
 
@@ -470,7 +463,6 @@ void RecursiveBacktrack(int **a, dimension_t dimension, settings_t settings)
 
 }
 
-//done
 void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension)
 {
 	int i, j;
@@ -507,7 +499,6 @@ void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension)
 
 }
 
-//done
 void BinaryTreeMaze(int **a, dimension_t dimension, settings_t settings)
 {
 	int **minMatrix;
@@ -569,7 +560,6 @@ void BinaryTreeMaze(int **a, dimension_t dimension, settings_t settings)
 
 }
 
-//done
 int SetEntrance(int **a, dimension_t dimension)
 {
 
@@ -588,7 +578,6 @@ int SetEntrance(int **a, dimension_t dimension)
 
 }
 
-//done
 int SetExit(int **a, dimension_t dimension)
 {
 
@@ -601,8 +590,6 @@ int SetExit(int **a, dimension_t dimension)
 	return i;
 
 }
-
-
 
 void FilterDeadEnds(int **a, dimension_t dimension)
 {
