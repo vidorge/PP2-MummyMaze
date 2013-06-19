@@ -4,7 +4,7 @@ void highscores () {
 	FILE *list,*list1;
 	highscore_t *highscores, *highscores1;
 	int input, i=1;
-	int row=25, rowTemp=row+50, columnTemp=22, column=22;
+	int row=25, rowTemp=row+55, columnTemp=22, column=22;
 
 	backgroundImage (TEXT);
 
