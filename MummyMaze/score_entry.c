@@ -2,19 +2,26 @@
 
 void scoreEntry() {
 	FILE* output;
-	highscore_t *player;
+	highscore_t *player, *highscores;
 
 	output = fopen ("highscore.bin","wb+");
 
-	printf ("DJOKA");
+	printf ("INTERFEJS");
 
+	highscores = readFromFile (output);
 	
-	player=malloc (sizeof(highscore_t));
-	player->name = "paja ";
-	player->score= 60.6;
+	//UCITAVANJE PLAYERA
 
-	fwrite(player,sizeof(highscore_t),1,output);
+	player=malloc (sizeof(highscore_t));
+	player->name = "sdjo ";
+	player->score= 60.3;
+
+	createScoreElem (player->score,player->name,highscores);
+
+	printInFile (highscores,output);
 
 	fclose (output);
+
+
 
 }
