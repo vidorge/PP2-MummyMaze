@@ -4,7 +4,6 @@
 
 #include "maze_create.h"
 #include "maze_solve.h"
-#include "stack.h"
 #include "maze_gui.h"
 
 //done

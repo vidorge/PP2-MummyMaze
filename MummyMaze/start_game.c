@@ -4,7 +4,6 @@
 #include <conio.h>
 #include <windows.h>
 #include "score_entry.h"
-#include "stack.h"
 #include "maze_gui.h"
 #include "maze_create.h"
 #include "maze_solve.h"
