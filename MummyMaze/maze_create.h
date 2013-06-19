@@ -28,7 +28,7 @@ typedef struct CoordList
 
 /**
 *	@desc	Initialize a matrix
-*	@param	int dimension - dimension of matrix
+*	@param	dimension_t dimension - dimension of matrix
 *	@return	int ** - double pointer to matrix
 *	@author Vidor Gencel
 */
@@ -42,26 +42,88 @@ int **initMatrix(dimension_t dimension);
 */
 void fillHelpMatrix(int **matrix, dimension_t dimension);
 
-//mrzelo me majke mi
 
+/**
+*	@desc	Shuffle 4 element array
+*	@param	int *randDir - pointer to 4 element array
+*	@author Vidor Gencel
+*/
 void ShuffleArray(int *randDir);
 
+/**
+*	@desc	Deallocate matrix
+*	@param	int **a - matrix
+*	@param	dimension_t dimension - dimension of matrix
+*	@author Vidor Gencel
+*/
 void MazeDestroy(int **a, dimension_t dimension);
 
+
+/**
+*	@desc	Generate minimized matrix
+*	@param	dimension_t dimension - dimension of matrix
+*	@return	int ** - double pointer to minimized matrix
+*	@author Vidor Gencel
+*/
 int ** GenerateMinMatrix(dimension_t dimension);
 
+/**
+*	@desc	Prim maze generation
+*	@param	int **a - matrix
+*	@param	dimension_t dimension - dimension of matrix
+*	@author Vidor Gencel
+*/
 void Prim(int **a, dimension_t dimension, settings_t settings);
 
+/**
+*	@desc	sets exit of maze
+*	@param	int **a - matrix
+*	@param	dimension_t dimension - dimension of matrix
+*	@return exit row id
+*	@author Vidor Gencel
+*/
 int SetExit(int **a, dimension_t dimension);
 
+/**
+*	@desc	sets entrance of maze
+*	@param	int **a - matrix
+*	@param	dimension_t dimension - dimension of matrix
+*	@return entrance row id
+*	@author Vidor Gencel
+*/
 int SetEntrance(int **a, dimension_t dimension);
 
+/**
+*	@desc	DFS maze generation
+*	@param	int **a - matrix
+*	@param	dimension_t dimension - dimension of matrix
+*	@author Vidor Gencel
+*/
 void RecursiveBacktrack(int **a, dimension_t dimension, settings_t settings);
 
+/**
+*	@desc	Binary maze generation
+*	@param	int **a - matrix
+*	@param	dimension_t dimension - dimension of matrix
+*	@author Vidor Gencel
+*/
 void BinaryTreeMaze(int **a, dimension_t dimension, settings_t settings);
 
+/**
+*	@desc	Converts minimized matrix to normal representation
+*	@param	int **minMatrix - minimized matrix
+*	@param	int **a - matrix
+*	@param	dimension_t dimension - dimension of matrix
+*	@author Vidor Gencel
+*/
 void ConvertFromMin(int **minMatrix, int **a, dimension_t dimension);
 
+/**
+*	@desc	Iterates through maze and removes some dead ends
+*	@param	int **a - matrix
+*	@param	dimension_t dimension - dimension of matrix
+*	@author Vidor Gencel
+*/
 void FilterDeadEnds(int **a, dimension_t dimension);
 
 
