@@ -30,7 +30,7 @@ void highscores () {
 
 	list = fopen ("highscore.bin","rb");
 	highscores = readFromFile (list);
-	list1 = fopen ("highscore.bin","rb");
+	list1 = fopen ("highscore1.bin","rb");
 	highscores1 = readFromFile (list1);
 
 	while (1) {
@@ -42,7 +42,7 @@ void highscores () {
 		positionCursor (rowTemp,column);
 		column+=2;
 		printf ("%d. %.2f %s | ", i++, highscores1->score, highscores1->name);
-		printf(ctime(&(highscores->date)));
+		printf(ctime(&(highscores1->date)));
 		
 
 		highscores=highscores->succ;
