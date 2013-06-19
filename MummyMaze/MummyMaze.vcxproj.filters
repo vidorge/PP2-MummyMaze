@@ -75,6 +75,9 @@
     <ClCompile Include="score_entry.c">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="pause.c">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="maze_create.h">
@@ -126,6 +129,9 @@
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="score_entry.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="pause.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,13 +9,11 @@
 //Menu cells
 
 #define NEWGAME		100
-#define LOADGAME	101
-#define SAVEGAME	102
-#define OPTIONS		103
-#define HIGHSCORES	104
-#define HELP		105
-#define ABOUT		106
-#define EXIT		107
+#define OPTIONS		101
+#define HIGHSCORES	102
+#define HELP		103
+#define ABOUT		104
+#define EXIT		105
 
 void mainMenu ();
 

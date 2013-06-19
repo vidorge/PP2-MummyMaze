@@ -10,7 +10,7 @@ void scoreEntry() {
 
 	highscores = readFromFile (output);
 	
-	//UCITAVANJE PLAYERA
+	//UCITAVANJE PLAYERA;
 
 	player=malloc (sizeof(highscore_t));
 	player->name = "sdjo ";
@@ -21,7 +21,5 @@ void scoreEntry() {
 	printInFile (highscores,output);
 
 	fclose (output);
-
-
 
 }

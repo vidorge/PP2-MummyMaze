@@ -13,7 +13,7 @@
 #include "position_cursor.h"
 #include "colors.h"
 #include "game_over.h"
-
+#include "pause.h"
 
 int startGame(settings_t settings, float totalScore) {
 
@@ -129,7 +129,8 @@ int startGame(settings_t settings, float totalScore) {
 
 		if (_kbhit()) {
 			movement=controls(_getch());
-			if ((movement==PAUSE)||(movement==EXIT)) break;	
+			if (movement==PAUSE) break;
+			if (movement==EXIT) {pause ();printFormattedMatrix(matrix,dimension,settings);}
 		
 			switch (movement) {
 				case UP:	if (matrix[playerPosition.x-1][playerPosition.y]!=1) {

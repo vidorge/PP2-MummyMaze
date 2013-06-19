@@ -49,87 +49,57 @@ void mainMenu () {
 		changeColor(MENUC);
 
 		if (selection==NEWGAME) {
-			if (game) {
-				positionCursor(66,18);printf ("----------------");
-				changeColor(MENUA);positionCursor(66,19);printf ("|  Resume Game |");
-				changeColor(MENUC);positionCursor(66,20);printf ("----------------");
-			}
-
-			else {
-				positionCursor(66,18);printf ("----------------");
-				changeColor(MENUA);positionCursor(66,19);printf ("|   New Game   |");
-				changeColor(MENUC);positionCursor(66,20);printf ("----------------");
-			}
+			positionCursor(66,19);printf ("----------------");
+			changeColor(MENUA);positionCursor(66,20);printf ("|   New Game   |");
+			changeColor(MENUC);positionCursor(66,21);printf ("----------------");
 		}
 		else {
-			if (game) {
-				positionCursor(66,19);printf ("|  Resume Game |");
-			}
-			else {
-				positionCursor(66,19);printf ("|   New Game   |");
-			}
+			positionCursor(66,20);printf ("|   New Game   |");
 		}
 
-		if (selection==LOADGAME) {
-			changeColor(MENUA);positionCursor(66,21);printf ("|  Load  Game  |");
-			changeColor(MENUC);
-		}
-		else {
-			positionCursor(66,21);printf ("|  Load  Game  |");
-			positionCursor(66,22);printf ("----------------");
-		}
-
-		if (selection==SAVEGAME) {
-			changeColor(MENUA);positionCursor(66,23);printf ("|  Save  Game  |");
-			changeColor(MENUC);
-		}
-		else { 
-			positionCursor(66,23);printf ("|  Save  Game  |");
-			positionCursor(66,24);printf ("----------------"); 
-		}
-
+		
 		if (selection==OPTIONS) { 
-			changeColor(MENUA);positionCursor(66,25);printf ("|   Options    |");
+			changeColor(MENUA);positionCursor(66,22);printf ("|   Options    |");
 			changeColor(MENUC); 
 		}
-		else { positionCursor(66,25);printf ("|   Options    |");
-		positionCursor(66,26);printf ("----------------");
+		else { positionCursor(66,22);printf ("|   Options    |");
+		positionCursor(66,23);printf ("----------------");
 		}
 
 		if (selection==HIGHSCORES) { 
-			changeColor(MENUA);positionCursor(66,27);printf ("| High  Scores |");
+			changeColor(MENUA);positionCursor(66,24);printf ("| High  Scores |");
 			changeColor(MENUC); 
 		}
 		else { 
-			positionCursor(66,27);printf ("| High  Scores |");
-			positionCursor(66,28);printf ("----------------"); 
+			positionCursor(66,24);printf ("| High  Scores |");
+			positionCursor(66,25);printf ("----------------"); 
 		}
 
 		if (selection==HELP) { 
-			changeColor(MENUA);positionCursor(66,29);printf ("|     Help     |");
+			changeColor(MENUA);positionCursor(66,26);printf ("|     Help     |");
 			changeColor(MENUC);
 		}
 		else { 
-			positionCursor(66,29);printf ("|     Help     |");
-			positionCursor(66,30);printf ("----------------"); 
+			positionCursor(66,26);printf ("|     Help     |");
+			positionCursor(66,27);printf ("----------------"); 
 		}
 
 		if (selection==ABOUT) { 
-			changeColor(MENUA);positionCursor(66,31);printf ("|     About    |"); 
+			changeColor(MENUA);positionCursor(66,28);printf ("|     About    |"); 
 			changeColor(MENUC); 
 		}
 		else {
-			positionCursor(66,31);printf ("|     About    |");
-			positionCursor(66,32);printf ("----------------"); 
+			positionCursor(66,28);printf ("|     About    |");
+			positionCursor(66,29);printf ("----------------"); 
 		}
 
 		if (selection==EXIT) {
-			changeColor(MENUA);positionCursor(66,33);printf ("|     Exit     |");
+			changeColor(MENUA);positionCursor(66,30);printf ("|     Exit     |");
 			changeColor(MENUC); 
 		}
 		else { 
-			positionCursor(66,33);printf ("|     Exit     |");
-			positionCursor(66,34);printf ("----------------");
+			positionCursor(66,30);printf ("|     Exit     |");
+			positionCursor(66,31);printf ("----------------");
 		}		
 		
 		choice=controls(_getch());
@@ -140,8 +110,6 @@ void mainMenu () {
 			case ENTER: { 
 				switch (selection){
 					case NEWGAME:		system("CLS");game=TRUE;startGame(settings, 0);backgroundImage(MENU);break;
-					case LOADGAME:		break;
-					case SAVEGAME:		break;
 					case OPTIONS:		system ("CLS");options(&settings);backgroundImage(MENU);selection=(NEWGAME);break;
 					case HIGHSCORES:	break;
 					case HELP:			system("CLS");help();backgroundImage(MENU);selection=(NEWGAME);break;
