@@ -2,14 +2,13 @@
 #include "main_menu.h"
 #include "screen_resolution.h"
 
-void main () {
-
-	//I AM sad sad main now and i'm even shorter then older main
-	//but my nigga main menu is here now!
+void main ()
+{
 
 	setConsoleSize(WIDTH,HEIGHT);
 
 	startAnimation ();
 
 	mainMenu();
+
 }
