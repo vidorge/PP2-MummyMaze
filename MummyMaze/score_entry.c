@@ -10,17 +10,17 @@ void scoreEntry(settings_t settings, float score) {
 	for (i=15;i<25;i++) {
 		positionCursor (50,i);
 		if (settings.wallColor==LIGHT)
-			changeColor (LIGHTBLANK);
+			changeColor (LISCBK);
 		else 
-			changeColor (DARKBLANK);
+			changeColor (DKSCBK);
 		printf ("                                                 ");
 	}
 
 	positionCursor (67,16);
 	if (settings.wallColor==LIGHT)
-			changeColor (LIGHTDAZY);
+			changeColor (LISCTX);
 		else 
-			changeColor (DARKDAZY);
+			changeColor (DKSCTX);
 	printf ("HIGHSCORE ENTRY");
 
 	positionCursor (52,18);
@@ -31,10 +31,6 @@ void scoreEntry(settings_t settings, float score) {
 	printf ("Enter your name:  ");
 	scanf ("%s");
 
-	
-
-
-	system ("pause");
 
 	/*highscores = readFromFile (output);
 	

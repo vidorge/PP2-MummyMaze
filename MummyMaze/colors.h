@@ -44,7 +44,10 @@
 	#define DARKEXIT		60
 
 //Score
-#define	SCORE	143
+#define	LISCBK	238
+#define	DKSCBK	187
+#define	LISCTX	224
+#define	DKSCTX	176
 
 
 void changeColor (int color); //tivolisnju
