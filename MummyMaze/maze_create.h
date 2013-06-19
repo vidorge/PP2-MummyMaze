@@ -21,7 +21,8 @@ typedef struct
 
 typedef struct CoordList
 {
-	int i, j;
+	int i;
+	int j;
 	struct CoordList *next;
 
 }	coordList_t;
