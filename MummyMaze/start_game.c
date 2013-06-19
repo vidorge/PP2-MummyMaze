@@ -219,16 +219,16 @@ int startGame(settings_t settings, float totalScore) {
 				if ((playerPosition.x==mummyPosition[i].x)&&(playerPosition.y==mummyPosition[i].y)) flag=1;
 			// OVDE GA JE POJEO BROJ POENA KONACAN RACUNAS KAO score + totalScore
 
-			if ((playerPosition.x==exit.y)&&(playerPosition.y==exit.x)&&(settings.botDifficuly==HARD)) {
+			if ((playerPosition.x==exit.y)&&(playerPosition.y==exit.x)&&(settings.playMetod==1)) {
 			
 				startGame(settings, score + totalScore); flag=1;
 			}
 
-			if (flag||(playerPosition.x==exit.y)&&(playerPosition.y==exit.x)&&(settings.botDifficuly!=HARD)) {
+			if (flag||(playerPosition.x==exit.y)&&(playerPosition.y==exit.x)&&(settings.playMetod!=1)) {
 				Sleep (250);
 				gameover ();
 				Sleep (1500);
-				if(settings.botDifficuly==HARD)
+				if(settings.playMetod==1)
 				scoreEntry(settings,score + totalScore);
 				else 
 				scoreEntry2(settings,score + totalScore);
