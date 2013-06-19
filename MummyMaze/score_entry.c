@@ -1,14 +1,17 @@
 #include "score_entry.h"
+#include <time.h>
 
 void scoreEntry(settings_t settings, float score) {
 	FILE* output;
-	highscore_t *player, *highscores;
+	
+	highscore_t *player, *highscores=null;
 	int i;
 
-	output = fopen ("highscore.bin","wb+");
+	output = fopen ("highscore.bin","rb+");
 	highscores = readFromFile (output);
 	player=malloc (sizeof(highscore_t));
-	player->name = malloc (50*sizeof(char));
+
+	
 
 
 	for (i=15;i<25;i++) {
@@ -19,7 +22,7 @@ void scoreEntry(settings_t settings, float score) {
 			changeColor (DKSCBK);
 		printf ("                                                 ");
 	}
-
+	
 	positionCursor (67,16);
 	if (settings.wallColor==LIGHT)
 			changeColor (LISCTX);
@@ -31,13 +34,14 @@ void scoreEntry(settings_t settings, float score) {
 	printf ("Your highscore:  ");
 	printf ("%.2f",score);
 	player->score=score;
+	
 
 	positionCursor (52,20);
 	printf ("Enter your name:  ");
 	scanf ("%s",player->name);
 
 	
-	createScoreElem (player->score,player->name,highscores);
+	highscores=createScoreElem (player->score,player->name,time(null),highscores);
 
 	printInFile (highscores,output);
 

@@ -7,6 +7,7 @@
 #include "maze_gui.h"
 #include "position_cursor.h"
 #include "start_game.h"
+#include <time.h>
 
 int manhattanLength (int x1, int y1 , int x2, int y2 ){
 	return abs(x2-x1)+abs(y2-y1);
@@ -370,30 +371,35 @@ void hint (int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension)
 
 	}
 }
-highscore_t *createScoreElem(float score,char * str,highscore_t *first)
+highscore_t *createScoreElem(float score,char * str,time_t date,highscore_t *first)
 {
 	highscore_t *tmp ,*pred,*new1;
+	int num=0;
 	tmp=first;
+
 	
 	pred=null;
 	new1= (highscore_t*) malloc (sizeof(highscore_t));
 	new1->score=score;
-	new1->name=(char*)malloc((strlen(str)+1)*sizeof(char));
+	new1->date= date;
+	
 	strcpy_s(new1->name,strlen(str)+1,str);
-	while (tmp!=null && new1->score< tmp->score )
+	while (tmp!=null && new1->score < tmp->score && i++<10)
 	{
 		pred=tmp;
 		tmp=tmp->succ;
 	}
 	if (pred==null)
 	{
-		new1->succ=tmp;
 		first=new1;
+		first->succ=tmp;
+		
 	}
 	else 
 	{
-		pred->succ=new1;
 		new1->succ=tmp;
+		pred->succ=new1;
+		
 	}
 	
 	return first;
@@ -401,26 +407,16 @@ highscore_t *createScoreElem(float score,char * str,highscore_t *first)
 
 highscore_t* readFromFile( FILE* output)
 {
-	highscore_t *tmp,*tmp1,*new1, *first=null;
+	highscore_t *tmp,*tmp1=null,*new1, *first=null;
 
-	tmp1=first;
-	tmp =(highscore_t*) malloc( sizeof(highscore_t) );
-
-	while ( !feof(output) )
-	{
-
+		tmp =(highscore_t*) malloc( sizeof(highscore_t) );
 		
-		if ( fread(tmp,sizeof(highscore_t),1,output) < 1 ) break;
+		if( fread(tmp,sizeof(highscore_t),1,output)<1) first=null;
 
-		new1= (highscore_t*)malloc(sizeof(highscore_t));
-		new1=tmp;
+		else
+			first=tmp;
 		
-		tmp1=new1;
-		new1->succ=null;
-		tmp1=tmp1->succ;
-
-
-	}
+		
 
 	return first;
 
@@ -429,7 +425,7 @@ highscore_t* readFromFile( FILE* output)
 void printInFile(highscore_t* first, FILE* output)
 {
  
- 	highscore_t* tmp;
+ 	highscore_t* tmp=malloc(sizeof(highscore_t));
 
  	tmp=first;
  	fseek(output,0,SEEK_SET);
@@ -439,4 +435,21 @@ void printInFile(highscore_t* first, FILE* output)
  		tmp=tmp->succ;
  	}
 
+}
+highscore_t* dealocateList(highscore_t* first)
+{
+	highscore_t* tmp,*stari;
+
+	tmp=first;
+	while (tmp!=null)
+	{
+		
+		
+		stari=tmp;
+		tmp=tmp->succ;
+		free(stari);
+		stari=null;
+
+	}
+	return first;
 }

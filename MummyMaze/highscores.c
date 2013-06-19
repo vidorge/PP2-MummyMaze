@@ -27,12 +27,15 @@ void highscores () {
 	highscores = readFromFile (list);
 
 	while (1) {
+		if(highscores==null) break;
 		positionCursor (row,column+=4);
-		printf("%d. %.2f %s", i++, highscores->score, highscores->name);
+		printf("%d. %.2f %s | ", i++, highscores->score, highscores->name);
+		printf(ctime(&(highscores->date)));
 		
 
 		if (column>38) {row+=60; column=columnTemp;}
 		highscores=highscores->succ;
+		dealocateList(highscores);
 	}
 
 

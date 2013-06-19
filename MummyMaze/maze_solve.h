@@ -40,8 +40,9 @@ typedef struct position_t
 typedef struct highscore_t
 {
 	float score;
-	char * name ;
+	char  name[250] ;
 	struct highscore_t * succ;
+	time_t date;
 
 }highscore_t;
 
@@ -63,7 +64,8 @@ position_t dummyMummy(int **matrix,int i1,int j1, int i2, int j2,int steps ,int 
 void deletePrioQueue2(elemPrioQueue_t *q);
 float timef(clock_t begin); 
 void hint (int **matrix, int i1, int j1,int i2, int j2,dimension_t dimension); 
-highscore_t * createScoreElem(float score,char * str, highscore_t *first);	
+highscore_t * createScoreElem(float score,char * str,time_t date, highscore_t *first);	
 highscore_t* readFromFile( FILE* output);
 void printInFile(highscore_t* first, FILE* output);
+highscore_t* dealocateList(highscore_t*);
 #endif
